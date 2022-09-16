@@ -1,0 +1,4 @@
+alias nsb_reset_cvars "resetcvar nsb_boss_spawn_bias; resetcvar nsb_persistent_spawning"
+alias bog_reset_cvars "resetcvar bog_plasma_spawn_bias; resetcvar bog_ssg_spawn_bias; resetcvar bog_chaingun_spawn_bias; resetcvar bog_persistent_spawning"
+
+alias Hexa_Reset_Cvars "nsb_reset_cvars; bog_reset_cvars"

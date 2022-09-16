@@ -1,10 +1,8 @@
-Version "4.2"
-
 class NoScopeBoss:BossRifle{
 	default{
 		inventory.pickupmessage "You got the scopeless bolt-action rifle!";
 		hdweapon.refid "nsb";
-		tag "Scopeless boss rifle";
+		tag "$TAG_NSB";
 		
 		hdweapon.loadoutcodes "
 			\cucustomchamber - 0/1, whether to reduce jam for less power
@@ -671,49 +669,5 @@ class NoScopeBossSpawner:IdleDummy{
 			let ggg=BossRifle(spawn("NoScopeBoss",pos,ALLOW_REPLACE));
 			HDF.TransferSpecials(self,ggg,HDF.TS_ALL);
 		}stop;
-	}
-}
-
-class NoScopeBossHandler : EventHandler
-{
-	override void CheckReplacement(ReplaceEvent e)
-	{
-		if (!e.Replacement)
-		{
-			return;
-		}
-
-		switch (e.Replacement.GetClassName())
-		{
-			case 'ClipBoxPickup':
-				if (random[BossRandom](0, 128) <= 8)
-				{
-					e.Replacement = "NoScopeBossSpawner";
-					e.IsFinal = false;
-				}
-				break;
-		}
-	}
-
-	override void WorldThingSpawned(WorldEvent e)
-	{
-		let NSBossAmmo = HDAmmo(e.Thing);
-		if (!NSBossAmmo)
-		{
-			return;
-		}
-
-		switch (NSBossAmmo.GetClassName())
-		{
-			case 'SevenMilAmmo':
-				NSBossAmmo.ItemsThatUseThis.Push("NoScopeBoss");
-				break;
-			case 'SevenMilAmmoRecast':
-				NSBossAmmo.ItemsThatUseThis.Push("NoScopeBoss");
-				break;
-			case 'HD7mClip':
-				NSBossAmmo.ItemsThatUseThis.Push("NoScopeBoss");
-				break;
-		}
 	}
 }

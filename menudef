@@ -1,0 +1,119 @@
+// This adds it to options so we don't have multiple option menus in the main options menu.
+AddOptionMenu "OptionsMenu"
+{
+    Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
+}
+
+// This is the main option menu that'll have all of the other menus for the weaponry.
+OptionMenu HexadokenLegacyContinued
+{
+    Title "Hexadoken's Legacy Continued"
+    StaticText ""
+	StaticText "--- Rifles ---", "orange"
+	StaticText ""
+    Submenu "No-Scope Boss Rifle", "NoScopeBoss", 0, 1
+	StaticText ""
+    Submenu ".50 OMG Boss Rifle", "BogRifle", 0, 1
+    StaticText ""
+	StaticText "--- Reset Options ---", "Red"
+	StaticText ""
+	SafeCommand "Reset every option", "Hexa_Reset_Cvars", "This resets every option for Hexa's Legacy Continued, are you sure you want to do this?"
+}
+
+OptionMenu NoScopeBoss
+{
+    Title "------ No-Scope Boss Options ------"
+   	StaticText "Notice:", "Orange"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "all spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Orange"
+    StaticText  "Control the spawn rate of the No-Scope Boss on Boss Rifles", "white"
+	Option "No-Scope Boss Spawn Rate: ", "nsb_boss_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Boss spawn options", "resetcvar nsb_boss_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "nsb_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar nsb_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "nsb_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A Boss rifle that has been stripped of its main scope, leaving only its irons left.", "white"
+	StaticText "Little is known why these rifles have appeared with only irons, especially as they're not easily replaceable.", "white"
+	StaticText "Some speculate that they're for civilian use while others say that they're for infantry use.", "white"
+	StaticText "All we can say for certain is that it's still as effective as the regular boss rifle, for better or for worse.", "white"
+}
+
+OptionMenu BogRifle
+{
+    Title "------ .50 OMG Boss Rifle Options ------"
+   	StaticText "Notice:", "Orange"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "all spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Orange"
+    StaticText  "Control the spawn rate of the .50 OMG Boss on Thunderbusters", "white"
+	Option ".50 OMG Boss Spawn Rate: ", "bog_plasma_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Thunderbuster spawn options", "resetcvar bog_plasma_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of the .50 OMG Boss on Slayer shotguns", "white"
+	Option ".50 OMG Boss Spawn Rate: ", "bog_ssg_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Slayer spawn options", "resetcvar bog_ssg_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of the .50 OMG Boss on Vulcanettes", "white"
+	Option ".50 OMG Boss Spawn Rate: ", "bog_chaingun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Vulcanette spawn options", "resetcvar bog_chaingun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "bog_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar bog_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "bog_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A Boss rifle that has been rechambered for the .50 OMG Cartridge.", "white"
+	StaticText "These rifles are usually impractical, though incredibly fun to shoot.", "white"
+	StaticText "If you do manage to hit your target with this it'll most certainly take some hefty damage,", "white"
+	StaticText "though getting the munitions to feed this beast is another ordeal.", "white"
+}
+
+// Spawn Bias (for items that do replace)
+OptionValue "SpawnBias"
+{
+	-1,    "Disabled"
+	 0,    "Replace All"
+	 2,    "1 in 3"
+	 4,    "1 in 5"
+	 9,    "1 in 10"
+	 14,   "1 in 15"
+	 19,   "1 in 20"
+	 24,   "1 in 25"
+	 49,   "1 in 50"
+	 99,   "1 in 100"
+	 149,  "1 in 150"
+	 199,  "1 in 200"
+}
+
+// Drop Bias (for items that don't replace). 
+OptionValue "DropBias"
+{
+	-1,    "Disabled"
+	 0,    "With All"
+	 2,    "1 in 3"
+	 4,    "1 in 5"
+	 9,    "1 in 10"
+	 14,   "1 in 15"
+	 19,   "1 in 20"
+	 24,   "1 in 25"
+	 49,   "1 in 50"
+	 99,   "1 in 100"
+	 149,  "1 in 150"
+	 199,  "1 in 200"
+}
