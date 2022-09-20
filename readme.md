@@ -7,12 +7,11 @@ Current plans are to update most of HexaDoken's addons and add them to this, min
 Credits:
 
 - HexaDoken, for the original addons.
+- Potetobloke and Carbine Dioxide for the M1 Garand pickup sprite
 - Kris, for the recast fixes and support for the No-Scope Boss.
 - FDA, for the Event Handler and Menu code.
 - Boss Rifle Code: MatthewTheGlutton/Matt, Hideous Destructor
 
 TO-DO:
 
-- Bossmerg
 - Speedloader Hunter and Revolver
-- M1 Garand

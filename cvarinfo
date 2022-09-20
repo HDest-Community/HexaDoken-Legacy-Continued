@@ -7,3 +7,12 @@ server int bog_plasma_spawn_bias = 19;
 server int bog_ssg_spawn_bias = 49;
 server int bog_chaingun_spawn_bias = 19;
 server bool bog_persistent_spawning = false;
+
+// M1 Garand
+server int hd_garand_ammotype=1;
+// I don't want to add these but I must. :( - [Ted]
+server int hd_garand_reloadspeed=0;
+server int hd_garand_reloadcapacity=8;
+
+server int gar_shellbox_spawn_bias = 24;
+server bool gar_persistent_spawning = false;

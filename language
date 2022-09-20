@@ -1,8 +1,10 @@
 [enu default]
 
 // Controls the color of the menu icon.
-HEXA_MENU = "\c[Green]♕\c- Hexadoken's Legacy Continued";
+HEXA_MENU = "\c[Green]Ⓗ\c- Hexadoken's Legacy Continued";
 
 // Weapon Tags
 TAG_NSB = "Scopeless Boss Rifle";
 TAG_OMGBOSS = ".50 OMG Boss Rifle";
+TAG_BOSSMERG = "Bossmerg 12 gauge Shotgun";
+TAG_GARAND = "M1 Garand";

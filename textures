@@ -95,4 +95,236 @@ Sprite "OCLPF0", 10, 15
 	Patch "CLIPA0", -7, -1
 }
 
+// Bossmerg
+Sprite "BORPA0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, 0
+}
+
+Sprite "BORPB0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, -15
+}
+
+Sprite "BORPC0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, -30
+}
+
+Sprite "BORPD0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, -45
+}
+
+Sprite "BORPE0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, -60
+}
+
+Sprite "BORPF0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, -75
+}
+
+Sprite "BORPG0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", 0, -90
+}
+
+Sprite "BORPH0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, 0
+}
+
+Sprite "BORPI0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, -15
+}
+
+Sprite "BORPJ0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, -30
+}
+
+Sprite "BORPK0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, -45
+}
+
+Sprite "BORPL0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, -60
+}
+
+Sprite "BORPM0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, -75
+}
+
+Sprite "BORPN0", 66, 15
+{
+	Offset 26, 15
+	Patch "BGUNPK", -66, -90
+}
+
+Sprite "BORGF0", 64, 116
+{
+	XScale 0.900
+	YScale 0.940
+	Offset -115, -73
+	Patch "BORGA0", 0, 0
+}
+
+Sprite "M1A1B0", 190, 160
+{
+	XScale 0.950
+	YScale 0.950
+	Offset -49, -42
+	Patch "M1A1A0", 0, 0
+}
+
+Sprite "M1A1C0", 190, 160
+{
+	XScale 0.900
+	YScale 0.900
+	Offset -41, -42
+	Patch "M1A1A0", 0, 0
+}
+
+Sprite "GCLPA0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "GCLPY0", 2, 1
+	Patch "GCLPY0", 2, 2
+	Patch "RBRSA3A7", 2, 3
+	Patch "RBRSA3A7", 2, 4
+	Patch "GCLPY0", 2, 5
+	Patch "RBRSA3A7", 2, 6
+	Patch "GCLPY0", 2, 8
+	Patch "RBRSA3A7", 2, 7
+	Patch "RBRSA3A7", 2, 9
+	Patch "RBRSA3A7", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPB0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "RBRSA3A7", 2, 3
+	Patch "RBRSA3A7", 2, 4
+	Patch "GCLPY0", 2, 5
+	Patch "RBRSA3A7", 2, 6
+	Patch "GCLPY0", 2, 8
+	Patch "RBRSA3A7", 2, 7
+	Patch "RBRSA3A7", 2, 9
+	Patch "RBRSA3A7", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPC0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "GCLPY0", 2, 5
+	Patch "GCLPY0", 2, 4
+	Patch "RBRSA3A7", 2, 6
+	Patch "GCLPY0", 2, 8
+	Patch "RBRSA3A7", 2, 7
+	Patch "RBRSA3A7", 2, 9
+	Patch "RBRSA3A7", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPD0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "RBRSA3A7", 2, 6
+	Patch "GCLPY0", 2, 8
+	Patch "RBRSA3A7", 2, 7
+	Patch "RBRSA3A7", 2, 9
+	Patch "RBRSA3A7", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPE0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "GCLPY0", 2, 8
+	Patch "GCLPY0", 2, 7
+	Patch "RBRSA3A7", 2, 9
+	Patch "RBRSA3A7", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPF0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "RBRSA3A7", 2, 9
+	Patch "RBRSA3A7", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPG0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "GCLPY0", 2, 10
+	Patch "GCLPY0", 2, 11
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPH0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "RBRSA3A7", 2, 12
+	Patch "RBRSA3A7", 2, 13
+	Patch "GCLPZ0", 0, 0
+}
+
+Sprite "GCLPI0", 6, 14
+{
+	YScale 2.000
+	Offset 2, 14
+	Patch "GCLPZ0", 0, 0
+}
+
 // End of texture definitions

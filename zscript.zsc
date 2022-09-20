@@ -2,6 +2,7 @@ Version "4.2"
 
 #include "zscript/.50OMGBoss.zsc"
 #include "zscript/ScopelessBoss.zsc"
+#include "zscript/Bossmerg.zsc"
 
 //-------------------------------------------------
 // Huge credits to FDA for the Radtech Event handler which this is based off of. It's been incredibly helpful.
@@ -92,7 +93,6 @@ class HexaDokenHandler : EventHandler
 		spawnee.name = name.makelower();
 		spawnee.chance = chance;
 		return spawnee;
-		
 	}
 
 	// appends an entry to ammospawnlist;
@@ -121,6 +121,10 @@ class HexaDokenHandler : EventHandler
 	{
 		cvarsAvailable = true;
 
+	//-------------------------------------------------
+	// Ammo Management
+	//-------------------------------------------------
+
 		// 7mm Clips
 		Array<string> wep_7mmClip;
 		wep_7mmClip.push("NoScopeBoss");
@@ -129,9 +133,8 @@ class HexaDokenHandler : EventHandler
 		// 7mm
 		Array<string> wep_7mm;
 		wep_7mm.push("NoScopeBoss");
-		addammo('SevenMil', wep_7mm);
+		addammo('SevenMilAmmo', wep_7mm);
 		
-
 		// 7mm Recast
 		Array<string> wep_7mmR;
 		wep_7mmR.push("NoScopeBoss");
@@ -142,10 +145,29 @@ class HexaDokenHandler : EventHandler
 		wep_50OMG.push("BogRifle");
 		addammo('HD50OMGAmmo', wep_50OMG);
 
+		// .30-06
+		Array<string> wep_3006;
+		wep_3006.push("M1Garand");
+		addammo('ThirtyAughtSixAmmo', wep_3006);
+
+		// 12 Gauge Shells
+		Array<string> wep_Shells;
+		wep_Shells.push("Bossmerg");
+		addammo('HDShellAmmo', wep_Shells);
+
+	//-------------------------------------------------
+	// Weapon Spawns
+	//-------------------------------------------------
+
 		// No-scope Boss Rifle
 		Array<HexaSpawnItemEntry> spawns_NoScopeBoss;
 		spawns_NoScopeBoss.push(additementry('BossRifleSpawner', nsb_boss_spawn_bias));
 		additem('NoScopeBossSpawner', spawns_NoScopeBoss, nsb_persistent_spawning);
+
+		// M1 Garand
+		Array<HexaSpawnItemEntry> spawns_Garand;
+		spawns_Garand.push(additementry('ShellBoxRandom', gar_shellbox_spawn_bias));
+		additem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
 
 		// .50 OMG Boss Rifle
 		Array<HexaSpawnItemEntry> spawns_BogRifle;

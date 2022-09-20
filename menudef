@@ -14,6 +14,8 @@ OptionMenu HexadokenLegacyContinued
     Submenu "No-Scope Boss Rifle", "NoScopeBoss", 0, 1
 	StaticText ""
     Submenu ".50 OMG Boss Rifle", "BogRifle", 0, 1
+	StaticText ""
+    Submenu "M1 Garand", "M1Garand", 0, 1
     StaticText ""
 	StaticText "--- Reset Options ---", "Red"
 	StaticText ""
@@ -84,6 +86,43 @@ OptionMenu BogRifle
 	StaticText "though getting the munitions to feed this beast is another ordeal.", "white"
 }
 
+OptionMenu M1Garand
+{
+    Title "------ M1 Garand Options ------"
+   	StaticText "Notice:", "Orange"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "all spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Orange"
+    StaticText  "Control the spawn rate of the M1 Garand on Shell boxes", "white"
+	Option "M1 Garand Spawn Rate: ", "gar_shellbox_spawn_bias", "SpawnBias"
+	SafeCommand "Reset M1 Garand spawn options", "resetcvar gar_shellbox_spawn_bias"
+	StaticText ""
+	StaticText "Misc Options", "Orange"
+    StaticText  "Control what ammunition the M1 Garand loads", "white"
+	Option "M1 Garand Ammo Type: ", "hd_garand_ammotype", "HDgarandfeed"
+	SafeCommand "Reset Ammo Type options", "resetcvar hd_garand_ammotype"
+	StaticText ""
+    StaticText  "Control how fast the M1 Garand's reloader is", "white"
+	Option "M1 Garand Reloader Speed: ", "hd_garand_reloadspeed", "HDgarandspeed"
+	SafeCommand "Reset Reloader speed options", "resetcvar hd_garand_reloadspeed"
+ 	StaticText ""
+    StaticText  "Control how much ammo the M1 Garand's reloader can hold at a time.", "white"
+	Option "M1 Garand Reloader Capacity: ", "hd_garand_reloadcapacity", "hdgarandcap"
+	SafeCommand "Reset Reloader Capacity", "resetcvar hd_garand_reloadcapacity"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "gar_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "An old M1 Garand from the early 1X40 times. Some have been recently rechambered to 7.76mm also.", "white"
+	StaticText "It mostly serves now as an inbetween of the Mk. IV Boss Rifle and  the ZM7 Liberator.", "white"
+	StaticText "The original cartridge it was chambered for of .30-06 hits a hefty punch,", "white"
+	StaticText "though its rarity and incompatibility with other 7.76mm guns makes the 7.76mm version a bit more economical.", "white"
+}
+
 // Spawn Bias (for items that do replace)
 OptionValue "SpawnBias"
 {
@@ -116,4 +155,35 @@ OptionValue "DropBias"
 	 99,   "1 in 100"
 	 149,  "1 in 150"
 	 199,  "1 in 200"
+}
+
+OptionValue "HDgarandfeed"
+{
+	0, ".30-06"
+	1, "7.76mm"
+	2, "7.76mm but stronger"
+}
+
+OptionValue "HDgarandspeed"
+{
+	0, "Normal"
+	1, "Fast"
+	2, "Very fast"
+	3, "Really fast"
+	4, "Stupidly fast"
+	5, "Volume warning"
+	6, "BRRRRRRT"
+}
+
+OptionValue "HDgarandcap"
+{
+	8, "8 rounds"
+	16, "16 rounds"
+	24, "24 rounds"
+	32, "32 rounds"
+	40, "40 rounds"
+	80, "80 rounds"
+	120, "120 rounds"
+	160, "160 rounds"
+	200, "200 rounds"
 }

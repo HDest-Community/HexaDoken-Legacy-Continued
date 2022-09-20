@@ -1,2 +1,11 @@
 // 50 OMG Boss firing sound.
 weapons/bogomgfire 5BOGFIRE
+
+// Garand
+weapons/garandping		M1PING
+
+weapons/garandlower		dspocket
+weapons/garandunbolt	dsrifclk
+weapons/garandround		dsrifck2
+weapons/garandclip		dsgopen
+weapons/garandbolt		dsrifclk
