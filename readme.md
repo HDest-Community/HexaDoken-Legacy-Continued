@@ -2,7 +2,7 @@
 
 This is a fix/update of HexaDoken's original 'Hideous Destructor' addons.
 It currently adds both recast support and proper spawners for the No-Scope Boss.
-Current plans are to update most of HexaDoken's addons and add them to this, minus the joke ones.
+Current plans are to update most of HexaDoken's addons and add them to this, minus the vanilla items like the Speedloader hunter and revolver, which get ted-tweaks treatment.
 
 Credits:
 
@@ -14,4 +14,9 @@ Credits:
 
 TO-DO:
 
-- Speedloader Hunter and Revolver
+- Speedloader Hunter and Revolver (likely to be added to Ted-Tweaks instead)
+- Fix bossmerg tube/chamber handling to be less fucky
+- Fix his detachables addon (likely to be added to Ted-Tweaks instead to be better integrated)
+- Add in 7mm Speedloaders and Dedicated Medical Scanner if plausible.
+- Add BarrelPurge and VulcFixer (likely to be added to Ted-Tweaks instead)
+- Add MiniCyberdemons
