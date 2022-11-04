@@ -352,4 +352,13 @@ sprite BOJGX0,64,116{
 	patch BOJGP0,0,0{}
 }
 
+Sprite "MEDIZ0", 28, 16
+{
+	Offset 14, 8
+	Patch "MEDIF0", 0, 0
+	{
+		Translation "176:191=124:127"
+	}
+}
+
 // End of texture definitions

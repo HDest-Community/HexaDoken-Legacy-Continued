@@ -1,0 +1,349 @@
+enum MediNums{
+	SCAN_FIREMODE=1,
+	SCAN_ACCURACY=2,
+	SCAN_INPROGRESS=3,
+}
+
+class HDScanner:HDWoundFixer{
+	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
+	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
+	default{
+		-weapon.no_auto_switch
+		+inventory.invbar
+		+hdweapon.fitsinbackpack
+		-nointeraction
+		weapon.selectionorder 1002;
+		weapon.slotnumber 9;
+		weapon.slotpriority 0;
+		scale 0.3;
+		tag "Medical scanner";
+		hdweapon.refid "SCA";
+		inventory.icon "MEDIZ0";
+	}
+	override double weaponbulk(){
+		return 10;
+	}
+	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
+		sb.drawstring(
+			sb.pnewsmallfont,weaponstatus[SCAN_FIREMODE]?"CARE":"FAST",(-23,-20),
+			sb.DI_TEXT_ALIGN_RIGHT|sb.DI_TRANSLATABLE|sb.DI_SCREEN_CENTER_BOTTOM,
+			Font.CR_GREEN, scale:(0.5,0.5)
+		);
+		if(weaponstatus[SCAN_INPROGRESS]) {
+			sb.drawstring(
+				sb.pnewsmallfont,"SCANNING",(-25,-10),
+				sb.DI_TEXT_ALIGN_RIGHT|sb.DI_TRANSLATABLE|sb.DI_SCREEN_CENTER_BOTTOM,
+				Font.CR_GREEN, scale:(0.25,0.25)
+			);
+			int w = (weaponstatus[SCAN_INPROGRESS]/5)-1;
+			if (w < 0) w = 0;
+			sb.fill(
+				color(255,99,213,92),
+				-40,-5,
+				w,2,
+				sb.DI_SCREEN_CENTER_BOTTOM
+			);
+		}
+	}
+	override string gethelptext(){
+		return
+		WEPHELP_RELOAD.."  Take off armour\n"
+		..WEPHELP_INJECTOR.."\n"
+		..WEPHELP_FIREMODE
+		..(weaponstatus[SCAN_FIREMODE]
+			?"  Switch to quick scan"
+			:"  Switch to precise scan")
+		;
+	}
+	action void A_MedikitReady(){
+		A_WeaponReady(WRF_NOFIRE|WRF_ALLOWUSER1|WRF_ALLOWUSER3);
+		if(!player)return;
+		int bt=player.cmd.buttons;
+
+		//don't do the other stuff if holding reload
+		//LET THE RELOAD STATE HANDLE EVERYTHING ELSE
+		if(bt&BT_RELOAD){
+			setweaponstate("reload");
+			return;
+		}
+		
+		if(bt&BT_USER2){
+			setweaponstate("firemode");
+			return;
+		}
+
+		//wait for the player to decide what they're doing
+		if(bt&BT_ATTACK&&bt&BT_ALTATTACK)return;
+
+		//use on someone else
+		if(bt&BT_ALTATTACK){
+			setweaponstate("diagnoseother");
+			return;
+		}
+
+		//self
+		if(bt&BT_ATTACK){
+			//radsuit blocks everything
+			if(countinv("WornRadsuit")){
+				if(!countinv("PortableRadsuit"))A_TakeInventory("WornRadsuit");
+				else{
+					if(getcvar("hd_autostrip"))setweaponstate("reload");
+					else{
+						if(getcvar("hd_helptext"))A_WeaponMessage("Take off your environment suit first!\n\n(toggle it in your inventory or hit reload)",100);
+						setweaponstate("nope");
+					}
+					return;
+				}
+			}
+			if(pitch<min(player.maxpitch,80)){
+				//move downwards
+				let hdp=hdplayerpawn(self);
+				if(hdp)hdp.gunbraced=false;
+				A_MuzzleClimb(0,5,0,5);
+			}else{
+				//diagnose
+				setweaponstate("diagnose");
+				return;
+			}
+		}
+		invoker.weaponstatus[SCAN_INPROGRESS]=0;
+	}
+	states{
+	select:
+		TNT1 A 10{
+			if(!getcvar("hd_helptext")) return;
+			A_WeaponMessage("\cg+++ \cjSCANNER \cg+++\c-\n\n\nPress and hold Fire\nto scan yourself.",175);
+		}
+		goto super::select;
+	ready:
+		TNT1 A 1 A_MedikitReady();
+		goto readyend;
+	user2:
+	firemode:
+		---- A 1{
+			invoker.weaponstatus[SCAN_FIREMODE]++;
+			invoker.weaponstatus[SCAN_FIREMODE]%=2;
+			A_SetHelpText();
+		}goto nope;
+	fire:
+	hold:
+	diagnose:
+		TNT1 A 0 {
+			A_WeaponMessage("\c-\n\n\ccScanning, please wait...");
+		}
+		TNT1 A 0 {if (invoker.weaponstatus[SCAN_FIREMODE]) setweaponstate("diagnosecare");}
+		TNT1 AAAAAAAAAAAA 2{
+			A_StartSound("medikit/scan",CHAN_WEAPON,volume:0.5);
+			A_SetBlend("aa aa 88",0.04,1);
+			invoker.weaponstatus[SCAN_INPROGRESS]+=10;
+		}
+		TNT1 A 0 {
+			A_ScanResults(self,12);
+			invoker.weaponstatus[SCAN_INPROGRESS]=0;
+		}
+		TNT1 A 0 A_Refire("nope");
+		goto readyend;
+	diagnosecare:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4{
+			A_StartSound("medikit/scan",CHAN_WEAPON,volume:0.5);
+			A_SetBlend("aa aa 88",0.04,1);
+			invoker.weaponstatus[SCAN_INPROGRESS]+=4;
+			if (invoker.owner.countinv("IsMoving")) {
+				A_WeaponMessage("\caAuto-Diagnostic Tool failed.");
+				invoker.weaponstatus[SCAN_INPROGRESS]=0;
+				setweaponstate("nope");
+			}
+		}
+		TNT1 A 0 {
+			A_ScanResults(self,999);
+			invoker.weaponstatus[SCAN_INPROGRESS]=0;
+		}
+		TNT1 A 0 A_Refire("nope");
+		goto readyend;
+	altfire:
+	althold:
+	diagnoseother:
+		TNT1 A 0{
+			A_WeaponMessage("\c-\n\n\ccScanning, please wait...");
+			invoker.target=null;
+			invoker.weaponstatus[SCAN_ACCURACY]=0;
+			if (invoker.weaponstatus[SCAN_FIREMODE]) setweaponstate("diagnoseothercare");
+		}
+		TNT1 AAAAAAAAAAAA 2{
+			A_StartSound("medikit/scan",CHAN_WEAPON,volume:0.4);
+			invoker.weaponstatus[SCAN_INPROGRESS]+=10;
+			flinetracedata mediline;
+			linetrace(
+				angle,42,pitch,
+				offsetz:height-12,
+				data:mediline
+			);
+			let mha=mediline.hitactor;
+			if(
+				!mha
+				||(invoker.target&&mha!=invoker.target)
+			){
+				invoker.target=null;
+				invoker.weaponstatus[SCAN_ACCURACY]=0;
+				invoker.weaponstatus[SCAN_INPROGRESS]=0;
+				return;
+			}
+			invoker.target=mha;
+			invoker.weaponstatus[SCAN_ACCURACY]++;
+		}
+		TNT1 A 0 A_ScanResults(invoker.target,invoker.weaponstatus[SCAN_ACCURACY]);
+		TNT1 A 0 {
+			A_ScanResults(invoker.target,invoker.weaponstatus[SCAN_ACCURACY]);
+			invoker.weaponstatus[SCAN_INPROGRESS]=0;
+		}
+		TNT1 A 0 A_Refire("nope");
+		goto readyend;
+	diagnoseothercare:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4{
+			A_StartSound("medikit/scan",CHAN_WEAPON,volume:0.4);
+			invoker.weaponstatus[SCAN_INPROGRESS]+=4;
+			flinetracedata mediline;
+			linetrace(
+				angle,42,pitch,
+				offsetz:height-12,
+				data:mediline
+			);
+			let mha=mediline.hitactor;
+			if(
+				!mha
+				||(invoker.target&&mha!=invoker.target)
+			){
+				invoker.target=null;
+				A_WeaponMessage("\caAuto-Diagnostic Tool failed.");
+				invoker.weaponstatus[SCAN_INPROGRESS]=0;
+				setweaponstate("nope");
+				return;
+			}
+			invoker.target=mha;
+		}
+		TNT1 A 0 {
+			A_ScanResults(self,999);
+			invoker.weaponstatus[SCAN_INPROGRESS]=0;
+		}
+		TNT1 A 0 A_Refire("nope");
+		goto readyend;
+
+	spawn:
+		MEDI F -1;
+		wait;
+	}
+	action void A_ScanResults(actor scanactor,int scanaccuracy){
+		A_StartSound("medikit/done",CHAN_WEAPON);
+		bool careful=false;
+		int thrownoff=scanaccuracy-12;
+		if(scanaccuracy==999) {
+			thrownoff=0;
+			careful=true;
+		}
+		if(!scanactor||abs(thrownoff)>10){
+			A_WeaponMessage("\caAuto-Diagnostic Tool failed.");
+			invoker.target=null;
+			invoker.weaponstatus[SCAN_ACCURACY]=0;
+			return;
+		}
+		string scanactorname=HDMath.GetName(scanactor);
+		let slf=HDPlayerPawn(scanactor);
+		if(!slf){
+			int scanactorhealthpercent=scanactor.health*100/scanactor.spawnhealth();
+			A_WeaponMessage(string.format("Medikit Auto-Diagnostic complete.
+
+			Status report:
+
+			\ccPatient: \cy%s
+
+			\ccOverall Health: \cg%u%%
+
+			\cu(all numbers are based on %% of minimum
+			\cuconsidered to be lethal in all situations.)",
+			scanactorname,scanactorhealthpercent+random(-thrownoff,thrownoff)),210);
+
+			A_Log(string.format("Medikit Auto-Diagnostic:
+\ccPatient: \cy%s
+\ccOverall Health: \cg%u%%",scanactorname,scanactorhealthpercent),true);
+			return;
+		}
+		int uw=slf.unstablewoundcount;
+		int ww=slf.woundcount;
+		int ow=slf.oldwoundcount;
+		int bb=slf.burncount;
+		double bl=double(slf.bloodloss)/(HDCONST_BLOODBAGAMOUNT<<2);
+		int ag,wg;
+		if(!careful) {
+			ag=int(slf.aggravateddamage*0.2+countinv("IsMoving")+abs(thrownoff));
+			wg=random(-thrownoff,thrownoff);
+			if(ww||uw)wg+=2;
+			if(countinv("HDArmourWorn"))wg+=5;
+			ow=max(ow+random(-ag,ag),0);
+			bb=max(bb+random(-ag,ag),0);
+			uw=max(uw+random(-wg,wg),0);
+			ww=max(ww+random(-wg,wg),0);
+			bl=max(bl+frandom(-wg,wg),0);
+		}
+		else ag = slf.aggravateddamage + random(-slf.aggravateddamage, slf.aggravateddamage);
+		if (careful){
+			A_WeaponMessage(string.format("Medikit Auto-Diagnostic complete.
+
+			Status report:
+
+			\ccPatient: \cy%s
+
+			\ccOpen wounds: \cg%u%%
+
+			\ccWounds temporarily bandaged: \ca%u%%
+			\ccWounds already treated: \cd%u%%
+			\ccBurns: \cq%u%%
+			
+			\ccUnidentified: \cu%u%%
+
+			\ccBlood loss: \ca%.1f \cctransfusion units
+
+			\cu(%% is of total generally considered to be lethal except where noted.)",
+			scanactorname,ww,uw,ow,bb,ag,bl),210);
+
+			A_Log(string.format("Medikit Auto-Diagnostic:
+\ccPatient: \cy%s
+\ccOpen wounds: \cg%u%%
+\ccWounds temporarily bandaged: \ca%u%%
+\ccWounds already treated: \cd%u%%
+\ccBurns: \cq%u%%
+\ccUnidentified: \cu%u%%
+\ccBlood loss: \ca%.1f units"
+,scanactorname,ww,uw,ow,bb,ag,bl),true);
+		}
+		else {
+			A_WeaponMessage(string.format("Medikit Auto-Diagnostic complete.
+
+			Status report:
+
+			\ccPatient: \cy%s
+
+			\ccOpen wounds: \cg%u%%
+
+			\ccWounds temporarily bandaged: \ca%u%%
+			\ccWounds already treated: \cd%u%%
+			\ccBurns: \cq%u%%
+
+			\ccBlood loss: \ca%.1f \cctransfusion units
+
+			\cu(%% is of total generally considered to be lethal except where noted.)",
+			scanactorname,ww,uw,ow,bb,bl),210);
+
+			A_Log(string.format("Medikit Auto-Diagnostic:
+\ccPatient: \cy%s
+\ccOpen wounds: \cg%u%%
+\ccWounds temporarily bandaged: \ca%u%%
+\ccWounds already treated: \cd%u%%
+\ccBurns: \cq%u%%
+\ccBlood loss: \ca%.1f units"
+,scanactorname,ww,uw,ow,bb,bl),true);
+		}
+	}
+	override string pickupmessage(){
+		return "Picked up a medical scanner.";
+	}
+}

@@ -17,3 +17,6 @@ server int gar_shellbox_spawn_bias = 24;
 server bool gar_persistent_spawning = false;
 
 server bool hd_shitbossting_spawn = false;
+
+server int hdspeedrunloader_capacity = 30;
+server int hdspeedrunloader_breakchance = 32;

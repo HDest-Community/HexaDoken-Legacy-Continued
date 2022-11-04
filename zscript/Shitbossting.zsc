@@ -1,3 +1,7 @@
+// Honestly i'm probably not going to put much work into this.
+// It's a meme mod, if it breaks take it as an unintended feature.
+// I doubt it will all of this stuff inherets from BossRifle so it'll probably be fine tbh. - [Ted]
+
 // Worst boss rifle.
 class BossRifleButItsTheWorst:BossRifle{
 	default{
