@@ -200,15 +200,8 @@ class HDGarand:AutoReloadingThingy{
 		){
 			invoker.makinground=true;
 			int cap;
-			if (invoker.owner.countinv("ThisReloaderIsTheReloaderThatWillPierceTheHeavens")) {
-				invoker.owner.takeinventory("ThisReloaderIsTheReloaderThatWillPierceTheHeavens",1);
-				invoker.omegachug = true;
-				cap = 1000;
-			}
-			else {
 				cap = cvar.getcvar("hd_garand_reloadcapacity").getint();
 				cap = clamp(8,cap,200);
-			}
 			int counter;
 			if (invoker.tas) {
 				counter=min(cap,invoker.owner.countinv("ThirtyAughtSixBrass")+invoker.owner.countinv("SevenMilBrass")/2);
@@ -438,7 +431,7 @@ class HDGarand:AutoReloadingThingy{
 				invoker.weaponstatus[GARS_CHAMBER]=0;
 				invoker.weaponstatus[0]&=~GARF_WRONGROUND;
 			}
-			if(invoker.weaponstatus[GARS_MAG]==0 || invoker.owner.CountInv("YouCanUseThisIfYouEverNeedMoreEmptyClipsIGuess")){
+			if(invoker.weaponstatus[GARS_MAG]==0){
 				actor brsss=null;
 				double cosp=cos(pitch);
 				[cosp,brsss]=A_SpawnItemEx(invoker.ping,

@@ -1,4 +1,4 @@
 GameInfo
 {
-	AddEventHandlers = "HexaDokenHandler"
+	AddEventHandlers = "HexaDokenHandler", "HDShitbostHandler"
 }

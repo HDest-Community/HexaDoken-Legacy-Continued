@@ -663,20 +663,6 @@ class BogRifle:HDWeapon{
 			clamp(zoom,5,60);
 	}
 }
-enum bossstatus{
-	BOSSF_FRONTRETICLE=1,
-	BOSSF_CUSTOMCHAMBER=2,
-	BOSSF_UNLOADONLY=4,
-	BOSSF_DONTUSECLIPS=8,
-
-	BOSSS_CHAMBER=1, //0=nothing, 1=brass, 2=loaded, 3/4=jammed brass/round
-	BOSSS_MAG=2,
-	BOSSS_ZOOM=3,
-	BOSSS_DROPADJUST=4,
-	BOSSS_HEAT=5,
-	BOSSS_HAND=6,
-	BOSSS_GRIME=7,
-}
 
 class HDOmgClip:HDMagAmmo{
 	default{

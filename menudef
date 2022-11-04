@@ -17,6 +17,8 @@ OptionMenu HexadokenLegacyContinued
 	StaticText ""
     Submenu "M1 Garand", "M1Garand", 0, 1
     StaticText ""
+	Option "Spawn boss variants (TEMP)","hd_shitbossting_spawn","YesNo"
+	StaticText ""
 	StaticText "--- Reset Options ---", "Red"
 	StaticText ""
 	SafeCommand "Reset every option", "Hexa_Reset_Cvars", "This resets every option for Hexa's Legacy Continued, are you sure you want to do this?"
