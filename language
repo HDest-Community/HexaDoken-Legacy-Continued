@@ -8,3 +8,9 @@ TAG_NSB = "Scopeless Boss Rifle";
 TAG_OMGBOSS = ".50 OMG Boss Rifle";
 TAG_BOSSMERG = "Bossmerg 12 gauge Shotgun";
 TAG_GARAND = "M1 Garand";
+
+TAG_ShitbostDummy = "Boss Rifle Variant";
+TAG_HEXAPERSONAL = "HexaDoken's Personal Boss Rifle";
+TAG_4MMBOSS = "Boss Rifle (4mm)";
+TAG_9MMBOSS = "Boss Rifle (9mm)";
+TAG_WORSTBOSS = "Boss Rifle But It's The Worst";

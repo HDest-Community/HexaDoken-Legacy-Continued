@@ -7,7 +7,7 @@ class BossRifleButItsTheWorst:BossRifle{
 	default{
 		inventory.pickupMessage "Oh no.";
 		hdweapon.refid "";
-		tag "Boss Rifle But It's The Worst";
+		tag "$TAG_WORSTBOSS";
 	}
 	override void GunBounce(){
 		HDWeapon.GunBounce();
@@ -406,7 +406,7 @@ class BossRifleButItsTheWorst:BossRifle{
 // 9mm Boss Rifle
 class BossRifleButIts9mm:BossRifle{
 	default{
-		tag "Boss Rifle (9mm)";
+		tag "$TAG_9MMBOSS";
 		hdweapon.refid "";
 	}
 	class<Inventory> nineclip;
@@ -916,7 +916,7 @@ class BossRifleButIts9mm:BossRifle{
 // 4mm Boss Rifle
 class BossRifleButIts4mm:BossRifle{
 	default{
-		tag "Boss Rifle (4mm)";
+		tag "$TAG_4MMBOSS";
 		hdweapon.refid "";
 	}
 	override double weaponbulk(){
@@ -1353,7 +1353,7 @@ class BossRifleButIts4mm:BossRifle{
 class BossRifleButItsFuckingPink:BossRifle{
 	default{
 		inventory.pickupMessage "You got HexaDoken's personal rifle!";
-		tag "HexaDoken's Personal Boss Rifle";
+		tag "$TAG_HEXAPERSONAL";
 		hdweapon.refid "";
 	}
 	class<Inventory> lrammo, actualammo;
@@ -1961,7 +1961,7 @@ class HDShitbostDummy:HDWeapon{
 	default{
 		-hdweapon.fitsinbackpack
 		hdweapon.refid "boj";
-		tag "Boss rifle variant";
+		tag "$TAG_ShitbostDummy";
 		inventory.icon "BOJGY0";
 
 		hdweapon.loadoutcodes "
