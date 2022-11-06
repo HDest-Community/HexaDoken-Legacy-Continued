@@ -1963,6 +1963,12 @@ class HDShitbostDummy:HDWeapon{
 		hdweapon.refid "boj";
 		tag "Boss rifle variant";
 		inventory.icon "BOJGY0";
+
+		hdweapon.loadoutcodes "
+			\cuNine - 0-1, 9mm Boss Rifle
+			\cuFour - 0-1, 4mm Boss Rifle
+			\cuPink - 0-1, Hexadoken's Personal Rifle/.22 LR Boss Rifle
+			\cuGold - 0-1, Lightspeed Boss Rifle";
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
