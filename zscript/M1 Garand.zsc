@@ -59,7 +59,6 @@ class HDGarand:AutoReloadingThingy{
 		weapon.bobrangex 0.22;
 		weapon.bobrangey 0.9;
 		scale 0.55;
-		inventory.pickupmessage "You got the M1 Garand!";
 		hdweapon.barrelsize 32,0.7,1.2;
 		hdweapon.refid "gar";
 		tag "$TAG_GARAND";
@@ -263,9 +262,9 @@ class HDGarand:AutoReloadingThingy{
 		}
 	}
 	override string pickupmessage(){
-		string s = super.pickupmessage();
+		string s = "You got the "..gettag().."!";
 		if (weaponstatus[0]&GARF_RELOADER)
-			s=s.." It has a built-in ammo reloader.";
+			s=s.." It seems to have a built-in ammo reloader.";
 		if (weaponstatus[0]&GARF_BUMP)
 			s=s.." You notice some tool marks on it...";
 		return s;
@@ -799,10 +798,12 @@ class HDGarandClip:HDMagAmmo{
 		hdmagammo.roundbulk ENC_776*0.8;
 		hdmagammo.magbulk 4;
 		hdpickup.refid "gac";
-		tag "M1 Garand clip";
-		inventory.pickupmessage "Picked up a M1 Garand clip.";
+		tag "$TAG_GARANDCLIP";
 		xscale 0.7; yscale 0.6;
 		inventory.maxamount 1000;
+	}
+	override string pickupmessage(){
+		return "Picked up a "..gettag()..".";
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite;

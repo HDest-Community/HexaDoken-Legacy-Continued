@@ -671,7 +671,7 @@ class HDOmgClip:HDMagAmmo{
 		hdmagammo.roundbulk ENC_50OMG;
 		hdmagammo.magbulk 0.5;
 		hdpickup.refid "g05";
-		tag ".50 OMG clip";
+		tag "$TAG_50OMGCLIP";
 		inventory.pickupmessage "Picked up a .50 OMG clip.";
 		xscale 0.55; yscale 0.7;
 		inventory.maxamount 1000;

@@ -14,3 +14,9 @@ TAG_HEXAPERSONAL = "HexaDoken's Personal Boss Rifle";
 TAG_4MMBOSS = "Boss Rifle (4mm)";
 TAG_9MMBOSS = "Boss Rifle (9mm)";
 TAG_WORSTBOSS = "Boss Rifle But It's The Worst";
+
+// Item Tags
+TAG_50OMGCLIP = ".50 OMG clip";
+TAG_7MMSPEEDLOADER = "7.76mm Speed-Reloader Prototype";
+TAG_DMS = "Medical scanner";
+TAG_GARANDCLIP = "M1 Garand clip";

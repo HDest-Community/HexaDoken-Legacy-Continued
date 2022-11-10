@@ -16,7 +16,7 @@ class HDScanner:HDWoundFixer{
 		weapon.slotnumber 9;
 		weapon.slotpriority 0;
 		scale 0.3;
-		tag "Medical scanner";
+		tag "$TAG_DMS";
 		hdweapon.refid "SCA";
 		inventory.icon "MEDIZ0";
 	}

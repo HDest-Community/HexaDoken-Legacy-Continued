@@ -5,10 +5,14 @@
 // Worst boss rifle.
 class BossRifleButItsTheWorst:BossRifle{
 	default{
-		inventory.pickupMessage "Oh no.";
 		hdweapon.refid "";
 		tag "$TAG_WORSTBOSS";
 	}
+
+	override string pickupmessage(){
+		return "You found a... "..gettag()..". Oh no...";
+	}
+
 	override void GunBounce(){
 		HDWeapon.GunBounce();
 		if(weaponstatus[0]&BOSSF_YEETABLE){
@@ -409,6 +413,11 @@ class BossRifleButIts9mm:BossRifle{
 		tag "$TAG_9MMBOSS";
 		hdweapon.refid "";
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."! It's a bit greasy...";
+	}
+
 	class<Inventory> nineclip;
 	override void postbeginplay(){
 		super.postbeginplay();
@@ -919,6 +928,11 @@ class BossRifleButIts4mm:BossRifle{
 		tag "$TAG_4MMBOSS";
 		hdweapon.refid "";
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."! Surprisingly light.";
+	}
+
 	override double weaponbulk(){
 		return 144+weaponstatus[BOSSS_MAG]*ENC_426_LOADED;
 	}
@@ -1352,10 +1366,14 @@ class BossRifleButIts4mm:BossRifle{
 // Hexa's Personal Rifle
 class BossRifleButItsFuckingPink:BossRifle{
 	default{
-		inventory.pickupMessage "You got HexaDoken's personal rifle!";
 		tag "$TAG_HEXAPERSONAL";
 		hdweapon.refid "";
 	}
+
+	override string pickupmessage(){
+		return "You got "..gettag().."!";
+	}
+
 	class<Inventory> lrammo, actualammo;
 	class<HDDebris> looseammo, spentammo;
 	override void postbeginplay(){
@@ -1965,10 +1983,14 @@ class HDShitbostDummy:HDWeapon{
 		inventory.icon "BOJGY0";
 
 		hdweapon.loadoutcodes "
-			\cuNine - 0-1, 9mm Boss Rifle
-			\cuFour - 0-1, 4mm Boss Rifle
-			\cuHexadoken - 0-1, Hexadoken's Personal Rifle/.22 LR Boss Rifle
-			\cuWorst - 0-1, Lightspeed Boss Rifle";
+			\cuNine - 0/1, 9mm Boss Rifle
+			\cuFour - 0/1, 4mm Boss Rifle
+			\cuHexadoken - 0/1, Hexadoken's Personal Rifle
+			\cuWorst - 0/1, Lightspeed Boss Rifle
+			\cucustomchamber - 0/1, whether to reduce jam for less power
+			\cufrontreticle - 0/1, whether crosshair scales with zoom
+			\cubulletdrop - 0-600, amount of compensation for bullet drop
+			\cuzoom - 5-60, 10x the resulting FOV in degrees";
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}

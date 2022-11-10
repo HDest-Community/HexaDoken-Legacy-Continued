@@ -5,7 +5,7 @@ class SpeedRunLoader:AutoReloader{
 		inventory.pickupmessage "You got the 7.76 reloading machine prototype! Note: HexaDoken Industries is not responsible for any damages caused by usage of this device.";
 		scale 0.5;
 		hdweapon.refid HDHD_776SRL;
-		tag "7.76mm Speed-Reloader Prototype";
+		tag "$TAG_7MMSPEEDLOADER";
 	}
 	int chugdelay;
 	override double weaponbulk(){

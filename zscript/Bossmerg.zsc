@@ -11,11 +11,15 @@ class Bossmerg:HDShotgun {
 		weapon.bobrangex 0.28;
 		weapon.bobrangey 1.1;
 		scale 0.75;
-		inventory.pickupmessage "You got the bolt-action shotgun!";
 		hdweapon.barrelsize 32,1,2;
 		hdweapon.refid HDLD_BOSSER;
 		tag "$TAG_BOSSMERG";
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
+	}
+
 	override void loadoutconfigure(string input){
 		int altreticle=getloadoutvar(input,"altreticle",1);
 		if(!altreticle)weaponstatus[0]&=~BOSSERF_ALTRETICLE;

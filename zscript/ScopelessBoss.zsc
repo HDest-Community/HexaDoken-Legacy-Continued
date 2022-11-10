@@ -1,6 +1,5 @@
 class NoScopeBoss:BossRifle{
 	default{
-		inventory.pickupmessage "You got the scopeless bolt-action rifle!";
 		hdweapon.refid "nsb";
 		tag "$TAG_NSB";
 		
@@ -8,6 +7,11 @@ class NoScopeBoss:BossRifle{
 			\cucustomchamber - 0/1, whether to reduce jam for less power
 			\cubulletdrop - 0-600, amount of compensation for bullet drop";
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
+	}
+
 	override double weaponbulk(){
 		return 138+weaponstatus[BOSSS_MAG]*ENC_776_LOADED;
 	}
