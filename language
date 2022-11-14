@@ -9,7 +9,7 @@ TAG_OMGBOSS = ".50 OMG Boss Rifle";
 TAG_BOSSMERG = "Bossmerg 12 gauge Shotgun";
 TAG_GARAND = "M1 Garand";
 
-TAG_ShitbostDummy = "Boss Rifle Variant";
+TAG_ShitbostDummy = "Boss Rifle Variants";
 TAG_HEXAPERSONAL = "HexaDoken's Personal Boss Rifle";
 TAG_4MMBOSS = "Boss Rifle (4mm)";
 TAG_9MMBOSS = "Boss Rifle (9mm)";
@@ -20,3 +20,70 @@ TAG_50OMGCLIP = ".50 OMG clip";
 TAG_7MMSPEEDLOADER = "7.76mm Speed-Reloader Prototype";
 TAG_DMS = "Medical scanner";
 TAG_GARANDCLIP = "M1 Garand clip";
+
+// Menu Titles
+TITLE_NSBMENU = "------ Scopeless Boss Rifle Options ------";
+TITLE_BOGRIFLEMENU = "------ .50 OMG Boss Rifle Options ------";
+TITLE_BOSSMERGMENU = "------ Bossmerg 12 gauge Shotgun Options ------";
+TITLE_GARANDMENU = "------ M1 Garand Options ------";
+
+// Scopeless Boss
+MENU_NSBSPAWNTEXT = "Control the spawn rate of the No-Scope Boss on Boss Rifles";
+MENU_NSBSPAWN = "No-Scope Boss Spawn Rate: ";
+MENU_RESETNSBSPAWN = "Reset Boss spawn options";
+
+// .50 OMG Boss
+MENU_BOGTHUNDERBUSTERTEXT = "Control the spawn rate of the .50 OMG Boss on Thunderbusters";
+MENU_BOGSLAYERTEXT = "Control the spawn rate of the .50 OMG Boss on Slayer shotguns";
+MENU_BOGVULCTEXT = "Control the spawn rate of the .50 OMG Boss on Vulcanettes";
+MENU_BOGSPAWNRATE = ".50 OMG Boss Spawn Rate: ";
+
+// Bossmerg
+MENU_BASHUNTER = "Control the spawn rate of the Bossmerg on Hunters";
+MENU_BASSPAWNRATE = "Bossmerg Spawn Rate: ";
+
+// M1 Garand
+MENU_GARANDLIBERATOR = "Control the spawn rate of the M1 Garand on Liberators";
+MENU_GARANDSPAWNRATE = "M1 Garand Spawn Rate: ";
+MENU_GARANDAMMO = "Control what ammunition the M1 Garand loads";
+MENU_GARANDAMMOTYPE = "M1 Garand Ammo Type: ";
+MENU_GARANDAMMORESET = "Reset Ammo Type options";
+MENU_GARANDRELOADERSPEED = "Control how fast the M1 Garand's reloader is";
+MENU_GARANDSPEED = "M1 Garand Reloader Speed: ";
+MENU_RESETGARANDSPEED = "Reset Reloader speed options";
+MENU_GARANDRELOADERCAPACITYTEXT = "Control how much ammo the M1 Garand's reloader can hold at a time.";
+MENU_GARANDRELOADERCAPACITY = "M1 Garand Reloader Capacity: ";
+MENU_RESETGARANDRELOADERCAPACITY = "Reset Reloader Capacity";
+
+// Various Resets
+MENU_RESETTB = "Reset Thunderbuster spawn options";
+MENU_RESETSLAYER = "Reset Slayer spawn options";
+MENU_RESETVULC = "Reset Vulcanette spawn options";
+MENU_RESETHUNTER = "Reset Hunter spawn options";
+MENU_RESETLIB = "Reset Liberator spawn options";
+
+// Persistency
+MENU_REPLACEAFTERMAPLOAD = "Control whether replacements happen after a mapload.";
+MENU_PERSISTENCY = "Persistent Spawns: ";
+MENU_RESETPERSISTENCY = "Reset persistence options";
+
+// Deepest Lore
+NSB_LORE1 = "A Boss rifle that has been stripped of its main scope, leaving only its irons left.";
+NSB_LORE2 = "Little is known why these rifles have appeared with only irons, especially as they're not easily replaceable.";
+NSB_LORE3 = "Some speculate that they're for civilian use while others say that they're for infantry use.";
+NSB_LORE4 = "All we can say for certain is that it's still as effective as the regular boss rifle, for better or for worse.";
+
+BOG_LORE1 = "A Boss rifle that has been rechambered for the .50 OMG Cartridge.";
+BOG_LORE2 = "These rifles are usually impractical, though incredibly fun to shoot.";
+BOG_LORE3 = "If you do manage to hit your target with this it'll most certainly take some hefty damage,";
+BOG_LORE4 = "though getting the munitions to feed this beast is another ordeal.";
+
+BAS_LORE1 = "What appears to be a boss rifle rechambered to fit 12-Gauge shells.";
+BAS_LORE2 = "Not much is known where these came from or why they were created in the first place,";
+BAS_LORE3 = "Though they most certainly do exist. For better or for worst.";
+BAS_LORE4 = "If you get one, make sure it's the custom chamber version. These'll gunk up fast...";
+
+GARAND_LORE1 = "An old M1 Garand from the early 1X40 times. Some have been recently rechambered to 7.76mm also.";
+GARAND_LORE2 = "It mostly serves now as an inbetween of the Mk. IV Boss Rifle and  the ZM7 Liberator.";
+GARAND_LORE3 = "The original cartridge it was chambered for of .30-06 hits a hefty punch,";
+GARAND_LORE4 = "though its rarity and incompatibility with other 7.76mm guns makes the 7.76mm version a bit more economical.";
