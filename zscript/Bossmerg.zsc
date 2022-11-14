@@ -34,31 +34,30 @@ class Bossmerg:HDShotgun {
 			(weaponstatus[0]&BOSSERF_FRONTRETICLE)?
 			clamp(zoom,20,40):
 			clamp(zoom,6,70);
-
-		int extendmag=getloadoutvar(input,"extend",1);
-		if(!extendmag){weaponstatus[0]&=~BOSSERF_EXTEND; weaponstatus[BOSSERS_MAG]=2;}
-		else if(extendmag>0){weaponstatus[0]|=BOSSERF_EXTEND; weaponstatus[BOSSERS_MAG]=4;}
-		
 		int choke=min(getloadoutvar(input,"choke",1),9);
 		if(choke>=0)weaponstatus[BOSSERS_CHOKE]=choke;
 	}
-	override string getobituary(actor victim,actor inflictor,name mod,bool playerattack){
-		bool sausage=true;
-		for(int i=0;i<MAXPLAYERS;i++){
-			if(playeringame[i]&&(players[i].getgender()!=0)){
-				sausage=false;
-				break;
-			}
-		}
-		if(
-			sausage
-			&&!(weaponstatus[HUNTS_FIREMODE]<1) //"pumped"
-			&&inflictor is "HDBulletActor" //"brutally!" "full!" - not just bleeding!
-		)return "%o was brutally pumped full of %k's hot, manly lead.";
-		return obituary;
-	}
 	override string,double getpickupsprite(){return "BORP"..getpickupframe2().."0",1.;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
+		if(sb.hudlevel==1){
+			sb.drawimage("SHL1A0",(-47,-10),basestatusbar.DI_SCREEN_CENTER_BOTTOM);
+			sb.drawnum(hpl.countinv("HDShellAmmo"),-46,-8,
+				basestatusbar.DI_SCREEN_CENTER_BOTTOM
+			);
+		}
+		if(hdw.weaponstatus[BOSSERS_CHAMBER]>1){
+			sb.drawrect(-24,-14,5,3);
+			sb.drawrect(-18,-14,2,3);
+		}
+		else if(hdw.weaponstatus[BOSSERS_CHAMBER]>0){
+			sb.drawrect(-18,-14,2,3);
+		}
+		sb.drawwepnum(hdw.weaponstatus[BOSSERS_MAG],hdw.weaponstatus[BOSSERS_TUBESIZE],posy:-7);
+		for(int i=hdw.weaponstatus[SHOTS_SIDESADDLE];i>0;i--){
+			sb.drawrect(-16-i*2,-5,1,3);
+		}
+	}
+/*	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
 			sb.drawimage("SHL1A0",(-47,-10),basestatusbar.DI_SCREEN_CENTER_BOTTOM);
 			sb.drawnum(hpl.countinv("HDShellAmmo"),-46,-8,
@@ -71,11 +70,6 @@ class Bossmerg:HDShotgun {
 		}
 		else if(hdw.weaponstatus[BOSSERS_CHAMBER]>0){
 			sb.drawwepdot(-17,-12,(2,3));
-		}
-		if(hdw.weaponstatus[0]&BOSSERF_EXTEND) {
-			for(int i=hdw.weaponstatus[BOSSERS_MAG];i>0;i--){
-				sb.drawwepdot(-11-i*6,-7,(5,3));
-			}
 		}
 		else{ 
 			if(hdw.weaponstatus[BOSSERS_MAG]>1){
@@ -92,7 +86,7 @@ class Bossmerg:HDShotgun {
 		for(int i=hdw.weaponstatus[SHOTS_SIDESADDLE];i>0;i--){
 			sb.drawwepdot(-15-i*2,-2,(1,3));
 		}
-	}
+	}*/
 	override string gethelptext(){
 		return
 		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[BOSSERS_CHOKE]..")\n"
@@ -186,17 +180,16 @@ class Bossmerg:HDShotgun {
 		return 10+tube*0.3+weaponstatus[SHOTS_SIDESADDLE]*0.08;
 	}
 	override double weaponbulk(){
-		return 115+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[BOSSERS_MAG])*ENC_SHELLLOADED
-		+(weaponstatus[0]&BOSSERF_EXTEND?2:0);
+		return 115+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[BOSSERS_MAG])*ENC_SHELLLOADED;
 	}
 	int jamchance(){
-		return weaponstatus[0]&BOSSERF_EXTEND?5:0;
+		return 5;
 	}
 	int loadedrounds(){
 		return weaponstatus[BOSSERS_MAG] + ((weaponstatus[BOSSERS_CHAMBER]>1)?1:0);
 	}
 	int magsize(){
-		return weaponstatus[0]&BOSSERF_EXTEND?4:2;
+		return 3;
 	}
 	action void A_CheckPocketSaddles(){
 		if(invoker.weaponstatus[SHOTS_SIDESADDLE]<1)invoker.weaponstatus[0]|=BOSSERF_FROMPOCKETS;
@@ -701,13 +694,11 @@ class Bossmerg:HDShotgun {
 			else if(ssh>=3)frame=4;
 			else if(ssh>=1)frame=5;
 			else frame=6;
-			frame+=invoker.weaponstatus[0]&BOSSERF_EXTEND?0:7;
 		}
 	}
 	override void InitializeWepStats(bool idfa){
 		weaponspecial = 1337; //UaS sling compatbility
 		if(!idfa && !owner){
-			if(randompick(0,0,1))weaponstatus[0]|=BOSSERF_EXTEND;
 			if(randompick(0,0,1))weaponstatus[0]|=BOSSERF_FRONTRETICLE;
 			if(randompick(0,0,1))weaponstatus[0]|=BOSSERF_ALTRETICLE;
 			weaponstatus[BOSSERS_ZOOM]=30;
@@ -717,19 +708,10 @@ class Bossmerg:HDShotgun {
 		weaponstatus[BOSSERS_CHAMBER]=2;
 		weaponstatus[BOSSERS_MAG]=magsize();
 		weaponstatus[SHOTS_SIDESADDLE]=12;
+		weaponstatus[BOSSERS_TUBESIZE]=3;
 	}
 	clearscope string getpickupframe2(){
 		int ssh=weaponstatus[SHOTS_SIDESADDLE];
-		if (weaponstatus[0]&BOSSERF_EXTEND) {
-			if(ssh>=11)return "A";
-			if(ssh>=9)return "B";
-			if(ssh>=7)return "C";
-			if(ssh>=5)return "D";
-			if(ssh>=3)return "E";
-			if(ssh>=1)return "F";
-			return "G";
-		}
-		else {
 			if(ssh>=11)return "H";
 			if(ssh>=9)return "I";
 			if(ssh>=7)return "J";
@@ -737,7 +719,6 @@ class Bossmerg:HDShotgun {
 			if(ssh>=3)return "L";
 			if(ssh>=1)return "M";
 			return "N";
-		}
 	}
 }
 
@@ -747,7 +728,6 @@ enum bosserstatus{
 	BOSSERF_FRONTRETICLE=4,
 	BOSSERF_ALTRETICLE=8,
 	BOSSERF_HOLDING=16,
-	BOSSERF_EXTEND=32,
 
 	BOSSERS_ZOOM=1,
 	BOSSERS_CHAMBER=2,
@@ -756,4 +736,6 @@ enum bosserstatus{
 	BOSSERS_HAND=5,
 	BOSSERS_RELOADING=6, //0 - nope, 1 - reload, 2 - alt.reload, 3-unload
 	BOSSERS_CHOKE=7,
+
+	BOSSERS_TUBESIZE=5,
 };
