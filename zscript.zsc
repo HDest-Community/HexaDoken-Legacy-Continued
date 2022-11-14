@@ -139,6 +139,23 @@ class HexaDokenHandler : EventHandler
 		Array<string> wep_7mm;
 		wep_7mm.push("NoScopeBoss");
 		addammo('SevenMilAmmo', wep_7mm);
+		wep_7mm.push("BossRifleButItsTheWorst");
+		addammo('SevenMilAmmo', wep_7mm);
+
+		// 9mm
+		Array<string> wep_9mm;
+		wep_9mm.push("BossRifleButIts9mm");
+		addammo('HDPistolAmmo', wep_9mm);
+
+		// 4mm
+		Array<string> wep_4mm;
+		wep_4mm.push("BossRifleButIts4mm");
+		addammo('FourMilAmmo', wep_4mm);
+
+		// 5mm
+		Array<string> wep_5mm;
+		wep_5mm.push("BossRifleButItsFuckingPink");
+		addammo('HD5MM_Ammo', wep_5mm);
 		
 		// 7mm Recast
 		Array<string> wep_7mmR;
