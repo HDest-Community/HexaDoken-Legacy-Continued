@@ -141,6 +141,16 @@ class HexaDokenHandler : EventHandler
 		addammo('SevenMilAmmo', wep_7mm);
 		wep_7mm.push("BossRifleButItsTheWorst");
 		addammo('SevenMilAmmo', wep_7mm);
+		
+		// 7mm Recast
+		Array<string> wep_7mmR;
+		wep_7mmR.push("NoScopeBoss");
+		addammo('SevenMilAmmoRecast', wep_7mmR);
+
+		// 7mm Brass
+		Array<string> wep_7mmB;
+		wep_7mmB.push("SpeedRunLoader");
+		addammo('SevenMilBrass', wep_7mmB);
 
 		// 9mm
 		Array<string> wep_9mm;
@@ -151,16 +161,13 @@ class HexaDokenHandler : EventHandler
 		Array<string> wep_4mm;
 		wep_4mm.push("BossRifleButIts4mm");
 		addammo('FourMilAmmo', wep_4mm);
+		wep_4mm.push("SpeedRunLoader");
+		addammo('FourMilAmmo', wep_4mm);
 
 		// 5mm
 		Array<string> wep_5mm;
 		wep_5mm.push("BossRifleButItsFuckingPink");
 		addammo('HD5MM_Ammo', wep_5mm);
-		
-		// 7mm Recast
-		Array<string> wep_7mmR;
-		wep_7mmR.push("NoScopeBoss");
-		addammo('SevenMilAmmoRecast', wep_7mmR);
 
 		// .50 OMG
 		Array<string> wep_50OMG;
