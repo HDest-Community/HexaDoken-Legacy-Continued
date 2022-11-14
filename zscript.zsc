@@ -166,19 +166,24 @@ class HexaDokenHandler : EventHandler
 
 		// No-scope Boss Rifle
 		Array<HexaSpawnItemEntry> spawns_NoScopeBoss;
-		spawns_NoScopeBoss.push(additementry('BossRifleSpawner', nsb_boss_spawn_bias));
+		spawns_NoScopeBoss.push(additementry('BossRifle', nsb_boss_spawn_bias));
 		additem('NoScopeBossSpawner', spawns_NoScopeBoss, nsb_persistent_spawning);
+
+		// Bossmerg
+		Array<HexaSpawnItemEntry> spawns_Bossmerg;
+		spawns_Bossmerg.push(additementry('Hunter', bas_hunter_spawn_bias));
+		additem('Bossmerg', spawns_Bossmerg, bas_persistent_spawning);
 
 		// M1 Garand
 		Array<HexaSpawnItemEntry> spawns_Garand;
-		spawns_Garand.push(additementry('ShellBoxRandom', gar_shellbox_spawn_bias));
+		spawns_Garand.push(additementry('LiberatorRifle', gar_shellbox_spawn_bias));
 		additem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
 
 		// .50 OMG Boss Rifle
 		Array<HexaSpawnItemEntry> spawns_BogRifle;
 		spawns_BogRifle.push(additementry('ThunderBuster', bog_plasma_spawn_bias));
 		spawns_BogRifle.push(additementry('Slayer', bog_ssg_spawn_bias));
-		spawns_BogRifle.push(additementry('ChaingunReplaces', bog_chaingun_spawn_bias));
+		spawns_BogRifle.push(additementry('Vulcanette', bog_chaingun_spawn_bias));
 		additem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
 	}
 	
