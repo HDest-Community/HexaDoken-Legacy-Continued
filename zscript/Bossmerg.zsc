@@ -98,7 +98,7 @@ class Bossmerg:HDShotgun {
 		if(scopeview){
 			int scaledwidth=89;
 			int scaledyoffset=60;
-			double degree=0.1*hdw.weaponstatus[BOSSS_ZOOM];
+			double degree=0.1*hdw.weaponstatus[BOSSERS_ZOOM];
 			double deg=1/degree;
 			int cx,cy,cw,ch;
 			[cx,cy,cw,ch]=screen.GetClipRect();
@@ -121,7 +121,7 @@ class Bossmerg:HDShotgun {
 			sb.DrawCircle(cam, frontoffs, 0.125,usePixelRatio:true);
 
 			let reticleScale = camSize / texman.GetSize(reticle);
-			if(hdw.weaponstatus[0]&BOSSF_FRONTRETICLE){
+			if(hdw.weaponstatus[0]&BOSSERF_FRONTRETICLE){
 				sb.DrawCircle(reticle, frontoffs, .5*reticleScale, bob*deg*5-bob, 1.6*deg);
 			}else{
 				sb.DrawCircle(reticle, (0,scaledyoffset)+bob, .5*reticleScale,uvScale:.5);
