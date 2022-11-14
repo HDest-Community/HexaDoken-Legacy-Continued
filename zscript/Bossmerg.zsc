@@ -21,6 +21,10 @@ class Bossmerg:HDShotgun {
 	}
 
 	override void loadoutconfigure(string input){
+		int customchamber=getloadoutvar(input,"customchamber",1);
+		if(!customchamber)weaponstatus[0]&=~BOSSERF_CUSTOMCHAMBER;
+		else if(customchamber>0)weaponstatus[0]|=BOSSERF_CUSTOMCHAMBER;
+
 		int altreticle=getloadoutvar(input,"altreticle",1);
 		if(!altreticle)weaponstatus[0]&=~BOSSERF_ALTRETICLE;
 		else if(altreticle>0)weaponstatus[0]|=BOSSERF_ALTRETICLE;
@@ -57,36 +61,6 @@ class Bossmerg:HDShotgun {
 			sb.drawrect(-16-i*2,-5,1,3);
 		}
 	}
-/*	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
-		if(sb.hudlevel==1){
-			sb.drawimage("SHL1A0",(-47,-10),basestatusbar.DI_SCREEN_CENTER_BOTTOM);
-			sb.drawnum(hpl.countinv("HDShellAmmo"),-46,-8,
-				basestatusbar.DI_SCREEN_CENTER_BOTTOM,font.CR_BLACK
-			);
-		}
-		if(hdw.weaponstatus[BOSSERS_CHAMBER]==2 || hdw.weaponstatus[BOSSERS_CHAMBER]==4){
-			sb.drawwepdot(-20,-12,(5,3));
-			sb.drawwepdot(-17,-12,(2,3));
-		}
-		else if(hdw.weaponstatus[BOSSERS_CHAMBER]>0){
-			sb.drawwepdot(-17,-12,(2,3));
-		}
-		else{ 
-			if(hdw.weaponstatus[BOSSERS_MAG]>1){
-				sb.drawwepdot(-20,-7,(5,3));
-				sb.drawwepdot(-17,-7,(2,3));
-				sb.drawwepdot(-30,-7,(5,3));
-				sb.drawwepdot(-27,-7,(2,3));
-			}
-			else if(hdw.weaponstatus[BOSSERS_MAG]>0){
-				sb.drawwepdot(-20,-7,(5,3));
-				sb.drawwepdot(-17,-7,(2,3));
-			}
-		}
-		for(int i=hdw.weaponstatus[SHOTS_SIDESADDLE];i>0;i--){
-			sb.drawwepdot(-15-i*2,-2,(1,3));
-		}
-	}*/
 	override string gethelptext(){
 		return
 		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[BOSSERS_CHOKE]..")\n"
@@ -95,7 +69,10 @@ class Bossmerg:HDShotgun {
 		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
 		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
 		..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."  Zoom\n"
-		..WEPHELP_UNLOADUNLOAD
+		..WEPHELP_UNLOADUNLOAD..
+		(weaponstatus[0]&BOSSERF_CUSTOMCHAMBER?"\nInstalled Upgrades: ":"")
+		..(weaponstatus[0]&BOSSERF_CUSTOMCHAMBER?"\n- Customized Chamber":"")
+
 		;
 	}
 	override void DrawSightPicture(
@@ -183,7 +160,8 @@ class Bossmerg:HDShotgun {
 		return 115+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[BOSSERS_MAG])*ENC_SHELLLOADED;
 	}
 	int jamchance(){
-		return 5;
+		if(weaponstatus[0]&BOSSERF_CUSTOMCHAMBER)return 1;
+		else return 5;
 	}
 	int loadedrounds(){
 		return weaponstatus[BOSSERS_MAG] + ((weaponstatus[BOSSERS_CHAMBER]>1)?1:0);
@@ -728,6 +706,7 @@ enum bosserstatus{
 	BOSSERF_FRONTRETICLE=4,
 	BOSSERF_ALTRETICLE=8,
 	BOSSERF_HOLDING=16,
+	BOSSERF_CUSTOMCHAMBER=3,
 
 	BOSSERS_ZOOM=1,
 	BOSSERS_CHAMBER=2,
