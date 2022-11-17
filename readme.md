@@ -15,8 +15,6 @@ Credits:
 TO-DO:
 
 - Speedloader Hunter and Revolver (likely to be added to Ted-Tweaks instead)
-- Fix bossmerg tube/chamber handling to be less fucky
 - Fix his detachables addon (likely to be added to Ted-Tweaks instead to be better integrated)
-- Add in 7mm Speedloaders and Dedicated Medical Scanner if plausible.
-- Add BarrelPurge and VulcFixer (likely to be added to Ted-Tweaks instead)
+- Add Dedicated Medical Scanner if plausible.
 - Add MiniCyberdemons
