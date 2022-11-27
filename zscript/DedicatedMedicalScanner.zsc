@@ -147,7 +147,7 @@ class HDScanner:HDWoundFixer{
 		goto readyend;
 
 	spawn:
-		MEDI B -1;
+		MEDI Z -1;
 		wait;
 	}
 		action void A_ScanResults(actor scanactor,double scanaccuracy){
