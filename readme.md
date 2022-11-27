@@ -16,5 +16,4 @@ TO-DO:
 
 - Speedloader Hunter and Revolver (likely to be added to Ted-Tweaks instead)
 - Fix his detachables addon (likely to be added to Ted-Tweaks instead to be better integrated)
-- Add Dedicated Medical Scanner if plausible.
 - Add MiniCyberdemons
