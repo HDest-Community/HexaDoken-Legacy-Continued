@@ -6,8 +6,8 @@ Version "4.8.2"
 #include "zscript/M1 Garand.zsc"
 #include "zscript/Shitbossting.zsc"
 #include "zscript/SpeedReloader.zsc"
-// Commented out as I'll probably redo it from scratch. - [Ted]
-//#include "zscript/DedicatedMedicalScanner.zsc"
+// Commented out as I'll probably redo it from "scratch". - [Ted]
+#include "zscript/DedicatedMedicalScanner.zsc"
 
 //-------------------------------------------------
 // Huge credits to FDA for the Radtech Event handler which this is based off of. It's been incredibly helpful.
