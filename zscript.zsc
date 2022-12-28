@@ -6,7 +6,6 @@ Version "4.8.2"
 #include "zscript/M1 Garand.zsc"
 #include "zscript/Shitbossting.zsc"
 #include "zscript/SpeedReloader.zsc"
-// Commented out as I'll probably redo it from "scratch". - [Ted]
 #include "zscript/DedicatedMedicalScanner.zsc"
 
 //-------------------------------------------------
@@ -138,7 +137,6 @@ class HexaDokenHandler : EventHandler
 		// 7mm
 		Array<string> wep_7mm;
 		wep_7mm.push("NoScopeBoss");
-		addammo('SevenMilAmmo', wep_7mm);
 		wep_7mm.push("BossRifleButItsTheWorst");
 		addammo('SevenMilAmmo', wep_7mm);
 		
