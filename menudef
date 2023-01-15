@@ -4,6 +4,12 @@ AddOptionMenu "OptionsMenu"
     Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
 }
 
+// This does the same as aboved but for the HD Addon menu. - [Ted]
+AddOptionMenu "HDAddonMenu"
+{
+    Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
+}
+
 // This is the main option menu that'll have all of the other menus for the weaponry.
 // Note: Practically everything is LANGUAGE-Lump'd. If you're wondering what each option does and what text it displays, I suggest having that open also. - [Ted]
 OptionMenu HexadokenLegacyContinued
