@@ -3,328 +3,331 @@
 //-------------------------------------------------
 
 // Struct for itemspawn information. 
-class HexaSpawnItem play
-{
-	string spawnname; // ID by string for spawner
-	Array<HexaSpawnItemEntry> spawnreplaces; // ID by string for spawnees
-	int spawnreplacessize; // Cached size of the above array
-	bool isPersistent; // Whether or not to persistently spawn.
-	bool replaceitem;
+class HexaSpawnItem play {
+    // ID by string for spawner
+    string spawnName;
+    
+    // ID by string for spawnees
+    Array<HexaSpawnItemEntry> spawnReplaces;
+    
+    // Whether or not to persistently spawn.
+    bool isPersistent;
+    
+    bool replaceItem;
+
+    string toString() {
+
+        let replacements = "[";
+        if (spawnReplaces.size()) {
+            replacements = replacements..spawnReplaces[0].toString();
+
+            for (let i = 1; i < spawnReplaces.size(); i++) {
+                replacements = replacements..", "..spawnReplaces[i].toString();
+            }
+        }
+        replacements = replacements.."]";
+
+
+        return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnName, replacements, isPersistent, replaceItem);
+    }
 }
 
-class HexaSpawnItemEntry play
-{
-	string name;
-	int    chance;
+class HexaSpawnItemEntry play {
+    string name;
+    int    chance;
+
+    string toString() {
+        return String.format("{ name=%s, chance=%s }", name, chance >= 0 ? "1/"..(chance + 1) : "never");
+    }
 }
 
 // Struct for passing useinformation to ammunition. 
-class HexaSpawnAmmo play
-{
-	string		  ammoname;		   // ID by string for the header ammo.
-	Array<string> weaponnames;     // ID by string for weapons using that ammo.
-	int           weaponnamessize; // Cached size of the above array
+class HexaSpawnAmmo play {
+    // ID by string for the header ammo.
+    string ammoName;
+    
+    // ID by string for weapons using that ammo.
+    Array<string> weaponNames;
+    
+    string toString() {
+
+        let weapons = "[";
+        if (weaponNames.size()) {
+            weapons = weapons..weaponNames[0];
+
+            for (let i = 1; i < weaponNames.size(); i++) {
+                weapons = weapons..", "..weaponNames[i];
+            }
+        }
+        weapons = weapons.."]";
+
+        return String.format("{ ammoName=%s, weaponNames=%s }", ammoName, weapons);
+    }
 }
 
+
+
 // One handler to rule them all. 
-class HexaDokenHandler : EventHandler
-{
-	// List of persistent classes to completely ignore. 
-	// This -should- mean this mod has no performance impact. 
-	static const class<actor> blacklist[] =
-	{
-		"HDSmoke",
-		"BloodTrail",
-		"CheckPuff",
-		"WallChunk",
-		"HDBulletPuff",
-		"HDFireballTail",
-		"ReverseImpBallTail",
-		"HDSmokeChunk",
-		"ShieldSpark",
-		"HDFlameRed",
-		"HDMasterBlood",
-		"PlantBit",
-		"HDBulletActor",
-		"HDLadderSection"
-	};
+class HexaDokenHandler : EventHandler {
+    
+    // List of persistent classes to completely ignore. 
+    // This -should- mean this mod has no performance impact. 
+    static const class<actor> blacklist[] = {
+        "HDSmoke",
+        "BloodTrail",
+        "CheckPuff",
+        "WallChunk",
+        "HDBulletPuff",
+        "HDFireballTail",
+        "ReverseImpBallTail",
+        "HDSmokeChunk",
+        "ShieldSpark",
+        "HDFlameRed",
+        "HDMasterBlood",
+        "PlantBit",
+        "HDBulletActor",
+        "HDLadderSection"
+    };
 
-	// List of weapon-ammo associations.
-	// Used for ammo-use association on ammo spawn (happens very often). 
-	array<HexaSpawnAmmo> ammospawnlist;
-	int ammospawnlistsize;
-	
-	// List of item-spawn associations.
-	// used for item-replacement on mapload. 
-	array<HexaSpawnItem> itemspawnlist;
-	int itemspawnlistsize;
-	
-	// appends an entry to itemspawnlist;
-	void additem(string name, Array<HexaSpawnItemEntry> replacees, bool persists, bool rep=true)
-	{
-		// Creates a new struct;
-		HexaSpawnItem spawnee = HexaSpawnItem(new('HexaSpawnItem'));
-		
-		// Populates the struct with relevant information,
-		spawnee.spawnname = name;
-		spawnee.isPersistent = persists;
-		spawnee.replaceitem = rep;
-		for(int i = 0; i < replacees.size(); i++)
-		{
-			spawnee.spawnreplaces.push(replacees[i]);
-			spawnee.spawnreplacessize++;
-		}
-		
-		// Pushes the finished struct to the array. 
-		itemspawnlist.push(spawnee);
-		itemspawnlistsize++;
-	}
+    // List of weapon-ammo associations.
+    // Used for ammo-use association on ammo spawn (happens very often). 
+    array<HexaSpawnAmmo> ammoSpawnList;
+    
+    // List of item-spawn associations.
+    // used for item-replacement on mapload. 
+    array<HexaSpawnItem> itemSpawnList;
+    
+    bool cvarsAvailable;
+    
+    // appends an entry to itemSpawnList;
+    void addItem(string name, Array<HexaSpawnItemEntry> replacees, bool persists, bool rep=true) {
 
-	HexaSpawnItemEntry additementry(string name, int chance)
-	{
-		// Creates a new struct;
-		HexaSpawnItemEntry spawnee = HexaSpawnItemEntry(new('HexaSpawnItemEntry'));
-		spawnee.name = name.makelower();
-		spawnee.chance = chance;
-		return spawnee;
-	}
+        if (hd_debug) {
+            let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": ["..replacees[0].toString();
 
-	// appends an entry to ammospawnlist;
-	void addammo(string name, Array<string> weapons)
-	{
-	
-		// Creates a new struct;
-		HexaSpawnAmmo spawnee = HexaSpawnAmmo(new('HexaSpawnAmmo'));
-		spawnee.ammoname = name.makelower();
-		
-		// Populates the struct with relevant information,
-		for(int i = 0; i < weapons.size(); i++)
-		{
-			spawnee.weaponnames.push(weapons[i].makelower());
-			spawnee.weaponnamessize++;
-		}
-		
-		// Pushes the finished struct to the array. 
-		ammospawnlist.push(spawnee);
-		ammospawnlistsize++;
-	}
-	
-	bool cvarsAvailable;
-	// Populates the replacement and association arrays. 
-	void init()
-	{
-		cvarsAvailable = true;
+            if (replacees.size() > 1) {
+                for (let i = 1; i < replacees.size(); i++) msg = msg..", "..replacees[i].toString();
+            }
 
-	//-------------------------------------------------
-	// Ammo Management
-	//-------------------------------------------------
-
-		// 7mm Clips
-		Array<string> wep_7mmClip;
-		wep_7mmClip.push("NoScopeBoss");
-		addammo('HD7mClip', wep_7mmClip);
-
-		// 7mm
-		Array<string> wep_7mm;
-		wep_7mm.push("NoScopeBoss");
-		wep_7mm.push("BossRifleButItsTheWorst");
-		addammo('SevenMilAmmo', wep_7mm);
-		
-		// 7mm Recast
-		Array<string> wep_7mmR;
-		wep_7mmR.push("NoScopeBoss");
-		addammo('SevenMilAmmoRecast', wep_7mmR);
-
-		// 7mm Brass
-		Array<string> wep_7mmB;
-		wep_7mmB.push("SpeedRunLoader");
-		addammo('SevenMilBrass', wep_7mmB);
-
-		// 9mm
-		Array<string> wep_9mm;
-		wep_9mm.push("BossRifleButIts9mm");
-		addammo('HDPistolAmmo', wep_9mm);
-
-		// 4mm
-		Array<string> wep_4mm;
-		wep_4mm.push("BossRifleButIts4mm");
-		addammo('FourMilAmmo', wep_4mm);
-		wep_4mm.push("SpeedRunLoader");
-		addammo('FourMilAmmo', wep_4mm);
-
-		// 5mm
-		Array<string> wep_5mm;
-		wep_5mm.push("BossRifleButItsFuckingPink");
-		addammo('HD5MM_Ammo', wep_5mm);
-
-		// .50 OMG
-		Array<string> wep_50OMG;
-		wep_50OMG.push("BogRifle");
-		addammo('HD50OMGAmmo', wep_50OMG);
-
-		// .30-06
-		Array<string> wep_3006;
-		wep_3006.push("M1Garand");
-		addammo('ThirtyAughtSixAmmo', wep_3006);
-
-		// 12 Gauge Shells
-		Array<string> wep_Shells;
-		wep_Shells.push("Bossmerg");
-		addammo('HDShellAmmo', wep_Shells);
-
-	//-------------------------------------------------
-	// Weapon Spawns
-	//-------------------------------------------------
-
-		// No-scope Boss Rifle
-		Array<HexaSpawnItemEntry> spawns_NoScopeBoss;
-		spawns_NoScopeBoss.push(additementry('BossRifle', nsb_boss_spawn_bias));
-		additem('NoScopeBossSpawner', spawns_NoScopeBoss, nsb_persistent_spawning);
-
-		// Bossmerg
-		Array<HexaSpawnItemEntry> spawns_Bossmerg;
-		spawns_Bossmerg.push(additementry('Hunter', bas_hunter_spawn_bias));
-		additem('Bossmerg', spawns_Bossmerg, bas_persistent_spawning);
-
-		// M1 Garand
-		Array<HexaSpawnItemEntry> spawns_Garand;
-		spawns_Garand.push(additementry('LiberatorRifle', gar_shellbox_spawn_bias));
-		additem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
-
-		// .50 OMG Boss Rifle
-		Array<HexaSpawnItemEntry> spawns_BogRifle;
-		spawns_BogRifle.push(additementry('ThunderBuster', bog_plasma_spawn_bias));
-		spawns_BogRifle.push(additementry('Slayer', bog_ssg_spawn_bias));
-		spawns_BogRifle.push(additementry('Vulcanette', bog_chaingun_spawn_bias));
-		additem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
-	}
-	
-	// Random stuff, stores it and forces negative values just to be 0.
-	bool giverandom(int chance)
-	{
-		bool result = false;
-		int iii = random(0, chance);
-		if(iii < 0)
-			iii = 0;
-		if (iii == 0)
-		{
-			if(chance > -1)
-				result = true;
-		}
-		
-		return result;
-	}
-
-	// Tries to create the item via random spawning.
-	bool trycreateitem(worldevent e, HexaSpawnItem f, int g, bool rep)
-	{
-		bool result = false;
-		if(giverandom(f.spawnreplaces[g].chance))
-		{
-			vector3 spawnpos = e.thing.pos;
-			let spawnitem = Actor.Spawn(f.spawnname, (spawnpos.x, spawnpos.y, spawnpos.z));
-			if(spawnitem)
-			{
-				if(rep)
-				{
-					e.thing.destroy();
-					result = true;
-				}
-			}
-
-		}
-		return result;
-	}
-	
-	override void worldthingspawned(worldevent e)
-	 {
-		string candidatename;
-		
-		// loop controls.
-		int i, j;
-		bool isAmmo = false;
-
-		// Return if range.
-        if(level.MapName ~== "RANGE")
-        {
-                return;
+            console.printf(msg.."]");
         }
-		
-		// Populates the main arrays if they haven't been already. 
-		if(!cvarsAvailable)
-			init();
-		
-		
-		for(i = 0; i < blacklist.size(); i++)
-		{
-			if (e.thing is blacklist[i])
-				return;
-		}
-		
-		// Checks for null events. 
-		if(!e.Thing)
-		{
-			return;
-		}
-		candidatename  = e.Thing.GetClassName();
-		candidatename = candidatename.makelower();
-		
-		// Pointers for specific classes.
-		let ammo_ptr   = HDAmmo(e.Thing);
-		
-		// Whether or not an item can use this.
-		if(ammo_ptr)
-		{
-			// Goes through the entire ammospawn array.
-			for(i = 0; i < ammospawnlistsize; i++)
-			{
-				if(candidatename == ammospawnlist[i].ammoname)
-				{
-					// Appends each entry in that ammo's subarray.
-					for(j = 0; j < ammospawnlist[i].weaponnamessize; j++)
-					{
-						// Actual pushing to itemsthatusethis().
-						if(ammo_ptr)
-							ammo_ptr.ItemsThatUseThis.Push(ammospawnlist[i].weaponnames[j]);
-					}
-				}
-			}
-		}
-						
-		// Iterates through the list of item candidates for e.thing.
-		for(i = 0; i < itemspawnlistsize; i++)
-		{
-			// Tries to cast the item as an inventory. 
-			let thing_inv_ptr = Inventory(e.thing);
-		
-			// Checks if the item in question is owned.
-			bool owned    = thing_inv_ptr && (thing_inv_ptr.owner);
 
-			// Checks if the level has been loaded more than 1 tic.
-			bool prespawn = !(level.maptime > 1);
-			
-			// Checks if persistent spawning is on.
-			bool persist  = (itemspawnlist[i].isPersistent);
-			
-			
-			
-			// if an item is owned or is an ammo (doesn't retain owner ptr), 
-			// do not replace it. 
-			if ((prespawn || persist) && (!owned && (!ammo_ptr || prespawn)))
-			{
-				int original_i = i;
-				for(j = 0; j < itemspawnlist[original_i].spawnreplacessize; j++)
-				{
-					if(itemspawnlist[i].spawnreplaces[j].name == candidatename)
-					{
-						if(trycreateitem(e, itemspawnlist[i], j, itemspawnlist[i].replaceitem))
-						{
-							j = itemspawnlist[i].spawnreplacessize;
-							i = itemspawnlistsize;
-						}
-					}
-				}
-			}
-		}
-	}
+        // Creates a new struct;
+        HexaSpawnItem spawnee = HexaSpawnItem(new('HexaSpawnItem'));
+        
+        // Populates the struct with relevant information,
+        spawnee.spawnName = name;
+        spawnee.isPersistent = persists;
+        spawnee.replaceItem = rep;
+        
+        for (int i = 0; i < replacees.size(); i++) {
+            spawnee.spawnReplaces.push(replacees[i]);
+        }
+        
+        // Pushes the finished struct to the array. 
+        itemSpawnList.push(spawnee);
+    }
+
+    HexaSpawnItemEntry addItemEntry(string name, int chance) {
+        // Creates a new struct;
+        HexaSpawnItemEntry spawnee = HexaSpawnItemEntry(new('HexaSpawnItemEntry'));
+        spawnee.name = name.makelower();
+        spawnee.chance = chance;
+        return spawnee;
+    }
+
+    // appends an entry to ammoSpawnList;
+    void addAmmo(string name, Array<string> weapons) {
+    
+        // Creates a new struct;
+        HexaSpawnAmmo spawnee = HexaSpawnAmmo(new('HexaSpawnAmmo'));
+        spawnee.ammoName = name.makelower();
+        
+        // Populates the struct with relevant information,
+        for (int i = 0; i < weapons.size(); i++) {
+            spawnee.weaponNames.push(weapons[i].makelower());
+        }
+        
+        // Pushes the finished struct to the array. 
+        ammoSpawnList.push(spawnee);
+    }
+    
+
+    // Populates the replacement and association arrays. 
+    void init() {
+
+        cvarsAvailable = true;
+
+        //------------
+        // Ammunition
+        //------------
+
+        // 7mm Clips
+        Array<string> wep_7mmClip;
+        wep_7mmClip.push("NoScopeBoss");
+        addAmmo('HD7mClip', wep_7mmClip);
+
+        // 7mm
+        Array<string> wep_7mm;
+        wep_7mm.push("NoScopeBoss");
+        wep_7mm.push("BossRifleButItsTheWorst");
+        addAmmo('SevenMilAmmo', wep_7mm);
+        
+        // 7mm Recast
+        Array<string> wep_7mmR;
+        wep_7mmR.push("NoScopeBoss");
+        addAmmo('SevenMilAmmoRecast', wep_7mmR);
+
+        // 7mm Brass
+        Array<string> wep_7mmB;
+        wep_7mmB.push("SpeedRunLoader");
+        addAmmo('SevenMilBrass', wep_7mmB);
+
+        // 9mm
+        Array<string> wep_9mm;
+        wep_9mm.push("BossRifleButIts9mm");
+        addAmmo('HDPistolAmmo', wep_9mm);
+
+        // 4mm
+        Array<string> wep_4mm;
+        wep_4mm.push("BossRifleButIts4mm");
+        addAmmo('FourMilAmmo', wep_4mm);
+        wep_4mm.push("SpeedRunLoader");
+        addAmmo('FourMilAmmo', wep_4mm);
+
+        // 5mm
+        Array<string> wep_5mm;
+        wep_5mm.push("BossRifleButItsFuckingPink");
+        addAmmo('HD5MM_Ammo', wep_5mm);
+
+        // .50 OMG
+        Array<string> wep_50OMG;
+        wep_50OMG.push("BogRifle");
+        addAmmo('HD50OMGAmmo', wep_50OMG);
+
+        // .30-06
+        Array<string> wep_3006;
+        wep_3006.push("M1Garand");
+        addAmmo('ThirtyAughtSixAmmo', wep_3006);
+
+        // 12 Gauge Shells
+        Array<string> wep_Shells;
+        wep_Shells.push("Bossmerg");
+        addAmmo('HDShellAmmo', wep_Shells);
+
+        //------------
+        // Weaponry
+        //------------
+
+        // No-scope Boss Rifle
+        Array<HexaSpawnItemEntry> spawns_NoScopeBoss;
+        spawns_NoScopeBoss.push(addItemEntry('BossRifle', nsb_boss_spawn_bias));
+        addItem('NoScopeBossSpawner', spawns_NoScopeBoss, nsb_persistent_spawning);
+
+        // Bossmerg
+        Array<HexaSpawnItemEntry> spawns_Bossmerg;
+        spawns_Bossmerg.push(addItemEntry('Hunter', bas_hunter_spawn_bias));
+        addItem('Bossmerg', spawns_Bossmerg, bas_persistent_spawning);
+
+        // M1 Garand
+        Array<HexaSpawnItemEntry> spawns_Garand;
+        spawns_Garand.push(addItemEntry('LiberatorRifle', gar_shellbox_spawn_bias));
+        addItem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
+
+        // .50 OMG Boss Rifle
+        Array<HexaSpawnItemEntry> spawns_BogRifle;
+        spawns_BogRifle.push(addItemEntry('ThunderBuster', bog_plasma_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('Slayer', bog_ssg_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('Vulcanette', bog_chaingun_spawn_bias));
+        addItem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
+    }
+    
+    // Random stuff, stores it and forces negative values just to be 0.
+    bool giveRandom(int chance) {
+        if (chance > -1) {
+            let result = random(0, chance);
+
+            if (hd_debug) console.printf("Rolled a "..result.." out of "..(chance + 1));
+
+            return result == 0;
+        }
+
+        return false;
+    }
+
+    // Tries to create the item via random spawning.
+    bool tryCreateItem(Inventory item, HexaSpawnItem f, int g, bool rep) {
+        if (giveRandom(f.spawnReplaces[g].chance)) {
+            if (Actor.Spawn(f.spawnName, item.pos) && rep) {
+                if (hd_debug) console.printf(item.GetClassName().." -> "..f.spawnName);
+
+                item.destroy();
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    override void worldthingspawned(worldevent e) {
+        // Populates the main arrays if they haven't been already. 
+        if (!cvarsAvailable) init();
+
+        // If thing spawned doesn't exist, quit
+        if (!e.Thing) return;
+
+        // If thing spawned is blacklisted, quit
+        for (let i = 0; i < blacklist.size(); i++) if (e.thing is blacklist[i]) return;
+
+        string candidateName = e.Thing.GetClassName();
+        candidateName = candidateName.makelower();
+        
+        // Pointers for specific classes.
+        let ammo = HDAmmo(e.Thing);
+        let item = Inventory(e.Thing);
+        
+		// If the thing spawned is an ammunition, add any and all items that can use this.
+        if (ammo) handleAmmoUses(ammo, candidateName);
+
+		// Return if range before replacing things.
+        if (level.MapName ~== "RANGE") return;
+
+        if (item) handleWeaponReplacements(item, ammo, candidateName);
+    }
+
+    private void handleAmmoUses(HDAmmo ammo, string candidateName) {
+        // Goes through the entire ammospawn array.
+        for (let i = 0; i < ammoSpawnList.size(); i++) {
+            if (candidateName == ammoSpawnList[i].ammoName) {
+                // Appends each entry in that ammo's subarray.
+                for (let j = 0; j < ammoSpawnList[i].weaponNames.size(); j++) {
+                    // Actual pushing to itemsthatusethis().
+                    if (ammo) ammo.ItemsThatUseThis.Push(ammoSpawnList[i].weaponNames[j]);
+                }
+            }
+        }
+    }
+
+    private void handleWeaponReplacements(Inventory item, HDAmmo ammo, string candidateName) {
+        
+        // Checks if the level has been loaded more than 1 tic.
+        bool prespawn = !(level.maptime > 1);
+
+        // Iterates through the list of item candidates for e.thing.
+        for (let i = 0; i < itemSpawnList.size(); i++) {
+            
+            // if an item is owned or is an ammo (doesn't retain owner ptr), 
+            // do not replace it. 
+            if ((prespawn || itemSpawnList[i].isPersistent) && (!item.owner && (!ammo || prespawn))) {
+                for (let j = 0; j < itemSpawnList[i].spawnReplaces.size(); j++) {
+                    if (itemSpawnList[i].spawnReplaces[j].name == candidateName) {
+						if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawnList[i].spawnName.."...");
+
+                        if (tryCreateItem(item, itemSpawnList[i], j, itemSpawnList[i].replaceItem)) return;
+                    }
+                }
+            }
+        }
+    }
 }
