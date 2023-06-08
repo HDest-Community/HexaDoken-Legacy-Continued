@@ -18,7 +18,7 @@ TAG_WORSTBOSS = "Boss Rifle But It's The Worst";
 // Item Tags
 TAG_50OMGCLIP = ".50 OMG clip";
 TAG_7MMSPEEDLOADER = "7.76mm Speed-Reloader Prototype";
-TAG_DMS = "Medical scanner";
+TAG_DMS = "Medical Scanner";
 TAG_GARANDCLIP = "M1 Garand clip";
 
 // Menu Titles
@@ -26,6 +26,7 @@ TITLE_NSBMENU = "------ Scopeless Boss Rifle Options ------";
 TITLE_BOGRIFLEMENU = "------ .50 OMG Boss Rifle Options ------";
 TITLE_BOSSMERGMENU = "------ Bossmerg 12 gauge Shotgun Options ------";
 TITLE_GARANDMENU = "------ M1 Garand Options ------";
+TITLE_DMSMENU = "------ Medical Scanner Options ------";
 
 // Scopeless Boss
 MENU_NSBSPAWNTEXT = "Control the spawn rate of the No-Scope Boss on Boss Rifles";
@@ -55,12 +56,19 @@ MENU_GARANDRELOADERCAPACITYTEXT = "Control how much ammo the M1 Garand's reloade
 MENU_GARANDRELOADERCAPACITY = "M1 Garand Reloader Capacity: ";
 MENU_RESETGARANDRELOADERCAPACITY = "Reset Reloader Capacity";
 
+// Medical Scanner
+MENU_DMSSTIMPACK = "Control the spawn rate of the Medical Scanner on Stimpacks";
+MENU_DMSMEDIKIT = "Control the spawn rate of the Medical Scanner on Medikits";
+MENU_DMSSPAWNRATE = "Bossmerg Spawn Rate: ";
+
 // Various Resets
 MENU_RESETTB = "Reset Thunderbuster spawn options";
 MENU_RESETSLAYER = "Reset Slayer spawn options";
 MENU_RESETVULC = "Reset Vulcanette spawn options";
 MENU_RESETHUNTER = "Reset Hunter spawn options";
 MENU_RESETLIB = "Reset Liberator spawn options";
+MENU_RESETSTIMPACK = "Reset Stimpack spawn options";
+MENU_RESETMEDIKIT = "Reset Medikit spawn options";
 
 // Persistency
 MENU_REPLACEAFTERMAPLOAD = "Control whether replacements happen after a mapload.";
@@ -87,3 +95,8 @@ GARAND_LORE1 = "An old M1 Garand from the early 1X40 times. Some have been recen
 GARAND_LORE2 = "It mostly serves now as an inbetween of the Mk. IV Boss Rifle and  the ZM7 Liberator.";
 GARAND_LORE3 = "The original cartridge it was chambered for of .30-06 hits a hefty punch,";
 GARAND_LORE4 = "though its rarity and incompatibility with other 7.76mm guns makes the 7.76mm version a bit more economical.";
+
+DMS_LORE1 = "TODO: Enter Lore.";
+DMS_LORE2 = "";
+DMS_LORE3 = "";
+DMS_LORE4 = "";

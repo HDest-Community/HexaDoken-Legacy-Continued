@@ -219,6 +219,6 @@ class HDScanner:HDWoundFixer{
 	}
 	// I'll language-lump-ify all this stuff later.
 	override string pickupmessage(){
-		return "Picked up an opened medikit.";
+		return "Picked up a dedicated medical scanner.";
 	}
 }

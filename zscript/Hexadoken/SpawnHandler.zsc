@@ -240,6 +240,15 @@ class HexaDokenHandler : EventHandler {
         spawns_BogRifle.push(addItemEntry('Slayer', bog_ssg_spawn_bias));
         spawns_BogRifle.push(addItemEntry('Vulcanette', bog_chaingun_spawn_bias));
         addItem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
+
+        //------------
+        // Items
+        //------------
+
+        Array<HexaSpawnItemEntry> spawns_scanner;
+		spawns_scanner.push(additementry('PortableStimpack', dms_stimpack_bias));
+		spawns_scanner.push(additementry('PortableMedikit', dms_medikit_bias));
+        addItem('HDScanner', spawns_scanner, dms_persistent_spawning);
     }
     
     // Random stuff, stores it and forces negative values just to be 0.

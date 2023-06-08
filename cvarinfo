@@ -23,6 +23,11 @@ server bool bas_persistent_spawning = false;
 // Shotbossting
 server bool hd_shitbossting_spawn = false;
 
+// Dedicated Medical Scanner
+server int dms_stimpack_bias = 49;
+server int dms_medikit_bias = 19;
+server bool dms_persistent_spawning = false;
+
 // Speed Reloader
 server int hdspeedrunloader_capacity = 30;
 server int hdspeedrunloader_breakchance = 32;

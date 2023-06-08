@@ -28,6 +28,8 @@ OptionMenu HexadokenLegacyContinued
     StaticText ""
 	Option "Spawn boss variants (TEMP)","hd_shitbossting_spawn","YesNo"
 	StaticText ""
+    Submenu "$TAG_DMS", "DMS", 0, 1
+	StaticText ""
 	StaticText "--- Reset Options ---", "Red"
 	StaticText ""
 	SafeCommand "Reset every option", "Hexa_Reset_Cvars", "This resets every option for Hexa's Legacy Continued, are you sure you want to do this?"
@@ -160,6 +162,38 @@ OptionMenu M1Garand
 	StaticText "$GARAND_LORE2", "white"
 	StaticText "$GARAND_LORE3", "white"
 	StaticText "$GARAND_LORE4", "white"
+}
+
+OptionMenu DMS
+{
+    Title "$TITLE_DMSMENU"
+   	StaticText "Notice:", "Orange"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "all spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Orange"
+    StaticText  "$MENU_DMSSTIMPACK", "white"
+	Option "$MENU_DMSSPAWNRATE", "dms_stimpack_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETSTIMPACK", "resetcvar dms_stimpack_bias"
+    StaticText ""
+    StaticText  "$MENU_DMSMEDIKIT", "white"
+	Option "$MENU_DMSSPAWNRATE", "dms_medikit_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETMEDIKIT", "resetcvar dms_medikit_bias"
+    StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "dms_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar dms_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "dms_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "$DMS_LORE1", "white"
+	StaticText "$DMS_LORE2", "white"
+	StaticText "$DMS_LORE3", "white"
+	StaticText "$DMS_LORE4", "white"
 }
 
 // Spawn Bias (for items that do replace)
