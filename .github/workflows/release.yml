@@ -14,7 +14,7 @@ jobs:
       - name: build PK3
         uses: montudor/action-zip@v1
         with:
-          args: zip -r "hexadoken's-legacy-continued-${{ github.ref_name }}.pk3" . -i graphics/* patches/* sounds/* sprites/* zscript/* CVARINFO KEYCONF LANGUAGE LICENSE MAPINFO MENUDEF readme.md SNDINFO TEXTURES zscript.zsc
+          args: zip -r "hexadoken-legacy-continued-${{ github.ref_name }}.pk3" . -i graphics/* patches/* sounds/* sprites/* zscript/* CVARINFO KEYCONF LANGUAGE LICENSE MAPINFO MENUDEF readme.md SNDINFO TEXTURES zscript.zsc
       - name: Release PK3
         uses: softprops/action-gh-release@v0.1.7
         with:
