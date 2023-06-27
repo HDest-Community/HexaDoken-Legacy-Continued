@@ -909,10 +909,11 @@ class HDGarandRandom:IdleDummy{
 			for(int i=0;i<5;i++)lll.args[i]=args[i];
 			if(random(0,4)<2)lll.weaponstatus[0]|=GARF_RELOADER;
 			if(!random(0,9))lll.weaponstatus[0]|=GARF_BUMP;
-			A_SpawnItemEx("HDGarandClip",randompick(-4,4),randompick(-4,4),0,0,0,0,0,SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("HDGarandClip",randompick(-3,3),randompick(-3,3),0,0,0,0,0,SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("HDGarandClip",randompick(-2,2),randompick(-2,2),0,0,0,0,0,SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("HDGarandClip",randompick(-1,1),randompick(-1,1),0,0,0,0,0,SXF_NOCHECKPOSITION);
+			let clipName = GarandAmmoThinker.get().realAmmo ? "HDGarandClip" : "HDGarand3006Clip";
+			A_SpawnItemEx(clipName,randompick(-4,4),randompick(-4,4),0,0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx(clipName,randompick(-3,3),randompick(-3,3),0,0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx(clipName,randompick(-2,2),randompick(-2,2),0,0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx(clipName,randompick(-1,1),randompick(-1,1),0,0,0,0,0,SXF_NOCHECKPOSITION);
 		}stop;
 	}
 }
