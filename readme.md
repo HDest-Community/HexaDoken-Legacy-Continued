@@ -1,4 +1,5 @@
 # HexaDoken Legacy Continued
+_Requires [HDBulletLib-Recasted](https://github.com/HDest-Community/HDBulletLib-Recasted), supports the 9mm Clip from [Peppergrinder](https://gitlab.com/hdiscord-saltmines/hd-peppergrinder)_
 
 This is a fix/update of HexaDoken's original 'Hideous Destructor' addons.
 It currently adds both recast support and proper spawners for the No-Scope Boss.
