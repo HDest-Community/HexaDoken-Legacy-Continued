@@ -170,10 +170,9 @@ class HDScanner:HDWoundFixer{
 				double(slf.bloodloss)/(HDCONST_BLOODBAGAMOUNT<<2)
 				+frandom(0,thrownoff*0.2)
 			);
-			playerspecs="
-\ccBurns: \cq"..slf.burncount.."
-\ccTissue Damage: \cq"..slf.oldwoundcount.."
-\ccBlood loss: \ca"..bloodloss.." \cctransfusion units";
+			playerspecs="\n\ccBurns: \cq"..slf.burncount
+				.."\n\ccTissue Damage: \cq"..slf.oldwoundcount
+				.."\n\ccBlood loss: \ca"..bloodloss.." \cctransfusion units";
 		}
 
 		string openwounds="";
