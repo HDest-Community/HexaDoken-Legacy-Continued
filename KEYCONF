@@ -1,5 +1,12 @@
-alias nsb_reset_cvars "resetcvar nsb_boss_spawn_bias; resetcvar nsb_persistent_spawning"
-alias bog_reset_cvars "resetcvar bog_plasma_spawn_bias; resetcvar bog_ssg_spawn_bias; resetcvar bog_chaingun_spawn_bias; resetcvar bog_persistent_spawning"
-alias dms_reset_cvars "resetcvar dms_stimpack_bias; resetcvar dms_medikit_bias; resetcvar dms_persistent_spawning"
+alias boss9mm_reset_cvars   "resetcvar boss9mm_boss_spawn_bias;   resetcvar boss9mm_pistol_spawn_bias;   resetcvar boss9mm_smg_spawn_bias; resetcvar boss9mm_allowBackpacks;                                    resetcvar boss9mm_persistent_spawning"
+alias boss4mm_reset_cvars   "resetcvar boss4mm_boss_spawn_bias;   resetcvar boss4mm_chaingun_spawn_bias;                                   resetcvar boss4mm_allowBackpacks;                                    resetcvar boss4mm_persistent_spawning"
+alias bas_reset_cvars       "resetcvar bas_boss_spawn_bias;       resetcvar bas_hunter_spawn_bias;       resetcvar bas_slayer_spawn_bias;  resetcvar bas_allowBackpacks;                                        resetcvar bas_persistent_spawning"
+alias bog_reset_cvars       "resetcvar bog_boss_spawn_bias;       resetcvar bog_plasma_spawn_bias;       resetcvar bog_bfg_spawn_bias;     resetcvar bog_allowBackpacks;       resetcvar bogmag_allowBackpacks; resetcvar bog_persistent_spawning"
+alias boss5mm_reset_cvars   "resetcvar boss5mm_boss_spawn_bias;   boss5mm_chaingun_spawn_bias;                                             resetcvar boss5mm_allowBackpacks;                                    resetcvar boss5mm_persistent_spawning"
+alias nsb_reset_cvars       "resetcvar nsb_boss_spawn_bias;                                                                                resetcvar nsb_allowBackpacks;                                        resetcvar nsb_persistent_spawning"
+alias worstBoss_reset_cvars "resetcvar worstBoss_boss_spawn_bias;                                                                          resetcvar worstBoss_allowBackpacks;                                  resetcvar worstBoss_persistent_spawning"
+alias gar_reset_cvars       "resetcvar gar_boss_spawn_bias;                                                                                resetcvar gar_allowBackpacks;       resetcvar garmag_allowBackpacks; resetcvar gar_persistent_spawning"
 
-alias Hexa_Reset_Cvars "nsb_reset_cvars; bog_reset_cvars; dms_reset_cvars"
+alias dms_reset_cvars       "resetcvar dms_stimpack_bias;         resetcvar dms_medikit_bias;                                              resetcvar dms_persistent_spawning"
+
+alias Hexa_Reset_Cvars "boss9mm_reset_cvars; boss4mm_reset_cvars; bas_reset_cvars; bog_reset_cvars; boss5mm_reset_cvars; nsb_reset_cvars; gar_reset_cvars; dms_reset_cvars"

@@ -5,11 +5,16 @@ Version "4.10"
 #include "zscript/Hexadoken/Items/SpeedReloader.zsc"
 #include "zscript/Hexadoken/Items/DedicatedMedicalScanner.zsc"
 
-#include "zscript/Hexadoken/Weapons/50OMGBoss.zsc"
-#include "zscript/Hexadoken/Weapons/ScopelessBoss.zsc"
-#include "zscript/Hexadoken/Weapons/Bossmerg.zsc"
-#include "zscript/Hexadoken/Weapons/M1 Garand.zsc"
-#include "zscript/Hexadoken/Weapons/Shitbossting.zsc"
+#include "zscript/Hexadoken/Weapons/M1 Garand/M1 Garand.zsc"
+
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/4mm Boss.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/9mm Boss.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/12ga Boss.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/50 OMG Boss.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/Hexadoken's Boss.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/Scopeless Boss.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/Variant Loadout Giver.zsc"
+#include "zscript/Hexadoken/Weapons/Boss Rifle Variants/Worst Boss.zsc"
 
 enum bossstatus{
 	BOSSF_FRONTRETICLE=1,

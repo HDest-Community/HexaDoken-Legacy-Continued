@@ -5,14 +5,14 @@ HEXA_MENU = "\c[Green]Ⓗ\c- Hexadoken's Legacy Continued";
 
 // Weapon Tags
 TAG_NSB = "Scopeless Boss Rifle";
-TAG_OMGBOSS = ".50 OMG Boss Rifle";
+TAG_OMGBOSS = "Boss Rifle (.50 OMG)";
 TAG_BOSSMERG = "Bossmerg 12 gauge Shotgun";
 TAG_GARAND = "M1 Garand";
 
 TAG_ShitbostDummy = "Boss Rifle Variants";
-TAG_HEXAPERSONAL = "HexaDoken's Personal Boss Rifle";
-TAG_4MMBOSS = "Boss Rifle (4mm)";
 TAG_9MMBOSS = "Boss Rifle (9mm)";
+TAG_4MMBOSS = "Boss Rifle (4mm)";
+TAG_5MMBOSS = "HexaDoken's Personal Boss Rifle";
 TAG_WORSTBOSS = "Boss Rifle But It's The Worst";
 
 // Item Tags
@@ -22,26 +22,51 @@ TAG_DMS = "Medical Scanner";
 TAG_GARANDCLIP = "M1 Garand clip";
 
 // Menu Titles
-TITLE_NSBMENU = "------ Scopeless Boss Rifle Options ------";
-TITLE_BOGRIFLEMENU = "------ .50 OMG Boss Rifle Options ------";
+TITLE_9MMBOSSMENU = "------ 9mm Boss Rifle Options ------";
+TITLE_4MMBOSSMENU = "------ 4.26mm Boss Rifle Options ------";
 TITLE_BOSSMERGMENU = "------ Bossmerg 12 gauge Shotgun Options ------";
+TITLE_BOGRIFLEMENU = "------ .50 OMG Boss Rifle Options ------";
+TITLE_5MMBOSSMENU = "------ Hexadoken's 5mm BR Boss Rifle Options ------";
+TITLE_NSBMENU = "------ Scopeless Boss Rifle Options ------";
+TITLE_WORSTMENU = "------ The Worst Boss Rifle Options ------";
 TITLE_GARANDMENU = "------ M1 Garand Options ------";
 TITLE_DMSMENU = "------ Medical Scanner Options ------";
+
+// 9mm Boss
+MENU_9MMBOSSSPAWNTEXT = "Control the spawn rate of the 9mm Boss on Boss Rifles";
+MENU_9MMBOSSPISTOLTEXT = "Control the spawn rate of the 9mm Boss on Pistols";
+MENU_9MMBOSSSMGTEXT = "Control the spawn rate of the 9mm Boss on SMGs";
+MENU_9MMBOSSSPAWN = "9mm Boss Spawn Rate: ";
+
+// 4mm Boss
+MENU_4MMBOSSSPAWNTEXT = "Control the spawn rate of the 4.26mm Boss on Boss Rifles";
+MENU_4MMBOSSCHAINGUNTEXT = "Control the spawn rate of the 4.26mm Boss on Vulcanettes";
+MENU_4MMBOSSSPAWN = "4.26mm Boss Spawn Rate: ";
+
+// Bossmerg
+MENU_BASSPAWNTEXT = "Control the spawn rate of the Bossmerg on Boss Rifles";
+MENU_BASHUNTERTEXT = "Control the spawn rate of the Bossmerg on Hunters";
+MENU_BASSLAYERTEXT = "Control the spawn rate of the Bossmerg on Slayers";
+MENU_BASSPAWNRATE = "Bossmerg Spawn Rate: ";
+
+// .50 OMG Boss
+MENU_BOGSPAWNTEXT = "Control the spawn rate of the .50 OMG Boss on Boss Rifles";
+MENU_BOGTHUNDERBUSTERTEXT = "Control the spawn rate of the .50 OMG Boss on Thunderbusters";
+MENU_BOGBFGTEXT = "Control the spawn rate of the .50 OMG Boss on BFG-9000s";
+MENU_BOGSPAWNRATE = ".50 OMG Boss Spawn Rate: ";
+
+// 5mm Boss
+MENU_5MMBOSSSPAWNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on Boss Rifles";
+MENU_5MMBOSSCHAINGUNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on Vulcanettes";
+MENU_5MMBOSSSPAWN = "Hexadoken's Personal Boss Spawn Rate: ";
 
 // Scopeless Boss
 MENU_NSBSPAWNTEXT = "Control the spawn rate of the No-Scope Boss on Boss Rifles";
 MENU_NSBSPAWN = "No-Scope Boss Spawn Rate: ";
-MENU_RESETNSBSPAWN = "Reset Boss spawn options";
 
-// .50 OMG Boss
-MENU_BOGTHUNDERBUSTERTEXT = "Control the spawn rate of the .50 OMG Boss on Thunderbusters";
-MENU_BOGSLAYERTEXT = "Control the spawn rate of the .50 OMG Boss on Slayer shotguns";
-MENU_BOGVULCTEXT = "Control the spawn rate of the .50 OMG Boss on Vulcanettes";
-MENU_BOGSPAWNRATE = ".50 OMG Boss Spawn Rate: ";
-
-// Bossmerg
-MENU_BASHUNTER = "Control the spawn rate of the Bossmerg on Hunters";
-MENU_BASSPAWNRATE = "Bossmerg Spawn Rate: ";
+// 5mm Boss
+MENU_WORSTSPAWNTEXT = "Control the spawn rate of the Worst Boss on Boss Rifles";
+MENU_WORSTSPAWN = "The Worst Boss Spawn Rate: ";
 
 // M1 Garand
 MENU_GARANDLIBERATOR = "Control the spawn rate of the M1 Garand on Liberators";
@@ -59,16 +84,35 @@ MENU_RESETGARANDRELOADERCAPACITY = "Reset Reloader Capacity";
 // Medical Scanner
 MENU_DMSSTIMPACK = "Control the spawn rate of the Medical Scanner on Stimpacks";
 MENU_DMSMEDIKIT = "Control the spawn rate of the Medical Scanner on Medikits";
-MENU_DMSSPAWNRATE = "Bossmerg Spawn Rate: ";
+MENU_DMSSPAWNRATE = "Medical Scanner Spawn Rate: ";
 
 // Various Resets
+MENU_RESETPISTOL = "Reset Pistol spawn options";
+MENU_RESETSMG = "Reset SMG spawn options";
+MENU_RESETBOSS = "Reset Boss Rifle spawn options";
 MENU_RESETTB = "Reset Thunderbuster spawn options";
 MENU_RESETSLAYER = "Reset Slayer spawn options";
 MENU_RESETVULC = "Reset Vulcanette spawn options";
 MENU_RESETHUNTER = "Reset Hunter spawn options";
+MENU_RESETBFG = "Reset BFG-9000 spawn options";
 MENU_RESETLIB = "Reset Liberator spawn options";
 MENU_RESETSTIMPACK = "Reset Stimpack spawn options";
 MENU_RESETMEDIKIT = "Reset Medikit spawn options";
+
+// Backpack & Ammo Box Tables
+MENU_BACKPACKTEXT = "Control whether to allow this weapon to spawn in Backpacks & Ammo Boxes";
+MENU_9MMBOSSBACKPACK = "Allow 9mm Boss Rifles: ";
+MENU_9MMBOSSMAGBACKPACK = "Allow 9mm Clips: ";
+MENU_4MMBOSSBACKPACK = "Allow 4mm Boss Rifles: ";
+MENU_BASBACKPACK = "Allow Bossmerg Shotguns: ";
+MENU_BOGBACKPACK = "Allow .50 OMG Boss Rifles: ";
+MENU_BOGMAGBACKPACK = "Allow .50 OMG Clips: ";
+MENU_5MMBOSSBACKPACK = "Allow Hexadoken's Personal Boss Rifles: ";
+MENU_NSBBACKPACK = "Allow No-Scope Boss Rifles: ";
+MENU_WORSTBACKPACK = "Allow the Worst Boss Rifles: ";
+MENU_GARANDBACKPACK = "Allow M1 Garands: ";
+MENU_GARANDMAGBACKPACK = "Allow M1 Garand Magazines: ";
+MENU_DMSBACKPACK = "Allow Medical Scanners: ";
 
 // Persistency
 MENU_REPLACEAFTERMAPLOAD = "Control whether replacements happen after a mapload.";
@@ -76,25 +120,45 @@ MENU_PERSISTENCY = "Persistent Spawns: ";
 MENU_RESETPERSISTENCY = "Reset persistence options";
 
 // Deepest Lore
-NSB_LORE1 = "A Boss rifle that has been stripped of its main scope, leaving only its irons left.";
-NSB_LORE2 = "Little is known why these rifles have appeared with only irons, especially as they're not easily replaceable.";
-NSB_LORE3 = "Some speculate that they're for civilian use while others say that they're for infantry use.";
-NSB_LORE4 = "All we can say for certain is that it's still as effective as the regular boss rifle, for better or for worse.";
+9MMBOSS_LORE1 = "TODO: Enter Lore.";
+9MMBOSS_LORE2 = "";
+9MMBOSS_LORE3 = "";
+9MMBOSS_LORE4 = "";
 
-BOG_LORE1 = "A Boss rifle that has been rechambered for the .50 OMG Cartridge.";
-BOG_LORE2 = "These rifles are usually impractical, though incredibly fun to shoot.";
-BOG_LORE3 = "If you do manage to hit your target with this it'll most certainly take some hefty damage,";
-BOG_LORE4 = "though getting the munitions to feed this beast is another ordeal.";
+4MMBOSS_LORE1 = "TODO: Enter Lore.";
+4MMBOSS_LORE2 = "";
+4MMBOSS_LORE3 = "";
+4MMBOSS_LORE4 = "";
 
 BAS_LORE1 = "What appears to be a boss rifle rechambered to fit 12-Gauge shells.";
 BAS_LORE2 = "Not much is known where these came from or why they were created in the first place,";
 BAS_LORE3 = "Though they most certainly do exist. For better or for worst.";
 BAS_LORE4 = "If you get one, make sure it's the custom chamber version. These'll gunk up fast...";
 
+BOG_LORE1 = "A Boss rifle that has been rechambered for the .50 OMG Cartridge.";
+BOG_LORE2 = "These rifles are usually impractical, though incredibly fun to shoot.";
+BOG_LORE3 = "If you do manage to hit your target with this it'll most certainly take some hefty damage,";
+BOG_LORE4 = "though getting the munitions to feed this beast is another ordeal.";
+
+NSB_LORE1 = "A Boss rifle that has been stripped of its main scope, leaving only its irons left.";
+NSB_LORE2 = "Little is known why these rifles have appeared with only irons, especially as they're not easily replaceable.";
+NSB_LORE3 = "Some speculate that they're for civilian use while others say that they're for infantry use.";
+NSB_LORE4 = "All we can say for certain is that it's still as effective as the regular boss rifle, for better or for worse.";
+
+5MMBOSS_LORE1 = "TODO: Enter Lore.";
+5MMBOSS_LORE2 = "";
+5MMBOSS_LORE3 = "";
+5MMBOSS_LORE4 = "";
+
 GARAND_LORE1 = "An old M1 Garand from the early 1X40 times. Some have been recently rechambered to 7.76mm also.";
 GARAND_LORE2 = "It mostly serves now as an inbetween of the Mk. IV Boss Rifle and  the ZM7 Liberator.";
 GARAND_LORE3 = "The original cartridge it was chambered for of .30-06 hits a hefty punch,";
 GARAND_LORE4 = "though its rarity and incompatibility with other 7.76mm guns makes the 7.76mm version a bit more economical.";
+
+WORSTBOSS_LORE1 = "TODO: Enter Lore.";
+WORSTBOSS_LORE2 = "";
+WORSTBOSS_LORE3 = "";
+WORSTBOSS_LORE4 = "";
 
 DMS_LORE1 = "TODO: Enter Lore.";
 DMS_LORE2 = "";
