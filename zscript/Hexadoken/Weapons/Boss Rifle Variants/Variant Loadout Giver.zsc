@@ -1,0 +1,95 @@
+// Honestly i'm probably not going to put much work into this.
+// It's a meme mod, if it breaks take it as an unintended feature.
+// I doubt it will all of this stuff inherets from BossRifle so it'll probably be fine tbh. - [Ted]
+
+class HDShitbostDummy:HDWeapon{
+	default{
+		-hdweapon.fitsinbackpack
+		hdweapon.refid "boj";
+		tag "$TAG_ShitbostDummy";
+		inventory.icon "BOJGY0";
+
+		hdweapon.loadoutcodes "
+			\cuNine - 0/1, 9mm Boss Rifle
+			\cuFour - 0/1, 4mm Boss Rifle
+			\cuHexadoken - 0/1, Hexadoken's Personal Rifle
+			\cuWorst - 0/1, Lightspeed Boss Rifle
+			\cucustomchamber - 0/1, whether to reduce jam for less power
+			\cufrontreticle - 0/1, whether crosshair scales with zoom
+			\cubulletdrop - 0-600, amount of compensation for bullet drop
+			\cuzoom - 5-60, 10x the resulting FOV in degrees";
+	}
+	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
+	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
+	override double weaponbulk(){
+		return 144;
+	}
+	override void PostBeginPlay(){
+		if(!owner) return;
+		GiveWeapon(owner, weaponstatus[0],weaponstatus[1],weaponstatus[2],weaponstatus[3],weaponstatus[4],weaponstatus[5]);
+		let spw=spareweapons(owner.findinventory("spareweapons"));
+			if(spw) {
+				for(int i=0;i<spw.weapontype.size();i++)
+					if(spw.weapontype[i]=="HDShitbostDummy"){
+						GiveWeapon(owner, spw.GetWeaponValue(i,0), spw.GetWeaponValue(i,1), spw.GetWeaponValue(i,2),
+							 spw.GetWeaponValue(i,3), spw.GetWeaponValue(i,4), spw.GetWeaponValue(i,5));
+					}
+				for(int i=spw.weapontype.size();i>0;--i)
+					if(spw.weapontype[i-1]=="HDShitbostDummy"){
+						spw.weapontype.Delete(i-1);
+						spw.weaponstatus.Delete(i-1);
+						spw.weaponbulk.Delete(i-1);
+					}
+			}
+		owner.takeinventory("HDShitbostDummy", 1);
+	}
+	void GiveWeapon(actor plr, int type, int custom, int front, int drop, int zoom, int YEET){
+		string wn;
+		switch(type) {
+			default:
+			case 0: wn="BossRifleButIts9mm"; break;
+			case 1: wn="BossRifleButIts4mm"; break;
+			case 2: wn="BossRifleButItsTheWorst"; break;
+			case 3: wn="BossRifleButItsFuckingPink"; break;
+		}
+		let newwep=hdweapon(hdweapon.spawn(wn,plr.pos));
+		if(newwep){
+			if(custom) newwep.weaponstatus[0]|=BOSSF_CUSTOMCHAMBER;
+			if(front) newwep.weaponstatus[0]|=BOSSF_FRONTRETICLE;
+			if(yeet) newwep.weaponstatus[0]|=BOSSF_YEETABLE;
+			if(drop>=0) newwep.weaponstatus[BOSSS_DROPADJUST]=clamp(drop,0,600);
+			else newwep.weaponstatus[BOSSS_DROPADJUST]=160;
+			if(zoom>0) newwep.weaponstatus[BOSSS_ZOOM]=
+				(newwep.weaponstatus[0]&BOSSF_FRONTRETICLE)?
+				clamp(zoom,12,40):
+				clamp(zoom,5,60);
+			else newwep.weaponstatus[BOSSS_ZOOM]=20;
+			newwep.actualpickup(plr,true);
+		}
+	}
+	override void loadoutconfigure(string input){
+		int nine=getloadoutvar(input,"nine",1);
+		int four=getloadoutvar(input,"four",1);
+		int gold=getloadoutvar(input,"worst",1);
+		int pink=getloadoutvar(input,"hexadoken",1);
+		
+		if(gold>0 && nine<0 && four<0 && pink<0) weaponstatus[0]=2;
+		else if (pink>0 && nine<0 && four<0 && gold<0) weaponstatus[0]=3;
+		else if (four>0 && nine<0 && gold<0 && pink<0) weaponstatus[0]=1;
+		else if (nine>0 && four<0 && gold<0 && pink<0) weaponstatus[0]=0;
+		else weaponstatus[0]=random(0,1);
+	
+		int customchamber=getloadoutvar(input,"customchamber",1);
+		int frontreticle=getloadoutvar(input,"frontreticle",1);
+		int bulletdrop=getloadoutvar(input,"bulletdrop",3);
+		int zoom=getloadoutvar(input,"zoom",3);
+		int yeetable=getloadoutvar(input,"yeetable",1);
+		
+		
+		if(customchamber>0)weaponstatus[1]=1;
+		if(frontreticle>0)weaponstatus[2]=1;
+		weaponstatus[3]=bulletdrop;
+		if(zoom>0)weaponstatus[4]=zoom;
+		if(yeetable>0)weaponstatus[5]=1;
+	}
+}
