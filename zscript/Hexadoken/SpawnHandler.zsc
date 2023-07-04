@@ -19,19 +19,17 @@ class HexaSpawnItem play {
     string toString() {
 
         let replacements = "[";
-        if (spawnReplaces.size()) {
-            replacements = replacements..spawnReplaces[0].toString();
 
-            foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
-        }
+        foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
+
         replacements = replacements.."]";
-
 
         return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnName, replacements, isPersistent, replaceItem);
     }
 }
 
 class HexaSpawnItemEntry play {
+
     string name;
     int    chance;
 
@@ -42,6 +40,7 @@ class HexaSpawnItemEntry play {
 
 // Struct for passing useinformation to ammunition. 
 class HexaSpawnAmmo play {
+
     // ID by string for the header ammo.
     string ammoName;
     
@@ -51,11 +50,9 @@ class HexaSpawnAmmo play {
     string toString() {
 
         let weapons = "[";
-        if (weaponNames.size()) {
-            weapons = weapons..weaponNames[0];
 
-            foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
-        }
+        foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
+
         weapons = weapons.."]";
 
         return String.format("{ ammoName=%s, weaponNames=%s }", ammoName, weapons);
@@ -70,20 +67,20 @@ class HexaDokenHandler : EventHandler {
     // List of persistent classes to completely ignore. 
     // This -should- mean this mod has no performance impact. 
     static const string blacklist[] = {
-        "HDSmoke",
-        "BloodTrail",
-        "CheckPuff",
-        "WallChunk",
-        "HDBulletPuff",
-        "HDFireballTail",
-        "ReverseImpBallTail",
-        "HDSmokeChunk",
-        "ShieldSpark",
-        "HDFlameRed",
-        "HDMasterBlood",
-        "PlantBit",
-        "HDBulletActor",
-        "HDLadderSection"
+        'HDSmoke',
+        'BloodTrail',
+        'CheckPuff',
+        'WallChunk',
+        'HDBulletPuff',
+        'HDFireballTail',
+        'ReverseImpBallTail',
+        'HDSmokeChunk',
+        'ShieldSpark',
+        'HDFlameRed',
+        'HDMasterBlood',
+        'PlantBit',
+        'HDBulletActor',
+        'HDLadderSection'
     };
 
     // List of CVARs for Backpack Spawns
@@ -106,9 +103,10 @@ class HexaDokenHandler : EventHandler {
     void addItem(string name, Array<HexaSpawnItemEntry> replacees, bool persists, bool rep=true) {
 
         if (hd_debug) {
-            let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": ["..replacees[0].toString();
 
-            if (replacees.size() > 1) foreach (replacee : replacees) msg = msg..", "..replacee.toString();
+            let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": [";
+
+            foreach (replacee : replacees) msg = msg..", "..replacee.toString();
 
             console.printf(msg.."]");
         }
@@ -120,17 +118,17 @@ class HexaDokenHandler : EventHandler {
         spawnee.spawnName = name;
         spawnee.isPersistent = persists;
         spawnee.replaceItem = rep;
-        
-        foreach (replacee : replacees) spawnee.spawnReplaces.push(replacee);
+        spawnee.spawnReplaces.copy(replacees);
         
         // Pushes the finished struct to the array. 
         itemSpawnList.push(spawnee);
     }
 
     HexaSpawnItemEntry addItemEntry(string name, int chance) {
+
         // Creates a new struct;
         HexaSpawnItemEntry spawnee = HexaSpawnItemEntry(new('HexaSpawnItemEntry'));
-        spawnee.name = name.makeLower();
+        spawnee.name = name;
         spawnee.chance = chance;
         return spawnee;
     }
@@ -138,13 +136,19 @@ class HexaDokenHandler : EventHandler {
     // appends an entry to ammoSpawnList;
     void addAmmo(string name, Array<string> weapons) {
     
+        if (hd_debug) {
+            let msg = "Adding Ammo Association Entry for "..name..": [";
+
+            foreach (weapon : weapons) msg = msg..", "..weapon;
+
+            console.printf(msg.."]");
+        }
+
         // Creates a new struct;
         HexaSpawnAmmo spawnee = HexaSpawnAmmo(new('HexaSpawnAmmo'));
-        spawnee.ammoName = name.makeLower();
-        
-        // Populates the struct with relevant information,
-        foreach (weapon : weapons) spawnee.weaponNames.push(weapon.makeLower());
-        
+        spawnee.ammoName = name;
+        spawnee.weaponNames.copy(weapons);
+
         // Pushes the finished struct to the array. 
         ammoSpawnList.push(spawnee);
     }
@@ -159,19 +163,19 @@ class HexaDokenHandler : EventHandler {
         // Backpack Spawns
         //-----------------
 
-        if (!boss9mm_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("BossRifleButIts9mm"));
-        if (!boss4mm_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("BossRifleButIts4mm"));
-        if (!bas_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("Bossmerg"));
-        if (!bog_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("BogRifle"));
-        if (!boss5mm_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("BossRifleButItsFuckingPink"));
-        if (!nsb_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("NoScopeBoss"));
-        if (!worstBoss_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)("BossRifleButItsTheWorst"));
-        if (!gar_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDGarand"));
+        if (!boss9mm_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('BossRifleButIts9mm'));
+        if (!boss4mm_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('BossRifleButIts4mm'));
+        if (!bas_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('Bossmerg'));
+        if (!bog_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('BogRifle'));
+        if (!boss5mm_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('BossRifleButItsFuckingPink'));
+        if (!nsb_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('NoScopeBoss'));
+        if (!worstBoss_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('BossRifleButItsTheWorst'));
+        if (!gar_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDGarand'));
 
-        // if (!boss9mmmag_allowBackpacks) backpackBlacklist.push((Class<Inventory>)("HD9mClip"));
-        if (!bogmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDOmgClip"));
-        if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDGarandClip"));
-        if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDGarand3006Clip"));
+        // if (!boss9mmmag_allowBackpacks) backpackBlacklist.push((Class<Inventory>)('HD9mClip'));
+        if (!bogmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDOmgClip'));
+        if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDGarandClip'));
+        if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDGarand3006Clip'));
 
 
         //------------
@@ -180,74 +184,74 @@ class HexaDokenHandler : EventHandler {
 
         // 9mm Clips
         Array<string> wep_9mmClip;
-        wep_9mmClip.push("BossRifleButIts9mm");
+        wep_9mmClip.push('BossRifleButIts9mm');
         addAmmo('HD9mClip', wep_9mmClip);
 
         // 7mm Clips
         Array<string> wep_7mmClip;
-        wep_7mmClip.push("NoScopeBoss");
+        wep_7mmClip.push('NoScopeBoss');
         addAmmo('HD7mClip', wep_7mmClip);
 
         // .50 OMG Clips
         Array<string> wep_omgClip;
-        wep_omgClip.push("BogRifle");
+        wep_omgClip.push('BogRifle');
         addAmmo('HDOmgClip', wep_omgClip);
 
         // M1 Garand Clips
         Array<string> wep_garandClip;
-        wep_garandClip.push("HDGarand");
+        wep_garandClip.push('HDGarand');
         addAmmo('HDGarandClip', wep_garandClip);
 
         // M1 Garand .30-06 Clips
         Array<string> wep_3006Clip;
-        wep_3006Clip.push("HDGarand");
+        wep_3006Clip.push('HDGarand');
         addAmmo('HDGarand3006Clip', wep_3006Clip);
 
         // 9mm
         Array<string> wep_9mm;
-        wep_9mm.push("BossRifleButIts9mm");
+        wep_9mm.push('BossRifleButIts9mm');
         addAmmo('HDPistolAmmo', wep_9mm);
 
         // 4mm
         Array<string> wep_4mm;
-        wep_4mm.push("BossRifleButIts4mm");
-        wep_4mm.push("SpeedRunLoader");
+        wep_4mm.push('BossRifleButIts4mm');
+        wep_4mm.push('SpeedRunLoader');
         addAmmo('FourMilAmmo', wep_4mm);
 
         // 12 Gauge Shells
         Array<string> wep_Shells;
-        wep_Shells.push("Bossmerg");
+        wep_Shells.push('Bossmerg');
         addAmmo('HDShellAmmo', wep_Shells);
 
         // 7mm
         Array<string> wep_7mm;
-        wep_7mm.push("NoScopeBoss");
-        wep_7mm.push("BossRifleButItsTheWorst");
+        wep_7mm.push('NoScopeBoss');
+        wep_7mm.push('BossRifleButItsTheWorst');
         addAmmo('SevenMilAmmo', wep_7mm);
         
         // 7mm Recast
         Array<string> wep_7mmR;
-        wep_7mmR.push("NoScopeBoss");
+        wep_7mmR.push('NoScopeBoss');
         addAmmo('SevenMilAmmoRecast', wep_7mmR);
 
         // 7mm Brass
         Array<string> wep_7mmB;
-        wep_7mmB.push("SpeedRunLoader");
+        wep_7mmB.push('SpeedRunLoader');
         addAmmo('SevenMilBrass', wep_7mmB);
 
         // 5mm
         Array<string> wep_5mm;
-        wep_5mm.push("BossRifleButItsFuckingPink");
+        wep_5mm.push('BossRifleButItsFuckingPink');
         addAmmo('HD5MM_Ammo', wep_5mm);
 
         // .50 OMG
         Array<string> wep_50OMG;
-        wep_50OMG.push("BogRifle");
+        wep_50OMG.push('BogRifle');
         addAmmo('HD50OMGAmmo', wep_50OMG);
 
         // .30-06
         Array<string> wep_3006;
-        wep_3006.push("HDGarand");
+        wep_3006.push('HDGarand');
         addAmmo('ThirtyAughtSixAmmo', wep_3006);
 
         //------------
@@ -361,7 +365,6 @@ class HexaDokenHandler : EventHandler {
         foreach (bl : blacklist) if (e.thing is bl) return;
 
         string candidateName = e.thing.getClassName();
-        candidateName = candidateName.makeLower();
         
         // Pointers for specific classes.
         let ammo = HDAmmo(e.thing);
@@ -370,7 +373,7 @@ class HexaDokenHandler : EventHandler {
         if (ammo) handleAmmoUses(ammo, candidateName);
 
         // Return if range before replacing things.
-        if (level.MapName ~== "RANGE") return;
+        if (level.MapName == 'RANGE') return;
 
         if (e.thing is 'HDAmBox') {
             handleAmmoBoxLootTable();
@@ -396,7 +399,14 @@ class HexaDokenHandler : EventHandler {
     }
 
     private void handleAmmoUses(HDAmmo ammo, string candidateName) {
-        foreach (ammoSpawn : ammoSpawnList) if (candidateName == ammoSpawn.ammoName) ammo.itemsThatUseThis.copy(ammoSpawn.weaponNames);
+        foreach (ammoSpawn : ammoSpawnList) if (candidateName ~== ammoSpawn.ammoName) {
+            if (hd_debug) {
+                console.printf("Adding the following to the list of items that use "..ammo.getClassName().."");
+                foreach (weapon : ammoSpawn.weaponNames) console.printf("* "..weapon);
+            }
+
+            ammo.itemsThatUseThis.append(ammoSpawn.weaponNames);
+        }
     }
 
     private void handleWeaponReplacements(Actor thing, HDAmmo ammo, string candidateName) {
@@ -412,7 +422,7 @@ class HexaDokenHandler : EventHandler {
             let item = Inventory(thing);
             if ((prespawn || itemSpawn.isPersistent) && (!(item && item.owner) && (!ammo || prespawn))) {
                 foreach (spawnReplace : itemSpawn.spawnReplaces) {
-                    if (spawnReplace.name == candidateName) {
+                    if (spawnReplace.name ~== candidateName) {
                         if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
 
                         if (tryCreateItem(thing, itemSpawn.spawnName, spawnReplace.chance, itemSpawn.replaceItem)) return;
