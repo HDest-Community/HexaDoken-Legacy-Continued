@@ -11,7 +11,6 @@ class NoScopeBoss:BossRifle{
 	override string pickupmessage(){
 		return "You got the "..gettag().."!";
 	}
-
 	override double weaponbulk(){
 		return 138+weaponstatus[BOSSS_MAG]*ENC_776_LOADED;
 	}
@@ -59,32 +58,31 @@ class NoScopeBoss:BossRifle{
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Work bolt\n"
-		..WEPHELP_RELOAD.."  Reload rounds/clip\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_USE.."  Bullet drop\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_DROPONE.."  Force drop non-recast\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_ALTRELOAD.."  Force load recast\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber/Clean rifle\n"
+		..WEPHELP_ALTFIRE..StringTable.Localize("$BOSWH_ALTFIRE")
+		..WEPHELP_RELOAD..StringTable.Localize("$BOSWH_RELOAD")
+		..WEPHELP_ZOOM.."+"..WEPHELP_USE..StringTable.Localize("$BOSWH_ZPUSE")
+		..WEPHELP_ZOOM.."+"..WEPHELP_DROPONE..StringTable.Localize("$BOSWH_ZPDRON")
+		..WEPHELP_ZOOM.."+"..WEPHELP_ALTRELOAD..StringTable.Localize("$BOSWH_ZPALTRELOAD")
+		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD..StringTable.Localize("$BOSWH_AFIREPUNL")
 		..WEPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
-		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc,string whichdot
+		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	){
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=Screen.GetClipRect();
 		sb.SetClipRect(
-			-16+bob.x,-4+bob.y,32,16,
+			-16+bob.x,-64+bob.y,32,76,
 			sb.DI_SCREEN_CENTER
 		);
-		vector2 bobb=bob*2;
-		bobb.y=clamp(bobb.y,-8,8);
 		sb.drawimage(
-			"nsfrtsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
+			"nsfrtsit",bob*1.14,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			alpha:0.9,scale:(1.25,1.4)
 		);
 		sb.SetClipRect(cx,cy,cw,ch);
+
 		sb.drawimage(
 			"nsbaksit",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			scale:(1.4,1)
@@ -191,10 +189,10 @@ class NoScopeBoss:BossRifle{
 		TNT1 A 0 A_Light0();
 		stop;
 	altfire:
-		BARG G 1 offset(0,34) A_WeaponBusy();
-		BARG H 2 offset(2,36) A_JumpIf(invoker.weaponstatus[0]&BOSSF_CUSTOMCHAMBER,1);
-		BARG H 1 offset(4,38) A_JumpIf(invoker.weaponstatus[BOSSS_CHAMBER]>2,"jamderp");
-		BARG H 1 offset(0,34);
+		BARG G 1 A_WeaponBusy();
+		BARG H 2 A_JumpIf(invoker.weaponstatus[0]&BOSSF_CUSTOMCHAMBER,1);
+		BARG H 1 A_JumpIf(invoker.weaponstatus[BOSSS_CHAMBER]>2,"jamderp");
+		BARG H 1 A_MuzzleClimb(-frandom(0.06,0.1),-frandom(0.3,0.5));
 		BARG H 0 A_ChamberGrit(randompick(0,0,0,0,-1,1,2),true);
 		BARG H 0 A_Refire("chamber");
 		goto ready;
@@ -229,8 +227,8 @@ class NoScopeBoss:BossRifle{
 		}
 	altholdend:
 		BARG K 0 A_StartSound("weapons/boltfwd",8);
-		BARG JJ 2 A_WeaponReady(WRF_NOFIRE);
-		BARG H 3 offset(2,36){
+		BARG JI 2 A_WeaponReady(WRF_NOFIRE);
+		BARG H 3{
 			A_WeaponReady(WRF_NOFIRE);
 			if(invoker.weaponstatus[0]&BOSSF_CUSTOMCHAMBER)A_SetTics(1);
 		}
@@ -293,16 +291,16 @@ class NoScopeBoss:BossRifle{
 		TNT1 A 40{
 			A_StartSound("weapons/pocket",9);
 			int amt=invoker.weaponstatus[BOSSS_GRIME];
-			string amts="There doesn't seem to be much. ";
-			if(amt>40)amts="What the FUCK. ";
-			else if(amt>30)amts="About time - this gun is barely functional. ";
-			else if(amt>20)amts="This is starting to gum up badly. ";
-			else if(amt>10)amts="It can use some cleaning. ";
+			string amts=StringTable.Localize("$BOSS_CLEAN1");
+			if(amt>40)amts=StringTable.Localize("$BOSS_CLEAN2");
+			else if(amt>30)amts=StringTable.Localize("$BOSS_CLEAN3");
+			else if(amt>20)amts=StringTable.Localize("$BOSS_CLEAN4");
+			else if(amt>10)amts=StringTable.Localize("$BOSS_CLEAN5");
 
-			static const string cleanverbs[]={"extract","scrape off","wipe away","{care|skil|force}fully remove","dump out","pick out","blow off","shake out","scrub off","fish out"};
-			static const string contaminants[]={"some dust","a lot of dust","a bit of powder residue","a disturbing amount of powder residue","some excess grease","a layer of soot","some iron filings","a bit of hair","an eyelash","a patch of dried blood","a bit of rust","a crumb","a dead {insect|spider|ant|wasp}","ashes","some loose bits of skin","a sticky fluid of some sort","wow some fucking *gunk*","a booger","trace fecal matter","yet even more of that anonymous grey debris that all those bullet impacts make","a dollop of {straw|blue|rasp}berry jam","the dried husk of a {pinto|fava|mung} bean with residual hog components","a tiny cancerous nodule of Second Flesh","some crystalline buildup of congealed Frag","a nesting queen space ant","a single modern-day transistor","a tiny Boss rifle (also jammed)","a colourless film of darkness made visible"};
-			static const string actionparts[]={"bolt carrier","main extractor","auxiliary extractor","cam pin","bolt head","striker","firing pin spring","ejector slot","striker spring","ejector spring"};
-			for(int i=amt;i>0;i-=random(8,16))amts.appendformat("You %s %s from the %s. ",
+			/*static const */string cleanverbs[]={StringTable.Localize("$BOSS_EXTRACT"),StringTable.Localize("$BOSS_SCRAPEOFF"),StringTable.Localize("$BOSS_WIPEAWAY"),StringTable.Localize("$BOSS_CAREREMOVE"),StringTable.Localize("$BOSS_DUMPOUT"),StringTable.Localize("$BOSS_PICKOUT"),StringTable.Localize("$BOSS_BLOWOFF"),StringTable.Localize("$BOSS_SHAKEOUT"),StringTable.Localize("$BOSS_SCRUBOFF"),StringTable.Localize("$BOSS_FISH")};
+			/*static const */string contaminants[]={StringTable.Localize("$BOSS_SOMEDUST"),StringTable.Localize("$BOSS_ALODUST"),StringTable.Localize("$BOSS_ABOPOWDER"),StringTable.Localize("$BOSS_DAOPOWDER"),StringTable.Localize("$BOSS_SEXGREASE"),StringTable.Localize("$BOSS_ALOSOOT"),StringTable.Localize("$BOSS_SOMEIRON"),StringTable.Localize("$BOSS_HAIR"),StringTable.Localize("$BOSS_EYELASH"),StringTable.Localize("$BOSS_BLOOD"),StringTable.Localize("$BOSS_RUST"),StringTable.Localize("$BOSS_CRUMB"),StringTable.Localize("$BOSS_DEADSOME"),StringTable.Localize("$BOSS_ASHES"),StringTable.Localize("$BOSS_SKIN"),StringTable.Localize("$BOSS_FLUID"),StringTable.Localize("$BOSS_WOWSOME"),StringTable.Localize("$BOSS_BOOGER"),StringTable.Localize("$BOSS_FECAL"),StringTable.Localize("$BOSS_BULLETSIMPACT"),StringTable.Localize("$BOSS_JAM"),StringTable.Localize("$BOSS_HUSK"),StringTable.Localize("$BOSS_SFLESH"),StringTable.Localize("$BOSS_CRYSTAL"),StringTable.Localize("$BOSS_SPACEANT"),StringTable.Localize("$BOSS_TRANSISTOR"),StringTable.Localize("$BOSS_TINBOSS"),StringTable.Localize("$BOSS_FILM")};
+			/*static const */string actionparts[]={StringTable.Localize("$BOSS_BOLTCAR"),StringTable.Localize("$BOSS_MAINEXTRACTOR"),StringTable.Localize("$BOSS_AUXEXTRACTOR"),StringTable.Localize("$BOSS_CAMPIN"),StringTable.Localize("$BOSS_BOLTHEAD"),StringTable.Localize("$BOSS_STRIKER"),StringTable.Localize("$BOSS_SPRING"),StringTable.Localize("$BOSS_EJECTSLOT"),StringTable.Localize("$BOSS_STRIKERSPRING"),StringTable.Localize("$BOSS_EJSPRING")};
+			for(int i=amt;i>0;i-=random(8,16))amts.appendformat(StringTable.Localize("$BOSS_FINLINE"),
 				cleanverbs[random(0,cleanverbs.size()-1)],
 				contaminants[random(0,random(0,contaminants.size()-1))],
 				actionparts[random(0,random((actionparts.size()>>1),actionparts.size()-1))]
@@ -314,11 +312,11 @@ class NoScopeBoss:BossRifle{
 
 			A_ChamberGrit(amt,true);
 			amt=invoker.weaponstatus[BOSSS_GRIME];
-			if(amt>40)amts.appendformat("You barely scrape the surface of this all-encrusting abomination.");
-			else if(amt>30)amts.appendformat("The gun will need a lot more work than this before it can be deployed again.");
-			else if(amt>20)amts.appendformat("You might get a few shots out of it now.");
-			else if(amt>10)amts.appendformat("It's better, but still not good.");
-			else amts.appendformat("Good to go.");
+			if(amt>40)amts.appendformat(StringTable.Localize("$BOSS_CLENF1"));
+			else if(amt>30)amts.appendformat(StringTable.Localize("$BOSS_CLENF2"));
+			else if(amt>20)amts.appendformat(StringTable.Localize("$BOSS_CLENF3"));
+			else if(amt>10)amts.appendformat(StringTable.Localize("$BOSS_CLENF4"));
+			else amts.appendformat(StringTable.Localize("$BOSS_CLENF5"));
 			A_Log(amts,true);
 		}
 		BARG K 1 offset(7,52);
@@ -351,7 +349,7 @@ class NoScopeBoss:BossRifle{
 		BARG G 0 A_Refire("jamderp");
 		goto ready;
 	chamber:
-		BARG I 2 offset(4,38){
+		BARG I 2{
 			if(
 				random(0,max(2,invoker.weaponstatus[BOSSS_GRIME]>>3))
 				&&invoker.weaponstatus[BOSSS_CHAMBER]>2
@@ -365,8 +363,8 @@ class NoScopeBoss:BossRifle{
 				setweaponstate("jamderp");
 			}else A_StartSound("weapons/boltback",8);
 		}
-		BARG J 2 offset(6,42)A_JumpIf(invoker.weaponstatus[0]&BOSSF_CUSTOMCHAMBER,1);
-		BARG J 1 offset(6,42){
+		BARG J 2 offset(1,34)A_JumpIf(invoker.weaponstatus[0]&BOSSF_CUSTOMCHAMBER,1);
+		BARG J 1 offset(2,36){
 			if(gunbraced())A_MuzzleClimb(
 				frandom(-0.1,0.3),frandom(-0.1,0.3)
 			);else A_MuzzleClimb(
@@ -376,31 +374,26 @@ class NoScopeBoss:BossRifle{
 			if(hd_debug)A_Log("jam chance: "..jamch);
 			if(random(0,100)<jamch)setweaponstate("jam");
 		}
-		BARG J 2 offset(6,42){
+		BARG J 2 offset(1,34){
 			//eject
+			int chm=invoker.weaponstatus[BOSSS_CHAMBER];
 			bool recast=invoker.weaponstatus[0]&BOSSF_RECAST;
 			invoker.weaponstatus[0]&=~BOSSF_RECAST;
-			class<actor> rndtp=recast?"HDLoose7mmRecast":"HDLoose7mm";
-			int chm=invoker.weaponstatus[BOSSS_CHAMBER];
+			class<actor> rndtp=chm==1?"HDSpent7mm":recast?"HDLoose7mmRecast":"HDLoose7mm";
 			double cp=cos(pitch);
 			double sp=sin(pitch);
-			if(chm>1){
-				A_SpawnItemEx(
-					rndtp,cp*8,1,height-7-sp*8,
-					cp*cos(angle-80)*4+vel.x,
-					cp*sin(angle-80)*4+vel.y,
-					-sp*4+vel.z,
-					0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
-				);
-			}else if(chm==1){
-				A_SpawnItemEx(
-					"HDSpent7mm",cp*8,1,height-7-sp*8,
-					cp*cos(angle-80)*6+vel.x,
-					cp*sin(angle-80)*6+vel.y,
-					-sp*6+vel.z,
-					0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
-				);
+			actor rrr=null;
+			if(chm>=1){
+				vector3 gunofs=HDMath.RotateVec3D((10,-1,0),angle,pitch);
+				actor rrr=spawn(rndtp,(pos.xy,pos.z+height*0.85)+gunofs+viewpos.offset);
+				rrr.target=self;
+				rrr.angle=angle;
+				rrr.vel=HDMath.RotateVec3D((1,-4,2),angle,pitch);
+				if(chm==1)rrr.vel*=1.3;
+				rrr.vel+=vel;
 			}
+
+
 			//cycle new
 			int bbm=invoker.weaponstatus[BOSSS_MAG];
 			if(bbm>0){
@@ -414,7 +407,7 @@ class NoScopeBoss:BossRifle{
 				invoker.weaponstatus[BOSSS_MAG]--;
 			}else invoker.weaponstatus[BOSSS_CHAMBER]=0;
 		}
-		BARG K 1 offset(6,42) A_WeaponReady(WRF_NOFIRE);
+		BARG K 1 A_WeaponReady(WRF_NOFIRE);
 		BARG K 0 A_Refire("althold");
 		goto altholdend;
 

@@ -1,5 +1,12 @@
 Version "4.10"
 
+const HDLD_4MMBOSS   = "";
+const HDLD_9MMBOSS   = "";
+const HDLD_BOSSER    = "bas";
+const HDLD_OMGBOSS   = "bog";
+const HDLD_5MMBOSS   = "";
+const HDLD_WORSTBOSS = "";
+
 #include "zscript/Hexadoken/SpawnHandler.zsc"
 
 #include "zscript/Hexadoken/Items/SpeedReloader.zsc"
