@@ -791,13 +791,26 @@ enum garandstatus{
 	GARS_CHAMBER=3,
 };
 
+class HDGarandClipGiver:HDPickupGiver {
+	default{
+		inventory.icon "GCLPA0";
+		hdpickup.refid "gac";
+		tag "$TAG_GARANDCLIP";
+	}
+
+	override void beginplay(){
+		super.beginplay();
+		pickuptogive = hd_garand_ammotype == 0 ? "HDGarand3006Clip" : "HDGarandClip";
+	}
+}
+
 class HDGarandClip:HDMagAmmo{
 	default{
 		hdmagammo.maxperunit 8;
 		hdmagammo.roundtype "SevenMilAmmo";
 		hdmagammo.roundbulk ENC_776*0.8;
 		hdmagammo.magbulk 4;
-		hdpickup.refid "gac";
+		hdpickup.refid "";
 		tag "$TAG_GARANDCLIP";
 		xscale 0.7; yscale 0.6;
 		inventory.maxamount 1000;
@@ -848,7 +861,6 @@ class HDGarand3006Clip:HDGarandClip{
 		hdmagammo.roundtype "ThirtyAughtSixAmmo";
 		hdmagammo.roundbulk ENC_776;
 		hdmagammo.magbulk 4;
-		hdpickup.refid "";
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite;
