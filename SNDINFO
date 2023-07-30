@@ -1,11 +1,23 @@
-// 50 OMG Boss firing sound.
-weapons/bogomgfire 5BOGFIRE
+// 9mm Boss
+$alias weapons/9mmboss      weapons/rifle
 
-// Garand
-weapons/garandping		M1PING
+// 4mm Boss
+$alias weapons/4mmboss      weapons/rifle
 
-weapons/garandlower		dspocket
-weapons/garandunbolt	dsrifclk
-weapons/garandround		dsrifck2
-weapons/garandclip		dsgopen
-weapons/garandbolt		dsrifclk
+// 12ga Boss
+$alias weapons/bossmerg     weapons/hunter
+
+// 5mm Boss
+$alias weapons/pinkboss     weapons/rifle
+
+// .50 OMG Boss
+weapons/bogomgfire          5BOGFIRE
+
+// M1 Garand
+weapons/garandping		    M1PING
+
+$alias weapons/garandlower  weapons/pocket
+$alias weapons/garandunbolt	weapons/rifleclick
+$alias weapons/garandround  weapons/rifleclick2
+$alias weapons/garandclip   weapons/grenopen
+$alias weapons/garandbolt   weapons/rifleclick
