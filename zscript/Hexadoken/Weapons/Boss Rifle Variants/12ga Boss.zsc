@@ -265,7 +265,7 @@ class Bossmerg:HDShotgun {
 		BORG A 1{
 			A_Gunflash();
 			invoker.weaponstatus[BOSSERS_CHAMBER]=1;
-			A_StartSound("weapons/hunter",CHAN_WEAPON);
+			A_StartSound("weapons/bossmerg",CHAN_WEAPON);
 			A_AlertMonsters();
 
 			invoker.Fire(self);
