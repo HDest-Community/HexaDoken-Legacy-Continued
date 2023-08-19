@@ -11,6 +11,7 @@ Credits:
 - Potetobloke and Carbine Dioxide for the M1 Garand pickup sprite
 - Kris, for the recast fixes and support for the No-Scope Boss.
 - FDA, for the Event Handler and Menu code.
+- Undead Zeratul, for updating Boss variants to latest HDest, updating Spawn Handlers & menus.
 - Boss Rifle Code: MatthewTheGlutton/Matt, Hideous Destructor
 
 TO-DO:
