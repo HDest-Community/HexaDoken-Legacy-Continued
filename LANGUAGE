@@ -57,7 +57,7 @@ MENU_9MMBOSSSPAWN = "9mm Boss Spawn Rate: ";
 
 // 4mm Boss
 MENU_4MMBOSSSPAWNTEXT = "Control the spawn rate of the 4.26mm Boss on Boss Rifles";
-MENU_4MMBOSSCHAINGUNTEXT = "Control the spawn rate of the 4.26mm Boss on Vulcanettes";
+MENU_4MMBOSSCHAINGUNTEXT = "Control the spawn rate of the 4.26mm Boss on ZM66 Assault Rifles";
 MENU_4MMBOSSSPAWN = "4.26mm Boss Spawn Rate: ";
 
 // Bossmerg
@@ -74,7 +74,7 @@ MENU_BOGSPAWNRATE = ".50 OMG Boss Spawn Rate: ";
 
 // 5mm Boss
 MENU_5MMBOSSSPAWNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on Boss Rifles";
-MENU_5MMBOSSCHAINGUNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on Vulcanettes";
+MENU_5MMBOSSCHAINGUNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on ZM66 Assault Rifles";
 MENU_5MMBOSSSPAWN = "Hexadoken's Personal Boss Spawn Rate: ";
 
 // Scopeless Boss

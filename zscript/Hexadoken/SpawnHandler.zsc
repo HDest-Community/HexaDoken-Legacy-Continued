@@ -260,50 +260,50 @@ class HexaDokenHandler : EventHandler {
 
         // 9mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_9mmBoss;
-        spawns_9mmBoss.push(addItemEntry('BossRifleSpawner', boss9mm_boss_spawn_bias));
+        spawns_9mmBoss.push(addItemEntry('BossRifle', boss9mm_boss_spawn_bias));
         spawns_9mmBoss.push(addItemEntry('HDPistol', boss9mm_pistol_spawn_bias));
         spawns_9mmBoss.push(addItemEntry('HDSMG', boss9mm_smg_spawn_bias));
         addItem('BossRifleNine', spawns_9mmBoss, boss9mm_persistent_spawning);
 
         // 4mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_4mmBoss;
-        spawns_4mmBoss.push(addItemEntry('BossRifleSpawner', boss4mm_boss_spawn_bias));
-        spawns_4mmBoss.push(addItemEntry('Vulcanette', boss4mm_chaingun_spawn_bias));
+        spawns_4mmBoss.push(addItemEntry('BossRifle', boss4mm_boss_spawn_bias));
+        spawns_4mmBoss.push(addItemEntry('ZM66AssaultRifle', boss4mm_chaingun_spawn_bias));
         addItem('BossRifleFour', spawns_4mmBoss, boss4mm_persistent_spawning);
 
         // 12ga Boss Rifle
         Array<HexaSpawnItemEntry> spawns_Bossmerg;
-        spawns_Bossmerg.push(addItemEntry('BossRifleSpawner', bas_boss_spawn_bias));
+        spawns_Bossmerg.push(addItemEntry('BossRifle', bas_boss_spawn_bias));
         spawns_Bossmerg.push(addItemEntry('Hunter', bas_hunter_spawn_bias));
         spawns_Bossmerg.push(addItemEntry('Slayer', bas_slayer_spawn_bias));
         addItem('Bossmerg', spawns_Bossmerg, bas_persistent_spawning);
 
         // .50 OMG Boss Rifle
         Array<HexaSpawnItemEntry> spawns_BogRifle;
-        spawns_BogRifle.push(addItemEntry('BossRifleSpawner', bog_boss_spawn_bias));
-        spawns_BogRifle.push(addItemEntry('ThunderBuster', bog_plasma_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('BossRifle', bog_boss_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('Thunderbuster', bog_plasma_spawn_bias));
         spawns_BogRifle.push(addItemEntry('BFG9K', bog_bfg_spawn_bias));
         addItem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
 
         // 5mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_5mmBoss;
-        spawns_5mmBoss.push(addItemEntry('BossRifleSpawner', boss5mm_boss_spawn_bias));
-        spawns_5mmBoss.push(addItemEntry('Vulcanette', boss5mm_chaingun_spawn_bias));
+        spawns_5mmBoss.push(addItemEntry('BossRifle', boss5mm_boss_spawn_bias));
+        spawns_5mmBoss.push(addItemEntry('ZM66AssaultRifle', boss5mm_chaingun_spawn_bias));
         addItem('BossRifleButItsFuckingPink', spawns_5mmBoss, boss5mm_persistent_spawning);
 
         // No-scope Boss Rifle
         Array<HexaSpawnItemEntry> spawns_NoScopeBoss;
-        spawns_NoScopeBoss.push(addItemEntry('BossRifleSpawner', nsb_boss_spawn_bias));
+        spawns_NoScopeBoss.push(addItemEntry('BossRifle', nsb_boss_spawn_bias));
         addItem('NoScopeBossSpawner', spawns_NoScopeBoss, nsb_persistent_spawning);
 
         // The Worst Boss Rifle
         Array<HexaSpawnItemEntry> spawns_WorstBoss;
-        spawns_WorstBoss.push(addItemEntry('BossRifleSpawner', worstBoss_boss_spawn_bias));
+        spawns_WorstBoss.push(addItemEntry('BossRifle', worstBoss_boss_spawn_bias));
         addItem('BossRifleButItsTheWorst', spawns_WorstBoss, worstBoss_persistent_spawning);
 
         // M1 Garand
         Array<HexaSpawnItemEntry> spawns_Garand;
-        spawns_Garand.push(addItemEntry('LiberatorRandom', gar_shellbox_spawn_bias));
+        spawns_Garand.push(addItemEntry('LiberatorRifle', gar_liberator_spawn_bias));
         addItem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
 
         //------------

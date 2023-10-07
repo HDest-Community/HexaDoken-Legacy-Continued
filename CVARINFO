@@ -50,7 +50,7 @@ server int hd_garand_ammotype=1;
 server int hd_garand_reloadspeed=0;
 server int hd_garand_reloadcapacity=8;
 
-server int gar_shellbox_spawn_bias = 24;
+server int gar_liberator_spawn_bias = 24;
 server bool gar_allowBackpacks = true;
 server bool gar_persistent_spawning = false;
 
