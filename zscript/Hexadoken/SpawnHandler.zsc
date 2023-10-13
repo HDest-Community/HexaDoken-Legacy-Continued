@@ -260,50 +260,50 @@ class HexaDokenHandler : EventHandler {
 
         // 9mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_9mmBoss;
-        spawns_9mmBoss.push(addItemEntry('BossRifle', boss9mm_boss_spawn_bias));
+        spawns_9mmBoss.push(addItemEntry('BossRifleSpawner', boss9mm_boss_spawn_bias));
         spawns_9mmBoss.push(addItemEntry('HDPistol', boss9mm_pistol_spawn_bias));
-        spawns_9mmBoss.push(addItemEntry('HDSMG', boss9mm_smg_spawn_bias));
+        spawns_9mmBoss.push(addItemEntry('ClipBoxPickup2', boss9mm_smg_spawn_bias));
         addItem('BossRifleNine', spawns_9mmBoss, boss9mm_persistent_spawning);
 
         // 4mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_4mmBoss;
-        spawns_4mmBoss.push(addItemEntry('BossRifle', boss4mm_boss_spawn_bias));
-        spawns_4mmBoss.push(addItemEntry('ZM66AssaultRifle', boss4mm_chaingun_spawn_bias));
+        spawns_4mmBoss.push(addItemEntry('BossRifleSpawner', boss4mm_boss_spawn_bias));
+        spawns_4mmBoss.push(addItemEntry('ChaingunReplaces', boss4mm_chaingun_spawn_bias));
         addItem('BossRifleFour', spawns_4mmBoss, boss4mm_persistent_spawning);
 
         // 12ga Boss Rifle
         Array<HexaSpawnItemEntry> spawns_Bossmerg;
-        spawns_Bossmerg.push(addItemEntry('BossRifle', bas_boss_spawn_bias));
-        spawns_Bossmerg.push(addItemEntry('Hunter', bas_hunter_spawn_bias));
-        spawns_Bossmerg.push(addItemEntry('Slayer', bas_slayer_spawn_bias));
+        spawns_Bossmerg.push(addItemEntry('BossRifleSpawner', bas_boss_spawn_bias));
+        spawns_Bossmerg.push(addItemEntry('HunterRandom', bas_hunter_spawn_bias));
+        spawns_Bossmerg.push(addItemEntry('SlayerRandom', bas_slayer_spawn_bias));
         addItem('Bossmerg', spawns_Bossmerg, bas_persistent_spawning);
 
         // .50 OMG Boss Rifle
         Array<HexaSpawnItemEntry> spawns_BogRifle;
-        spawns_BogRifle.push(addItemEntry('BossRifle', bog_boss_spawn_bias));
-        spawns_BogRifle.push(addItemEntry('Thunderbuster', bog_plasma_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('BossRifleSpawner', bog_boss_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('ThunderBuster', bog_plasma_spawn_bias));
         spawns_BogRifle.push(addItemEntry('BFG9K', bog_bfg_spawn_bias));
         addItem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
 
         // 5mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_5mmBoss;
-        spawns_5mmBoss.push(addItemEntry('BossRifle', boss5mm_boss_spawn_bias));
-        spawns_5mmBoss.push(addItemEntry('ZM66AssaultRifle', boss5mm_chaingun_spawn_bias));
+        spawns_5mmBoss.push(addItemEntry('BossRifleSpawner', boss5mm_boss_spawn_bias));
+        spawns_5mmBoss.push(addItemEntry('ChaingunReplaces', boss5mm_chaingun_spawn_bias));
         addItem('BossRifleButItsFuckingPink', spawns_5mmBoss, boss5mm_persistent_spawning);
 
         // No-scope Boss Rifle
         Array<HexaSpawnItemEntry> spawns_NoScopeBoss;
-        spawns_NoScopeBoss.push(addItemEntry('BossRifle', nsb_boss_spawn_bias));
+        spawns_NoScopeBoss.push(addItemEntry('BossRifleSpawner', nsb_boss_spawn_bias));
         addItem('NoScopeBossSpawner', spawns_NoScopeBoss, nsb_persistent_spawning);
 
         // The Worst Boss Rifle
         Array<HexaSpawnItemEntry> spawns_WorstBoss;
-        spawns_WorstBoss.push(addItemEntry('BossRifle', worstBoss_boss_spawn_bias));
+        spawns_WorstBoss.push(addItemEntry('BossRifleSpawner', worstBoss_boss_spawn_bias));
         addItem('BossRifleButItsTheWorst', spawns_WorstBoss, worstBoss_persistent_spawning);
 
         // M1 Garand
         Array<HexaSpawnItemEntry> spawns_Garand;
-        spawns_Garand.push(addItemEntry('LiberatorRifle', gar_liberator_spawn_bias));
+        spawns_Garand.push(addItemEntry('LiberatorRandom', gar_liberator_spawn_bias));
         addItem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
 
         //------------
@@ -329,16 +329,27 @@ class HexaDokenHandler : EventHandler {
         return false;
     }
 
-    // Tries to create the item via random spawning.
-    bool tryCreateItem(Actor thing, string spawnName, int chance, bool rep) {
+    // Tries to replace the item during spawning.
+    bool tryReplaceItem(ReplaceEvent e, string spawnName, int chance) {
         if (giveRandom(chance)) {
-            if (Actor.Spawn(spawnName, thing.pos) && rep) {
-                if (hd_debug) console.printf(thing.getClassName().." -> "..spawnName);
+            if (hd_debug) console.printf(e.replacee.getClassName().." -> "..spawnName);
 
-                thing.destroy();
+            e.replacement = spawnName;
 
-                return true;
-            }
+            return true;
+        }
+
+        return false;
+    }
+
+    // Tries to create the item via random spawning.
+    bool tryCreateItem(Actor thing, string spawnName, int chance) {
+        if (giveRandom(chance)) {
+            if (hd_debug) console.printf(thing.getClassName().." + "..spawnName);
+
+            Actor.Spawn(spawnName, thing.pos);
+
+            return true;
         }
 
         return false;
@@ -356,12 +367,28 @@ class HexaDokenHandler : EventHandler {
         }
     }
 
+    override void checkReplacement(ReplaceEvent e) {
+
+        // If there's nothing to replace or if the replacement is final, quit.
+        if (!e.replacee || e.isFinal) return;
+
+        // If thing being replaced is blacklisted, quit.
+        foreach (bl : blacklist) if (e.replacee is bl) return;
+
+        string candidateName = e.replacee.getClassName();
+
+        // If current map is Range, quit.
+        if (level.MapName == 'RANGE') return;
+
+        handleWeaponReplacements(e, candidateName);
+    }
+
     override void worldThingSpawned(WorldEvent e) {
 
-        // If thing spawned doesn't exist, quit
+        // If thing spawned doesn't exist, quit.
         if (!e.thing) return;
 
-        // If thing spawned is blacklisted, quit
+        // If thing spawned is blacklisted, quit.
         foreach (bl : blacklist) if (e.thing is bl) return;
 
         string candidateName = e.thing.getClassName();
@@ -372,13 +399,13 @@ class HexaDokenHandler : EventHandler {
         // If the thing spawned is an ammunition, add any and all items that can use this.
         if (ammo) handleAmmoUses(ammo, candidateName);
 
-        // Return if range before replacing things.
+        // If current map is Range, quit.
         if (level.MapName == 'RANGE') return;
 
         if (e.thing is 'HDAmBox') {
             handleAmmoBoxLootTable();
         } else {
-        handleWeaponReplacements(e.thing, ammo, candidateName);
+            handleWeaponSpawns(e.thing, ammo, candidateName);
         }
     }
 
@@ -409,7 +436,27 @@ class HexaDokenHandler : EventHandler {
         }
     }
 
-    private void handleWeaponReplacements(Actor thing, HDAmmo ammo, string candidateName) {
+    private void handleWeaponReplacements(ReplaceEvent e, string candidateName) {
+
+        // Checks if the level has been loaded more than 1 tic.
+        bool prespawn = !(level.maptime > 1);
+
+        // Iterates through the list of item candidates for e.thing.
+        foreach (itemSpawn : itemSpawnList) {
+
+            if ((prespawn || itemSpawn.isPersistent) && itemSpawn.replaceItem) {
+                foreach (spawnReplace : itemSpawn.spawnReplaces) {
+                    if (spawnReplace.name ~== candidateName) {
+                        if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
+
+                        if (tryReplaceItem(e, itemSpawn.spawnName, spawnReplace.chance)) return;
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleWeaponSpawns(Actor thing, HDAmmo ammo, string candidateName) {
         
         // Checks if the level has been loaded more than 1 tic.
         bool prespawn = !(level.maptime > 1);
@@ -420,12 +467,16 @@ class HexaDokenHandler : EventHandler {
             // if an item is owned or is an ammo (doesn't retain owner ptr), 
             // do not replace it. 
             let item = Inventory(thing);
-            if ((prespawn || itemSpawn.isPersistent) && (!(item && item.owner) && (!ammo || prespawn))) {
+            if (
+                (prespawn || itemSpawn.isPersistent)
+             && (!(item && item.owner) && (!ammo || prespawn))
+             && !itemSpawn.replaceItem
+            ) {
                 foreach (spawnReplace : itemSpawn.spawnReplaces) {
                     if (spawnReplace.name ~== candidateName) {
-                        if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
+                        if (hd_debug) console.printf("Attempting to spawn "..itemSpawn.spawnName.." with "..candidateName.."...");
 
-                        if (tryCreateItem(thing, itemSpawn.spawnName, spawnReplace.chance, itemSpawn.replaceItem)) return;
+                        if (tryCreateItem(thing, itemSpawn.spawnName, spawnReplace.chance)) return;
                     }
                 }
             }
