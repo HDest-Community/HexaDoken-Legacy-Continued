@@ -176,6 +176,7 @@ class HexaDokenHandler : EventHandler {
         if (!bogmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDOmgClip'));
         if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDGarandClip'));
         if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDGarand3006Clip'));
+        if (!garmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDGarandClipGiver'));
 
 
         //------------
