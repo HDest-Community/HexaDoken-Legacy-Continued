@@ -262,7 +262,7 @@ class HexaDokenHandler : EventHandler {
         // 9mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_9mmBoss;
         spawns_9mmBoss.push(addItemEntry('BossRifleSpawner', boss9mm_boss_spawn_bias));
-        spawns_9mmBoss.push(addItemEntry('HDPistol', boss9mm_pistol_spawn_bias));
+        spawns_9mmBoss.push(addItemEntry('HDAutoPistol', boss9mm_pistol_spawn_bias));
         spawns_9mmBoss.push(addItemEntry('ClipBoxPickup2', boss9mm_smg_spawn_bias));
         addItem('BossRifleNine', spawns_9mmBoss, boss9mm_persistent_spawning);
 
