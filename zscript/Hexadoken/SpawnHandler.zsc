@@ -282,7 +282,7 @@ class HexaDokenHandler : EventHandler {
         // .50 OMG Boss Rifle
         Array<HexaSpawnItemEntry> spawns_BogRifle;
         spawns_BogRifle.push(addItemEntry('BossRifleSpawner', bog_boss_spawn_bias));
-        spawns_BogRifle.push(addItemEntry('ThunderBuster', bog_plasma_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('PlasmaReplaces', bog_plasma_spawn_bias));
         spawns_BogRifle.push(addItemEntry('BFG9K', bog_bfg_spawn_bias));
         addItem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
 
