@@ -1,22 +1,20 @@
 // This adds it to options so we don't have multiple option menus in the main options menu. - [Ted]
-AddOptionMenu "OptionsMenu"
-{
+AddOptionMenu "OptionsMenu" {
     Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
 }
 
 // This does the same as aboved but for the HD Addon menu. - [Ted]
-AddOptionMenu "HDAddonMenu"
-{
+AddOptionMenu "HDAddonMenu" {
     Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
 }
 
 // This is the main option menu that'll have all of the other menus for the weaponry.
 // Note: Practically everything is LANGUAGE-Lump'd. If you're wondering what each option does and what text it displays, I suggest having that open also. - [Ted]
-OptionMenu HexadokenLegacyContinued
-{
-    Title "Hexadoken's Legacy Continued"
+OptionMenu HexadokenLegacyContinued {
+    Title "$HEXA_MENU"
     StaticText ""
-	StaticText "--- Rifles ---", "orange"
+
+	StaticText "$MENU_RIFLES_TITLE", "orange"
 	StaticText ""
     Submenu "$TAG_9MMBOSS", "9mmBoss", 0, 1
 	StaticText ""
@@ -34,48 +32,55 @@ OptionMenu HexadokenLegacyContinued
 	StaticText ""
     Submenu "$TAG_GARAND", "M1Garand", 0, 1
     StaticText ""
-	StaticText "--- Items ---", "green"
+
+	StaticText "$MENU_ITEMS_TITLE", "green"
 	StaticText ""
     Submenu "$TAG_DMS", "DMS", 0, 1
 	StaticText ""
+
 	StaticText "--- Reset Options ---", "Red"
 	StaticText ""
-	SafeCommand "Reset every option", "Hexa_Reset_Cvars", "This resets every option for Hexa's Legacy Continued, are you sure you want to do this?"
+	SafeCommand "$HEXA_RESETALLOPTIONS", "Hexa_Reset_Cvars"
 }
 
-OptionMenu 9mmBoss
-{
+OptionMenu 9mmBoss {
     Title "$TITLE_9MMBOSSMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_9MMBOSS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_9MMBOSSSPAWN", "boss9mm_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETBOSS", "resetcvar boss9mm_boss_spawn_bias"
+	Option "$MENU_9MMBOSSSPAWNRATE", "boss9mm_boss_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss9mm_boss_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_9MMBOSS_PISTOL_SPAWNTEXT", "white"
-	Option "$MENU_9MMBOSSSPAWN", "boss9mm_pistol_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETPISTOL", "resetcvar boss9mm_pistol_spawn_bias"
+	Option "$MENU_9MMBOSSSPAWNRATE", "boss9mm_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss9mm_pistol_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_9MMBOSS_CLIPBOX_SPAWNTEXT", "white"
-	Option "$MENU_9MMBOSSSPAWN", "boss9mm_clipbox_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETSMG", "resetcvar boss9mm_clipbox_spawn_bias"
+	Option "$MENU_9MMBOSSSPAWNRATE", "boss9mm_clipbox_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss9mm_clipbox_spawn_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_9MMBOSSBACKPACK", "boss9mm_allowBackpacks", "OnOff"
-	/* Option "$MENU_9MMBOSSMAGBACKPACK", "boss9mmmag_allowBackpacks", "OnOff" */
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+
+	StaticText "$MENU_PERSISTENCYOPTIONS", "ORange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "boss9mm_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar boss9mm_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "boss9mm_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "boss9mm_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$9MMBOSS_LORE1", "white"
 	StaticText "$9MMBOSS_LORE2", "white"
@@ -83,34 +88,40 @@ OptionMenu 9mmBoss
 	StaticText "$9MMBOSS_LORE4", "white"
 }
 
-OptionMenu 4mmBoss
-{
+OptionMenu 4mmBoss {
     Title "$TITLE_4MMBOSSMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_4MMBOSS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_4MMBOSSSPAWN", "boss4mm_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETBOSS", "resetcvar boss4mm_boss_spawn_bias"
+	Option "$MENU_4MMBOSSSPAWNRATE", "boss4mm_boss_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss4mm_boss_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_4MMBOSS_CHAINGUN_SPAWNTEXT", "white"
-	Option "$MENU_4MMBOSSSPAWN", "boss4mm_chaingun_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETVULC", "resetcvar boss4mm_chaingun_spawn_bias"
+	Option "$MENU_4MMBOSSSPAWNRATE", "boss4mm_chaingun_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss4mm_chaingun_spawn_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_4MMBOSSBACKPACK", "boss4mm_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "boss4mm_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar boss4mm_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "boss4mm_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "boss4mm_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$4MMBOSS_LORE1", "white"
 	StaticText "$4MMBOSS_LORE2", "white"
@@ -118,38 +129,44 @@ OptionMenu 4mmBoss
 	StaticText "$4MMBOSS_LORE4", "white"
 }
 
-OptionMenu BasRifle
-{
+OptionMenu BasRifle {
     Title "$TITLE_BOSSMERGMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_BAS_BOSS_SPAWNTEXT", "white"
 	Option "$MENU_BASSPAWNRATE", "bas_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETHUNTER", "resetcvar bas_boss_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar bas_boss_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BAS_HUNTER_SPAWNTEXT", "white"
 	Option "$MENU_BASSPAWNRATE", "bas_hunter_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETHUNTER", "resetcvar bas_hunter_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar bas_hunter_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BAS_SLAYER_SPAWNTEXT", "white"
 	Option "$MENU_BASSPAWNRATE", "bas_slayer_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETSLAYER", "resetcvar bas_slayer_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar bas_slayer_spawn_bias"
     StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_BASBACKPACK", "bas_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "bas_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar bas_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "bas_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "bas_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$BAS_LORE1", "white"
 	StaticText "$BAS_LORE2", "white"
@@ -157,74 +174,87 @@ OptionMenu BasRifle
 	StaticText "$BAS_LORE4", "white"
 }
 
-OptionMenu BogRifle
-{
+OptionMenu BogRifle {
     Title "$TITLE_BOGRIFLEMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_BOG_BOSS_SPAWNTEXT", "white"
 	Option "$MENU_BOGSPAWNRATE", "bog_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETTB", "resetcvar bog_boss_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar bog_boss_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BOG_PLASMA_SPAWNTEXT", "white"
 	Option "$MENU_BOGSPAWNRATE", "bog_plasma_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETTB", "resetcvar bog_plasma_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar bog_plasma_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BOG_BFG_SPAWNTEXT", "white"
 	Option "$MENU_BOGSPAWNRATE", "bog_bfg_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETBFG", "resetcvar bog_bfg_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar bog_bfg_spawn_bias"
     StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_BOGBACKPACK", "bog_allowBackpacks", "OnOff"
 	Option "$MENU_BOGMAGBACKPACK", "bogmag_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "bog_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar bog_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "bog_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "bog_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
+
 	StaticText "$BOG_LORE1", "white"
 	StaticText "$BOG_LORE2", "white"
 	StaticText "$BOG_LORE3", "white"
 	StaticText "$BOG_LORE4", "white"
 }
 
-OptionMenu 5mmBoss
-{
+OptionMenu 5mmBoss {
     Title "$TITLE_5MMBOSSMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+	
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_5MMBOSS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_5MMBOSSSPAWN", "boss5mm_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETBOSS", "resetcvar boss5mm_boss_spawn_bias"
+	Option "$MENU_5MMBOSSSPAWNRATE", "boss5mm_boss_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss5mm_boss_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_5MMBOSS_CHAINGUN_SPAWNTEXT", "white"
-	Option "$MENU_5MMBOSSSPAWN", "boss5mm_chaingun_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETVULC", "resetcvar boss5mm_chaingun_spawn_bias"
+	Option "$MENU_5MMBOSSSPAWNRATE", "boss5mm_chaingun_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar boss5mm_chaingun_spawn_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_5MMBOSSBACKPACK", "boss5mm_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "boss5mm_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar boss5mm_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "5mmboss_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "5mmboss_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$5MMBOSS_LORE1", "white"
 	StaticText "$5MMBOSS_LORE2", "white"
@@ -232,30 +262,36 @@ OptionMenu 5mmBoss
 	StaticText "$5MMBOSS_LORE4", "white"
 }
 
-OptionMenu NoScopeBoss
-{
+OptionMenu NoScopeBoss {
     Title "$TITLE_NSBMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_NSB_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_NSBSPAWN", "nsb_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETBOSS", "resetcvar nsb_boss_spawn_bias"
+	Option "$MENU_NSBSPAWNRATE", "nsb_boss_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar nsb_boss_spawn_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_NSBBACKPACK", "nsb_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "nsb_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar nsb_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "nsb_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "nsb_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+	
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$NSB_LORE1", "white"
 	StaticText "$NSB_LORE2", "white"
@@ -263,30 +299,36 @@ OptionMenu NoScopeBoss
 	StaticText "$NSB_LORE4", "white"
 }
 
-OptionMenu WorstBoss
-{
+OptionMenu WorstBoss {
     Title "$TITLE_WORSTMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_WORST_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_WORSTSPAWN", "worstBoss_boss_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETBOSS", "resetcvar worstBoss_boss_spawn_bias"
+	Option "$MENU_WORSTSPAWNRATE", "worstBoss_boss_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar worstBoss_boss_spawn_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_WORSTBACKPACK", "worstBoss_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "worstBoss_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar worstBoss_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "worstBoss_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "worstBoss_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$WORSTBOSS_LORE1", "white"
 	StaticText "$WORSTBOSS_LORE2", "white"
@@ -294,30 +336,35 @@ OptionMenu WorstBoss
 	StaticText "$WORSTBOSS_LORE4", "white"
 }
 
-OptionMenu M1Garand
-{
+OptionMenu M1Garand {
     Title "$TITLE_GARANDMENU"
-   	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Orange"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Orange"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_GARAND_CHAINGUN_SPAWNTEXT", "white"
 	Option "$MENU_GARANDSPAWNRATE", "gar_chaingun_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETGAR", "resetcvar gar_chaingun_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar gar_chaingun_spawn_bias"
     StaticText  "$MENU_GARAND_LIBERATOR_SPAWNTEXT", "white"
 	Option "$MENU_GARANDSPAWNRATE", "gar_liberator_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETGAR", "resetcvar gar_liberator_spawn_bias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar gar_liberator_spawn_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Orange"
 	Option "$MENU_GARANDBACKPACK", "gar_allowBackpacks", "OnOff"
 	Option "$MENU_GARANDMAGBACKPACK", "garmag_allowBackpacks", "OnOff"
  	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	
+	StaticText "$MENU_PERSISTENCYOPTIONS", "Orange"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "gar_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar gar_persistent_spawning"
 	StaticText ""
-	StaticText "Misc Options", "Orange"
+
+	StaticText "$MENU_MISCOPTIONS", "Orange"
     StaticText  "$MENU_GARANDAMMO", "white"
 	Option "$MENU_GARANDAMMOTYPE", "hd_garand_ammotype", "HDgarandfeed"
 	SafeCommand "$MENU_GARANDAMMORESET", "resetcvar hd_garand_ammotype"
@@ -331,10 +378,12 @@ OptionMenu M1Garand
 	SafeCommand "$MENU_RESETGARANDRELOADERCAPACITY", "resetcvar hd_garand_reloadcapacity"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Orange"
-	SafeCommand "Reset all options", "gar_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Orange"
+	SafeCommand "$MENU_RESETALLOPTIONS", "gar_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Orange"
+
+	StaticText "$MENU_LORE_TITLE", "Orange"
 	StaticText ""
 	StaticText "$GARAND_LORE1", "white"
 	StaticText "$GARAND_LORE2", "white"
@@ -342,14 +391,15 @@ OptionMenu M1Garand
 	StaticText "$GARAND_LORE4", "white"
 }
 
-OptionMenu DMS
-{
+OptionMenu DMS {
     Title "$TITLE_DMSMENU"
-   	StaticText "Notice:", "Green"
-    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
-    StaticText  "all spawns of that given type.", "white"
+
+   	StaticText "$MENU_NOTICE", "Green"
+    StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
+    StaticText  "$MENU_SPAWNRATE_TEXT2", "white"
     StaticText ""
-	StaticText "Spawn Options", "Green"
+
+	StaticText "$MENU_SPAWNOPTIONS", "Green"
     StaticText  "$MENU_DMSSTIMPACK", "white"
 	Option "$MENU_DMSSPAWNRATE", "dms_stimpack_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETSTIMPACK", "resetcvar dms_stimpack_bias"
@@ -358,18 +408,23 @@ OptionMenu DMS
 	Option "$MENU_DMSSPAWNRATE", "dms_medikit_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETMEDIKIT", "resetcvar dms_medikit_bias"
  	StaticText ""
+
 	StaticText "$MENU_BACKPACKTEXT", "Green"
 	Option "$MENU_DMSBACKPACK", "dms_allowBackpacks", "OnOff"
     StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	
+	StaticText "$MENU_RESETOPTIONS", "Green"
+    StaticText  "$MENU_PERSISTENCY_TEXT", "white"
 	Option "$MENU_PERSISTENCY", "dms_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar dms_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
-	SafeCommand "Reset all options", "dms_reset_cvars"
+
+	StaticText "$MENU_RESETOPTIONS", "Green"
+	SafeCommand "$MENU_RESETALLOPTIONS", "dms_reset_cvars"
 	StaticText ""
-	StaticText "--- Lore ---", "Green"
+	
+	StaticText "$MENU_LORE_TITLE", "Green"
 	StaticText ""
 	StaticText "$DMS_LORE1", "white"
 	StaticText "$DMS_LORE2", "white"
@@ -378,8 +433,7 @@ OptionMenu DMS
 }
 
 // Spawn Bias (for items that do replace)
-OptionValue "SpawnBias"
-{
+OptionValue "SpawnBias" {
 	-1,    "Disabled"
 	 0,    "Replace All"
 	 2,    "1 in 3"
@@ -395,8 +449,7 @@ OptionValue "SpawnBias"
 }
 
 // Drop Bias (for items that don't replace). 
-OptionValue "DropBias"
-{
+OptionValue "DropBias" {
 	-1,    "Disabled"
 	 0,    "With All"
 	 2,    "1 in 3"
@@ -411,15 +464,13 @@ OptionValue "DropBias"
 	 199,  "1 in 200"
 }
 
-OptionValue "HDgarandfeed"
-{
+OptionValue "HDgarandfeed" {
 	0, ".30-06"
 	1, "7.76mm"
 	2, "7.76mm but stronger"
 }
 
-OptionValue "HDgarandspeed"
-{
+OptionValue "HDgarandspeed" {
 	0, "Normal"
 	1, "Fast"
 	2, "Very fast"
@@ -429,8 +480,7 @@ OptionValue "HDgarandspeed"
 	6, "BRRRRRRT"
 }
 
-OptionValue "HDgarandcap"
-{
+OptionValue "HDgarandcap" {
 	8, "8 rounds"
 	16, "16 rounds"
 	24, "24 rounds"
