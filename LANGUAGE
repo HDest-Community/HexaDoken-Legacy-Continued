@@ -142,6 +142,7 @@ MENU_RESETGARANDRELOADERCAPACITY = "Reset Reloader Capacity";
 // Medical Scanner
 MENU_DMSSTIMPACK                 = "Control the spawn rate of the Medical Scanner on Stimpacks:";
 MENU_DMSMEDIKIT                  = "Control the spawn rate of the Medical Scanner on Medikits:";
+MENU_DMSZERK                     = "Control the spawn rate of the Medical Scanner on Berserk Packs:";
 MENU_DMSSPAWNRATE                = "Medical Scanner Spawn Rate: ";
 
 // Various Resets
@@ -149,6 +150,7 @@ MENU_RESETWEP                    = "Reset Weapon spawn options";
 MENU_RESETMAG                    = "Reset Magazine spawn options";
 MENU_RESETSTIMPACK               = "Reset Stimpack spawn options";
 MENU_RESETMEDIKIT                = "Reset Medikit spawn options";
+MENU_RESETZERK                   = "Reset Berserk spawn options";
 
 // Backpack & Ammo Box Tables
 MENU_BACKPACKTEXT                = "Control whether to allow this weapon to spawn in Backpacks & Ammo Boxes";

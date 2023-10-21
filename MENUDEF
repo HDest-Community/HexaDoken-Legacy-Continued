@@ -408,6 +408,10 @@ OptionMenu DMS {
 	Option "$MENU_DMSSPAWNRATE", "dms_medikit_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETMEDIKIT", "resetcvar dms_medikit_bias"
  	StaticText ""
+    StaticText  "$MENU_DMSZERK", "white"
+	Option "$MENU_DMSSPAWNRATE", "dms_zerk_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETZERK", "resetcvar dms_zerk_bias"
+ 	StaticText ""
 
 	StaticText "$MENU_BACKPACKTEXT", "Green"
 	Option "$MENU_DMSBACKPACK", "dms_allowBackpacks", "OnOff"

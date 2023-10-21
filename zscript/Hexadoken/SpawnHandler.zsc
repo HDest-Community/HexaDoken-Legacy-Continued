@@ -313,8 +313,9 @@ class HexaDokenHandler : EventHandler {
         //------------
 
         Array<HexaSpawnItemEntry> spawns_scanner;
-        spawns_scanner.push(additementry('PortableStimpack', dms_stimpack_bias));
-        spawns_scanner.push(additementry('PortableMedikit', dms_medikit_bias));
+        spawns_scanner.push(additementry('PortableHealingItem', dms_stimpack_bias));
+        spawns_scanner.push(additementry('PortableHealingItemBig', dms_medikit_bias));
+        spawns_scanner.push(additementry('PortableHealingItemBigger', dms_zerk_bias));
         addItem('HDScanner', spawns_scanner, dms_persistent_spawning);
     }
 
