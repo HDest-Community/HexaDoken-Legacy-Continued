@@ -2,17 +2,17 @@
 // Huge credits to FDA for the Radtech Event handler which this is based off of. It's been incredibly helpful.
 //-------------------------------------------------
 
-// Struct for itemspawn information. 
+// Struct for itemspawn information.
 class HexaSpawnItem play {
     // ID by string for spawner
     string spawnName;
-    
+
     // ID by string for spawnees
     Array<HexaSpawnItemEntry> spawnReplaces;
-    
+
     // Whether or not to persistently spawn.
     bool isPersistent;
-    
+
     // Whether or not to replace the original item.
     bool replaceItem;
 
@@ -38,15 +38,15 @@ class HexaSpawnItemEntry play {
     }
 }
 
-// Struct for passing useinformation to ammunition. 
+// Struct for passing useinformation to ammunition.
 class HexaSpawnAmmo play {
 
     // ID by string for the header ammo.
     string ammoName;
-    
+
     // ID by string for weapons using that ammo.
     Array<string> weaponNames;
-    
+
     string toString() {
 
         let weapons = "[";
@@ -61,11 +61,11 @@ class HexaSpawnAmmo play {
 
 
 
-// One handler to rule them all. 
+// One handler to rule them all.
 class HexaDokenHandler : EventHandler {
-    
-    // List of persistent classes to completely ignore. 
-    // This -should- mean this mod has no performance impact. 
+
+    // List of persistent classes to completely ignore.
+    // This -should- mean this mod has no performance impact.
     static const string blacklist[] = {
         'HDSmoke',
         'BloodTrail',
@@ -90,15 +90,15 @@ class HexaDokenHandler : EventHandler {
     private HDAmBoxList ammoBoxList;
 
     // List of weapon-ammo associations.
-    // Used for ammo-use association on ammo spawn (happens very often). 
+    // Used for ammo-use association on ammo spawn (happens very often).
     array<HexaSpawnAmmo> ammoSpawnList;
-    
+
     // List of item-spawn associations.
-    // used for item-replacement on mapload. 
+    // used for item-replacement on mapload.
     array<HexaSpawnItem> itemSpawnList;
-    
+
     bool cvarsAvailable;
-    
+
     // appends an entry to itemSpawnList;
     void addItem(string name, Array<HexaSpawnItemEntry> replacees, bool persists, bool rep=true) {
 
@@ -113,14 +113,14 @@ class HexaDokenHandler : EventHandler {
 
         // Creates a new struct;
         HexaSpawnItem spawnee = HexaSpawnItem(new('HexaSpawnItem'));
-        
+
         // Populates the struct with relevant information,
         spawnee.spawnName = name;
         spawnee.isPersistent = persists;
         spawnee.replaceItem = rep;
         spawnee.spawnReplaces.copy(replacees);
-        
-        // Pushes the finished struct to the array. 
+
+        // Pushes the finished struct to the array.
         itemSpawnList.push(spawnee);
     }
 
@@ -135,7 +135,7 @@ class HexaDokenHandler : EventHandler {
 
     // appends an entry to ammoSpawnList;
     void addAmmo(string name, Array<string> weapons) {
-    
+
         if (hd_debug) {
             let msg = "Adding Ammo Association Entry for "..name..": [";
 
@@ -149,12 +149,12 @@ class HexaDokenHandler : EventHandler {
         spawnee.ammoName = name;
         spawnee.weaponNames.copy(weapons);
 
-        // Pushes the finished struct to the array. 
+        // Pushes the finished struct to the array.
         ammoSpawnList.push(spawnee);
     }
-    
 
-    // Populates the replacement and association arrays. 
+
+    // Populates the replacement and association arrays.
     void init() {
 
         cvarsAvailable = true;
@@ -229,7 +229,7 @@ class HexaDokenHandler : EventHandler {
         wep_7mm.push('NoScopeBoss');
         wep_7mm.push('BossRifleButItsTheWorst');
         addAmmo('SevenMilAmmo', wep_7mm);
-        
+
         // 7mm Recast
         Array<string> wep_7mmR;
         wep_7mmR.push('NoScopeBoss');
@@ -262,8 +262,8 @@ class HexaDokenHandler : EventHandler {
         // 9mm Boss Rifle
         Array<HexaSpawnItemEntry> spawns_9mmBoss;
         spawns_9mmBoss.push(addItemEntry('BossRifleSpawner', boss9mm_boss_spawn_bias));
-        spawns_9mmBoss.push(addItemEntry('HDAutoPistol', boss9mm_pistol_spawn_bias));
-        spawns_9mmBoss.push(addItemEntry('ClipBoxPickup2', boss9mm_smg_spawn_bias));
+        spawns_9mmBoss.push(addItemEntry('PistolReplaces', boss9mm_pistol_spawn_bias));
+        spawns_9mmBoss.push(addItemEntry('ClipBoxPickup2', boss9mm_clipbox_spawn_bias));
         addItem('BossRifleNine', spawns_9mmBoss, boss9mm_persistent_spawning);
 
         // 4mm Boss Rifle
@@ -283,7 +283,7 @@ class HexaDokenHandler : EventHandler {
         Array<HexaSpawnItemEntry> spawns_BogRifle;
         spawns_BogRifle.push(addItemEntry('BossRifleSpawner', bog_boss_spawn_bias));
         spawns_BogRifle.push(addItemEntry('PlasmaReplaces', bog_plasma_spawn_bias));
-        spawns_BogRifle.push(addItemEntry('BFG9K', bog_bfg_spawn_bias));
+        spawns_BogRifle.push(addItemEntry('BFGReplaces', bog_bfg_spawn_bias));
         addItem('BogRifleSpawner', spawns_BogRifle, bog_persistent_spawning);
 
         // 5mm Boss Rifle
@@ -304,6 +304,7 @@ class HexaDokenHandler : EventHandler {
 
         // M1 Garand
         Array<HexaSpawnItemEntry> spawns_Garand;
+        spawns_Garand.push(addItemEntry('ChaingunReplaces', gar_chaingun_spawn_bias));
         spawns_Garand.push(addItemEntry('LiberatorRandom', gar_liberator_spawn_bias));
         addItem('HDGarandRandom', spawns_Garand, gar_persistent_spawning);
 
@@ -316,7 +317,7 @@ class HexaDokenHandler : EventHandler {
         spawns_scanner.push(additementry('PortableMedikit', dms_medikit_bias));
         addItem('HDScanner', spawns_scanner, dms_persistent_spawning);
     }
-    
+
     // Random stuff, stores it and forces negative values just to be 0.
     bool giveRandom(int chance) {
         if (chance > -1) {
@@ -355,22 +356,22 @@ class HexaDokenHandler : EventHandler {
 
         return false;
     }
-    
+
     override void worldLoaded(WorldEvent e) {
 
-        // Populates the main arrays if they haven't been already. 
+        // Populates the main arrays if they haven't been already.
         if (!cvarsAvailable) init();
 
         foreach (bl : backpackBlacklist) {
             if (hd_debug) console.printf("Removing "..bl.getClassName().." from Backpack Spawn Pool");
-                
+
             BPSpawnPool.removeItem(bl);
         }
     }
 
     override void checkReplacement(ReplaceEvent e) {
 
-        // Populates the main arrays if they haven't been already. 
+        // Populates the main arrays if they haven't been already.
         if (!cvarsAvailable) init();
 
         // If there's nothing to replace or if the replacement is final, quit.
@@ -389,7 +390,7 @@ class HexaDokenHandler : EventHandler {
 
     override void worldThingSpawned(WorldEvent e) {
 
-        // Populates the main arrays if they haven't been already. 
+        // Populates the main arrays if they haven't been already.
         if (!cvarsAvailable) init();
 
         // If thing spawned doesn't exist, quit.
@@ -398,36 +399,33 @@ class HexaDokenHandler : EventHandler {
         // If thing spawned is blacklisted, quit.
         foreach (bl : blacklist) if (e.thing is bl) return;
 
+        // Handle Ammo Box Loot Table Filtering
+        if (e.thing is 'HDAmBox' && !ammoBoxList) handleAmmoBoxLootTable();
+
         string candidateName = e.thing.getClassName();
-        
+
         // Pointers for specific classes.
         let ammo = HDAmmo(e.thing);
-        
+
         // If the thing spawned is an ammunition, add any and all items that can use this.
         if (ammo) handleAmmoUses(ammo, candidateName);
 
         // If current map is Range, quit.
         if (level.MapName == 'RANGE') return;
 
-        if (e.thing is 'HDAmBox') {
-            handleAmmoBoxLootTable();
-        } else {
-            handleWeaponSpawns(e.thing, ammo, candidateName);
-        }
+        handleWeaponSpawns(e.thing, ammo, candidateName);
     }
 
     private void handleAmmoBoxLootTable() {
-        if (!ammoBoxList) {
-            ammoBoxList = HDAmBoxList.Get();
+        ammoBoxList = HDAmBoxList.Get();
 
-            foreach (bl : backpackBlacklist) {
-                let index = ammoBoxList.invClasses.find(bl.getClassName());
+        foreach (bl : backpackBlacklist) {
+            let index = ammoBoxList.invClasses.find(bl.getClassName());
 
-                if (index != ammoBoxList.invClasses.Size()) {
-                    if (hd_debug) console.printf("Removing "..bl.getClassName().." from Ammo Box Loot Table");
+            if (index != ammoBoxList.invClasses.Size()) {
+                if (hd_debug) console.printf("Removing "..bl.getClassName().." from Ammo Box Loot Table");
 
-                    ammoBoxList.invClasses.Delete(index);
-                }
+                ammoBoxList.invClasses.Delete(index);
             }
         }
     }
@@ -464,15 +462,15 @@ class HexaDokenHandler : EventHandler {
     }
 
     private void handleWeaponSpawns(Actor thing, HDAmmo ammo, string candidateName) {
-        
+
         // Checks if the level has been loaded more than 1 tic.
         bool prespawn = !(level.maptime > 1);
 
         // Iterates through the list of item candidates for e.thing.
         foreach (itemSpawn : itemSpawnList) {
-            
-            // if an item is owned or is an ammo (doesn't retain owner ptr), 
-            // do not replace it. 
+
+            // if an item is owned or is an ammo (doesn't retain owner ptr),
+            // do not replace it.
             let item = Inventory(thing);
             if (
                 (prespawn || itemSpawn.isPersistent)
