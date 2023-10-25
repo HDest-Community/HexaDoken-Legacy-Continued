@@ -1,183 +1,214 @@
 [enu default]
 
-// Controls the color of the menu icon.
-HEXA_MENU = "\c[Green]Ⓗ\c- Hexadoken's Legacy Continued";
+// Options Menu Titles.
+HEXA_MENU                        = "\c[Green]Ⓗ\c- Hexadoken's Legacy Continued";
+MENU_PISTOLS_TITLE               = "--- Pistols ---";
+MENU_SHOTGUNS_TITLE              = "--- Shotguns ---";
+MENU_MACHINEGUNS_TITLE           = "--- Machine Guns ---";
+MENU_EXPLOSIVES_TITLE            = "--- Explosives ---";
+MENU_RIFLES_TITLE                = "--- Rifles ---";
+MENU_ENERGYWEAPONS_TITLE         = "--- Energy Weapons ---";
+MENU_ARMOUR_TITLE                = "--- Armour ---";
+MENU_ITEMS_TITLE                 = "--- Items ---";
+MENU_RESETOPTIONS_TITLE          = "--- Reset Options ---";
+MENU_LORE_TITLE                  = "--- Lore ---";
+
+// Menu Section Headers
+MENU_SPAWNOPTIONS                = "Spawn Options";
+MENU_WEPSPAWNOPTIONS             = "Weapon Spawn Options";
+MENU_MAGSPAWNOPTIONS             = "Magazine Spawn Options";
+MENU_PERSISTENCYOPTIONS          = "Spawn Persistence Options";
+MENU_MISCOPTIONS                 = "Misc. Options";
+MENU_RESETOPTIONS                = "Reset Options";
+MENU_RESETALLOPTIONS             = "Reset all Options";
+
+// Menu Static Text
+MENU_SPAWNRATE_TEXT1             = "Setting 'spawn rate' to Replace All will suppress";
+MENU_SPAWNRATE_TEXT2             = "spawns of that given type.";
+MENU_PERSISTENCY_TEXT            = "Control whether replacements happen after a mapload:";
+
+// Menu Option Labels
+MENU_NOTICE                      = "Notice:";
+MENU_BACKPACKSALLOWED            = "Allowed in Ammo Boxes and/or Backpacks: ";
+MENU_SPAWNRATE                   = "Spawn Rate: ";
+MENU_WEPSPAWNRATE                = "Weapon Spawn Rate: ";
+MENU_MAGSPAWNRATE                = "Magazine Spawn Rate: ";
+MENU_PERSISTENCY                 = "Persistent Spawns: ";
+MENU_WEPPERSISTENCY              = "Persistent Weapon Spawns: ";
+MENU_MAGPERSISTENCY              = "Persistent Magazine Spawns: ";
+
+// Menu Command Text
+MENU_RESETWEP                    = "Reset Weapon Options";
+MENU_RESETMAG                    = "Reset Magazine Options";
+MENU_RESETPERSISTENCY            = "Reset Persistence Options";
+HEXA_RESETALLOPTIONS             = "Reset all options for Hexadoken's Legacy Continued.";
 
 // Weapon Tags
-TAG_NSB = "Scopeless Boss Rifle";
-TAG_OMGBOSS = "Boss Rifle (.50 OMG)";
-TAG_BOSSMERG = "Bossmerg 12 gauge Shotgun";
-TAG_GARAND = "M1 Garand";
+TAG_NSB                          = "Scopeless Boss Rifle";
+TAG_OMGBOSS                      = "Boss Rifle (.50 OMG)";
+TAG_BOSSMERG                     = "Bossmerg 12 gauge Shotgun";
+TAG_GARAND                       = "M1 Garand";
 
-TAG_ShitbostDummy = "Boss Rifle Variants";
-TAG_9MMBOSS = "Boss Rifle (9mm)";
-TAG_4MMBOSS = "Boss Rifle (4mm)";
-TAG_5MMBOSS = "HexaDoken's Personal Boss Rifle";
-TAG_WORSTBOSS = "Boss Rifle But It's The Worst";
+TAG_ShitbostDummy                = "Boss Rifle Variants";
+TAG_9MMBOSS                      = "Boss Rifle (9mm)";
+TAG_4MMBOSS                      = "Boss Rifle (4mm)";
+TAG_5MMBOSS                      = "HexaDoken's Personal Boss Rifle";
+TAG_WORSTBOSS                    = "Boss Rifle But It's The Worst";
 
 // Item Tags
-TAG_50OMGCLIP = ".50 OMG clip";
-TAG_7MMSPEEDLOADER = "7.76mm Speed-Reloader Prototype";
-TAG_DMS = "Medical Scanner";
-TAG_GARANDCLIP = "M1 Garand clip";
+TAG_50OMGCLIP                    = ".50 OMG clip";
+TAG_7MMSPEEDLOADER               = "7.76mm Speed-Reloader Prototype";
+TAG_DMS                          = "Medical Scanner";
+TAG_GARANDCLIP                   = "M1 Garand clip";
 
 // Pickup Messages
-PICKUP_9MMBOSS = "You got the Boss Rifle! It's a bit greasy...";
-PICKUP_4MMBOSS = "You got the Boss Rifle! Surprisingly light.";
-PICKUP_BOSSMERG = "You got the Bossmerg 12 gauge Shotgun!";
-PICKUP_5MMBOSS = "You got Hexadoken's Personal Boss Rifle!";
-PICKUP_OMGBOSS = "You got the Boss bolt-action anti-materiel rifle!";
-PICKUP_WORSTBOSS = "You found a... Boss Rifle, but it's the worst. Oh no...";
+PICKUP_9MMBOSS                   = "You got the Boss Rifle! It's a bit greasy...";
+PICKUP_4MMBOSS                   = "You got the Boss Rifle! Surprisingly light.";
+PICKUP_BOSSMERG                  = "You got the Bossmerg 12 gauge Shotgun!";
+PICKUP_5MMBOSS                   = "You got Hexadoken's Personal Boss Rifle!";
+PICKUP_OMGBOSS                   = "You got the Boss bolt-action anti-materiel rifle!";
+PICKUP_WORSTBOSS                 = "You found a... Boss Rifle, but it's the worst. Oh no...";
 
-PICKUP_50OMGCLIP = "Picked up a .50 OMG clip.";
+PICKUP_50OMGCLIP                 = "Picked up a .50 OMG clip.";
 
 // Obituaries
-OB_OMGBOSS = "%o sure showed %k who was the big boss!";
+OB_OMGBOSS                       = "%o sure showed %k who was the big boss!";
 
 // Weapon Help Text
-WEPHELP_WORSTBOSS = "You are beyond help.";
-WEPHELP_WORSTBOSS_CC = "\cfMAN IS ONLY SEPARATED FROM THE HEAVENS\nBY THAT WHICH HE WILL NOT GUN.";
+WEPHELP_WORSTBOSS                = "You are beyond help.";
+WEPHELP_WORSTBOSS_CC             = "\cfMAN IS ONLY SEPARATED FROM THE HEAVENS\nBY THAT WHICH HE WILL NOT GUN.";
 
 // Menu Titles
-TITLE_9MMBOSSMENU = "------ 9mm Boss Rifle Options ------";
-TITLE_4MMBOSSMENU = "------ 4.26mm Boss Rifle Options ------";
-TITLE_BOSSMERGMENU = "------ Bossmerg 12 gauge Shotgun Options ------";
-TITLE_BOGRIFLEMENU = "------ .50 OMG Boss Rifle Options ------";
-TITLE_5MMBOSSMENU = "------ Hexadoken's 5mm BR Boss Rifle Options ------";
-TITLE_NSBMENU = "------ Scopeless Boss Rifle Options ------";
-TITLE_WORSTMENU = "------ The Worst Boss Rifle Options ------";
-TITLE_GARANDMENU = "------ M1 Garand Options ------";
-TITLE_DMSMENU = "------ Medical Scanner Options ------";
+TITLE_9MMBOSSMENU                = "------ 9mm Boss Rifle Options ------";
+TITLE_4MMBOSSMENU                = "------ 4.26mm Boss Rifle Options ------";
+TITLE_BOSSMERGMENU               = "------ Bossmerg 12 gauge Shotgun Options ------";
+TITLE_BOGRIFLEMENU               = "------ .50 OMG Boss Rifle Options ------";
+TITLE_5MMBOSSMENU                = "------ Hexadoken's 5mm BR Boss Rifle Options ------";
+TITLE_NSBMENU                    = "------ Scopeless Boss Rifle Options ------";
+TITLE_WORSTMENU                  = "------ The Worst Boss Rifle Options ------";
+TITLE_GARANDMENU                 = "------ M1 Garand Options ------";
+TITLE_DMSMENU                    = "------ Medical Scanner Options ------";
 
 // 9mm Boss
-MENU_9MMBOSSSPAWNTEXT = "Control the spawn rate of the 9mm Boss on Boss Rifles";
-MENU_9MMBOSSPISTOLTEXT = "Control the spawn rate of the 9mm Boss on Pistols";
-MENU_9MMBOSSSMGTEXT = "Control the spawn rate of the 9mm Boss on SMGs";
-MENU_9MMBOSSSPAWN = "9mm Boss Spawn Rate: ";
+MENU_9MMBOSS_BOSS_SPAWNTEXT      = "Control the spawn rate of the 9mm Boss on Boss Rifles:";
+MENU_9MMBOSS_PISTOL_SPAWNTEXT    = "Control the spawn rate of the 9mm Boss on Pistols:";
+MENU_9MMBOSS_CLIPBOX_SPAWNTEXT   = "Control the spawn rate of the 9mm Boss on Clip Boxes:";
+MENU_9MMBOSSSPAWNRATE            = "9mm Boss Spawn Rate: ";
 
 // 4mm Boss
-MENU_4MMBOSSSPAWNTEXT = "Control the spawn rate of the 4.26mm Boss on Boss Rifles";
-MENU_4MMBOSSCHAINGUNTEXT = "Control the spawn rate of the 4.26mm Boss on Vulcanettes";
-MENU_4MMBOSSSPAWN = "4.26mm Boss Spawn Rate: ";
+MENU_4MMBOSS_BOSS_SPAWNTEXT      = "Control the spawn rate of the 4.26mm Boss on Boss Rifles:";
+MENU_4MMBOSS_CHAINGUN_SPAWNTEXT  = "Control the spawn rate of the 4.26mm Boss on Vulcanettes:";
+MENU_4MMBOSSSPAWNRATE            = "4.26mm Boss Spawn Rate: ";
 
 // Bossmerg
-MENU_BASSPAWNTEXT = "Control the spawn rate of the Bossmerg on Boss Rifles";
-MENU_BASHUNTERTEXT = "Control the spawn rate of the Bossmerg on Hunters";
-MENU_BASSLAYERTEXT = "Control the spawn rate of the Bossmerg on Slayers";
-MENU_BASSPAWNRATE = "Bossmerg Spawn Rate: ";
+MENU_BAS_BOSS_SPAWNTEXT          = "Control the spawn rate of the Bossmerg on Boss Rifles:";
+MENU_BAS_HUNTER_SPAWNTEXT        = "Control the spawn rate of the Bossmerg on Hunter Shotguns:";
+MENU_BAS_SLAYER_SPAWNTEXT        = "Control the spawn rate of the Bossmerg on Slayer Shotguns:";
+MENU_BASSPAWNRATE                = "Bossmerg Spawn Rate: ";
 
 // .50 OMG Boss
-MENU_BOGSPAWNTEXT = "Control the spawn rate of the .50 OMG Boss on Boss Rifles";
-MENU_BOGTHUNDERBUSTERTEXT = "Control the spawn rate of the .50 OMG Boss on Thunderbusters";
-MENU_BOGBFGTEXT = "Control the spawn rate of the .50 OMG Boss on BFG-9000s";
-MENU_BOGSPAWNRATE = ".50 OMG Boss Spawn Rate: ";
+MENU_BOG_BOSS_SPAWNTEXT          = "Control the spawn rate of the .50 OMG Boss on Boss Rifles:";
+MENU_BOG_PLASMA_SPAWNTEXT        = "Control the spawn rate of the .50 OMG Boss on Thunderbusters:";
+MENU_BOG_BFG_SPAWNTEXT           = "Control the spawn rate of the .50 OMG Boss on BFG-9000s:";
+MENU_BOGSPAWNRATE                = ".50 OMG Boss Spawn Rate: ";
 
 // 5mm Boss
-MENU_5MMBOSSSPAWNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on Boss Rifles";
-MENU_5MMBOSSCHAINGUNTEXT = "Control the spawn rate of Hexadoken's Personal Boss on Vulcanettes";
-MENU_5MMBOSSSPAWN = "Hexadoken's Personal Boss Spawn Rate: ";
+MENU_5MMBOSS_BOSS_SPAWNTEXT      = "Control the spawn rate of Hexadoken's Personal Boss on Boss Rifles:";
+MENU_5MMBOSS_CHAINGUN_SPAWNTEXT  = "Control the spawn rate of Hexadoken's Personal Boss on Vulcanettes:";
+MENU_5MMBOSSSPAWNRATE            = "Hexadoken's Personal Boss Spawn Rate: ";
 
 // Scopeless Boss
-MENU_NSBSPAWNTEXT = "Control the spawn rate of the No-Scope Boss on Boss Rifles";
-MENU_NSBSPAWN = "No-Scope Boss Spawn Rate: ";
+MENU_NSB_BOSS_SPAWNTEXT          = "Control the spawn rate of the No-Scope Boss on Boss Rifles";
+MENU_NSBSPAWNRATE                = "No-Scope Boss Spawn Rate: ";
 
 // 5mm Boss
-MENU_WORSTSPAWNTEXT = "Control the spawn rate of the Worst Boss on Boss Rifles";
-MENU_WORSTSPAWN = "The Worst Boss Spawn Rate: ";
+MENU_WORST_BOSS_SPAWNTEXT        = "Control the spawn rate of the Worst Boss on Boss Rifles";
+MENU_WORSTSPAWNRATE              = "The Worst Boss Spawn Rate: ";
 
 // M1 Garand
-MENU_GARANDLIBERATOR = "Control the spawn rate of the M1 Garand on Liberators";
-MENU_GARANDSPAWNRATE = "M1 Garand Spawn Rate: ";
-MENU_GARANDAMMO = "Control what ammunition the M1 Garand loads";
-MENU_GARANDAMMOTYPE = "M1 Garand Ammo Type: ";
-MENU_GARANDAMMORESET = "Reset Ammo Type options";
-MENU_GARANDRELOADERSPEED = "Control how fast the M1 Garand's reloader is";
-MENU_GARANDSPEED = "M1 Garand Reloader Speed: ";
-MENU_RESETGARANDSPEED = "Reset Reloader speed options";
-MENU_GARANDRELOADERCAPACITYTEXT = "Control how much ammo the M1 Garand's reloader can hold at a time.";
-MENU_GARANDRELOADERCAPACITY = "M1 Garand Reloader Capacity: ";
+MENU_GARAND_CHAINGUN_SPAWNTEXT   = "Control the spawn rate of the M1 Garand on Vulcanettes:";
+MENU_GARAND_LIBERATOR_SPAWNTEXT  = "Control the spawn rate of the M1 Garand on Liberators:";
+MENU_GARANDSPAWNRATE             = "M1 Garand Spawn Rate: ";
+MENU_GARANDAMMO                  = "Control what ammunition the M1 Garand loads";
+MENU_GARANDAMMOTYPE              = "M1 Garand Ammo Type: ";
+MENU_GARANDAMMORESET             = "Reset Ammo Type options";
+MENU_GARANDRELOADERSPEED         = "Control how fast the M1 Garand's reloader is";
+MENU_GARANDSPEED                 = "M1 Garand Reloader Speed: ";
+MENU_RESETGARANDSPEED            = "Reset Reloader speed options";
+MENU_GARANDRELOADERCAPACITYTEXT  = "Control how much ammo the M1 Garand's reloader can hold at a time.";
+MENU_GARANDRELOADERCAPACITY      = "M1 Garand Reloader Capacity: ";
 MENU_RESETGARANDRELOADERCAPACITY = "Reset Reloader Capacity";
 
 // Medical Scanner
-MENU_DMSSTIMPACK = "Control the spawn rate of the Medical Scanner on Stimpacks";
-MENU_DMSMEDIKIT = "Control the spawn rate of the Medical Scanner on Medikits";
-MENU_DMSSPAWNRATE = "Medical Scanner Spawn Rate: ";
+MENU_DMSSTIMPACK                 = "Control the spawn rate of the Medical Scanner on Stimpacks:";
+MENU_DMSMEDIKIT                  = "Control the spawn rate of the Medical Scanner on Medikits:";
+MENU_DMSZERK                     = "Control the spawn rate of the Medical Scanner on Berserk Packs:";
+MENU_DMSSPAWNRATE                = "Medical Scanner Spawn Rate: ";
 
 // Various Resets
-MENU_RESETPISTOL = "Reset Pistol spawn options";
-MENU_RESETSMG = "Reset SMG spawn options";
-MENU_RESETBOSS = "Reset Boss Rifle spawn options";
-MENU_RESETTB = "Reset Thunderbuster spawn options";
-MENU_RESETSLAYER = "Reset Slayer spawn options";
-MENU_RESETVULC = "Reset Vulcanette spawn options";
-MENU_RESETHUNTER = "Reset Hunter spawn options";
-MENU_RESETBFG = "Reset BFG-9000 spawn options";
-MENU_RESETLIB = "Reset Liberator spawn options";
-MENU_RESETSTIMPACK = "Reset Stimpack spawn options";
-MENU_RESETMEDIKIT = "Reset Medikit spawn options";
+MENU_RESETWEP                    = "Reset Weapon spawn options";
+MENU_RESETMAG                    = "Reset Magazine spawn options";
+MENU_RESETSTIMPACK               = "Reset Stimpack spawn options";
+MENU_RESETMEDIKIT                = "Reset Medikit spawn options";
+MENU_RESETZERK                   = "Reset Berserk spawn options";
 
 // Backpack & Ammo Box Tables
-MENU_BACKPACKTEXT = "Control whether to allow this weapon to spawn in Backpacks & Ammo Boxes";
-MENU_9MMBOSSBACKPACK = "Allow 9mm Boss Rifles: ";
-MENU_9MMBOSSMAGBACKPACK = "Allow 9mm Clips: ";
-MENU_4MMBOSSBACKPACK = "Allow 4mm Boss Rifles: ";
-MENU_BASBACKPACK = "Allow Bossmerg Shotguns: ";
-MENU_BOGBACKPACK = "Allow .50 OMG Boss Rifles: ";
-MENU_BOGMAGBACKPACK = "Allow .50 OMG Clips: ";
-MENU_5MMBOSSBACKPACK = "Allow Hexadoken's Personal Boss Rifles: ";
-MENU_NSBBACKPACK = "Allow No-Scope Boss Rifles: ";
-MENU_WORSTBACKPACK = "Allow the Worst Boss Rifles: ";
-MENU_GARANDBACKPACK = "Allow M1 Garands: ";
-MENU_GARANDMAGBACKPACK = "Allow M1 Garand Magazines: ";
-MENU_DMSBACKPACK = "Allow Medical Scanners: ";
-
-// Persistency
-MENU_REPLACEAFTERMAPLOAD = "Control whether replacements happen after a mapload.";
-MENU_PERSISTENCY = "Persistent Spawns: ";
-MENU_RESETPERSISTENCY = "Reset persistence options";
+MENU_BACKPACKTEXT                = "Control whether to allow this weapon to spawn in Backpacks & Ammo Boxes";
+MENU_9MMBOSSBACKPACK             = "Allow 9mm Boss Rifles: ";
+MENU_9MMBOSSMAGBACKPACK          = "Allow 9mm Clips: ";
+MENU_4MMBOSSBACKPACK             = "Allow 4mm Boss Rifles: ";
+MENU_BASBACKPACK                 = "Allow Bossmerg Shotguns: ";
+MENU_BOGBACKPACK                 = "Allow .50 OMG Boss Rifles: ";
+MENU_BOGMAGBACKPACK              = "Allow .50 OMG Clips: ";
+MENU_5MMBOSSBACKPACK             = "Allow Hexadoken's Personal Boss Rifles: ";
+MENU_NSBBACKPACK                 = "Allow No-Scope Boss Rifles: ";
+MENU_WORSTBACKPACK               = "Allow the Worst Boss Rifles: ";
+MENU_GARANDBACKPACK              = "Allow M1 Garands: ";
+MENU_GARANDMAGBACKPACK           = "Allow M1 Garand Magazines: ";
+MENU_DMSBACKPACK                 = "Allow Medical Scanners: ";
 
 // Deepest Lore
-9MMBOSS_LORE1 = "TODO: Enter Lore.";
-9MMBOSS_LORE2 = "";
-9MMBOSS_LORE3 = "";
-9MMBOSS_LORE4 = "";
+9MMBOSS_LORE1                    = "TODO: Enter Lore.";
+9MMBOSS_LORE2                    = "";
+9MMBOSS_LORE3                    = "";
+9MMBOSS_LORE4                    = "";
 
-4MMBOSS_LORE1 = "TODO: Enter Lore.";
-4MMBOSS_LORE2 = "";
-4MMBOSS_LORE3 = "";
-4MMBOSS_LORE4 = "";
+4MMBOSS_LORE1                    = "TODO: Enter Lore.";
+4MMBOSS_LORE2                    = "";
+4MMBOSS_LORE3                    = "";
+4MMBOSS_LORE4                    = "";
 
-BAS_LORE1 = "What appears to be a boss rifle rechambered to fit 12-Gauge shells.";
-BAS_LORE2 = "Not much is known where these came from or why they were created in the first place,";
-BAS_LORE3 = "Though they most certainly do exist. For better or for worst.";
-BAS_LORE4 = "If you get one, make sure it's the custom chamber version. These'll gunk up fast...";
+BAS_LORE1                        = "What appears to be a boss rifle rechambered to fit 12-Gauge shells.";
+BAS_LORE2                        = "Not much is known where these came from or why they were created in the first place,";
+BAS_LORE3                        = "Though they most certainly do exist. For better or for worst.";
+BAS_LORE4                        = "If you get one, make sure it's the custom chamber version. These'll gunk up fast...";
 
-BOG_LORE1 = "A Boss rifle that has been rechambered for the .50 OMG Cartridge.";
-BOG_LORE2 = "These rifles are usually impractical, though incredibly fun to shoot.";
-BOG_LORE3 = "If you do manage to hit your target with this it'll most certainly take some hefty damage,";
-BOG_LORE4 = "though getting the munitions to feed this beast is another ordeal.";
+BOG_LORE1                        = "A Boss rifle that has been rechambered for the .50 OMG Cartridge.";
+BOG_LORE2                        = "These rifles are usually impractical, though incredibly fun to shoot.";
+BOG_LORE3                        = "If you do manage to hit your target with this it'll most certainly take some hefty damage,";
+BOG_LORE4                        = "though getting the munitions to feed this beast is another ordeal.";
 
-NSB_LORE1 = "A Boss rifle that has been stripped of its main scope, leaving only its irons left.";
-NSB_LORE2 = "Little is known why these rifles have appeared with only irons, especially as they're not easily replaceable.";
-NSB_LORE3 = "Some speculate that they're for civilian use while others say that they're for infantry use.";
-NSB_LORE4 = "All we can say for certain is that it's still as effective as the regular boss rifle, for better or for worse.";
+NSB_LORE1                        = "A Boss rifle that has been stripped of its main scope, leaving only its irons left.";
+NSB_LORE2                        = "Little is known why these rifles have appeared with only irons, especially as they're not easily replaceable.";
+NSB_LORE3                        = "Some speculate that they're for civilian use while others say that they're for infantry use.";
+NSB_LORE4                        = "All we can say for certain is that it's still as effective as the regular boss rifle, for better or for worse.";
 
-5MMBOSS_LORE1 = "TODO: Enter Lore.";
-5MMBOSS_LORE2 = "";
-5MMBOSS_LORE3 = "";
-5MMBOSS_LORE4 = "";
+5MMBOSS_LORE1                    = "TODO: Enter Lore.";
+5MMBOSS_LORE2                    = "";
+5MMBOSS_LORE3                    = "";
+5MMBOSS_LORE4                    = "";
 
-GARAND_LORE1 = "An old M1 Garand from the early 1X40 times. Some have been recently rechambered to 7.76mm also.";
-GARAND_LORE2 = "It mostly serves now as an inbetween of the Mk. IV Boss Rifle and  the ZM7 Liberator.";
-GARAND_LORE3 = "The original cartridge it was chambered for of .30-06 hits a hefty punch,";
-GARAND_LORE4 = "though its rarity and incompatibility with other 7.76mm guns makes the 7.76mm version a bit more economical.";
+GARAND_LORE1                     = "An old M1 Garand from the early 1X40 times. Some have been recently rechambered to 7.76mm also.";
+GARAND_LORE2                     = "It mostly serves now as an inbetween of the Mk. IV Boss Rifle and  the ZM7 Liberator.";
+GARAND_LORE3                     = "The original cartridge it was chambered for of .30-06 hits a hefty punch,";
+GARAND_LORE4                     = "though its rarity and incompatibility with other 7.76mm guns makes the 7.76mm version a bit more economical.";
 
-WORSTBOSS_LORE1 = "TODO: Enter Lore.";
-WORSTBOSS_LORE2 = "";
-WORSTBOSS_LORE3 = "";
-WORSTBOSS_LORE4 = "";
+WORSTBOSS_LORE1                  = "TODO: Enter Lore.";
+WORSTBOSS_LORE2                  = "";
+WORSTBOSS_LORE3                  = "";
+WORSTBOSS_LORE4                  = "";
 
-DMS_LORE1 = "TODO: Enter Lore.";
-DMS_LORE2 = "";
-DMS_LORE3 = "";
-DMS_LORE4 = "";
+DMS_LORE1                        = "TODO: Enter Lore.";
+DMS_LORE2                        = "";
+DMS_LORE3                        = "";
+DMS_LORE4                        = "";
