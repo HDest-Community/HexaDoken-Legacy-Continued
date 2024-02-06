@@ -1,4 +1,7 @@
 # HexaDoken Legacy Continued
+
+[![Nightly Build](https://github.com/HDest-Community/HexaDoken-Legacy-Continued/actions/workflows/nightly.yml/badge.svg)](https://github.com/HDest-Community/HexaDoken-Legacy-Continued/actions/workflows/nightly.yml)
+
 _Requires [HDBulletLib-Recasted](https://github.com/HDest-Community/HDBulletLib-Recasted), supports the 9mm Clip from [Peppergrinder](https://gitlab.com/hdiscord-saltmines/hd-peppergrinder)_
 
 This is a fix/update of HexaDoken's original 'Hideous Destructor' addons.
