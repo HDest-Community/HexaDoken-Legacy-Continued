@@ -9,9 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v1.4.0] - 2024-07-30
 
+### Added
+
+-   Added Changelog (#18, #19).
+
 ### Changed
 
--   Update Build Scripts (#15, #16, #17).
+-   Fixed Garand Clip Graphic Offset (#22).
+-   Updated Dedicated Medical Scanner to use latest 4.12 variables (#21)
+-   Update Build Scripts (#15, #16, #17, #20).
 
 ## [v1.3.1] - 2023-12-18
 
