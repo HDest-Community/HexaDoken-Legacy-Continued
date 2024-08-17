@@ -1,13 +1,3 @@
-// This adds it to options so we don't have multiple option menus in the main options menu. - [Ted]
-AddOptionMenu "OptionsMenu" {
-    Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
-}
-
-// This does the same as aboved but for the HD Addon menu. - [Ted]
-AddOptionMenu "HDAddonMenu" {
-    Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
-}
-
 // This is the main option menu that'll have all of the other menus for the weaponry.
 // Note: Practically everything is LANGUAGE-Lump'd. If you're wondering what each option does and what text it displays, I suggest having that open also. - [Ted]
 OptionMenu HexadokenLegacyContinued {
@@ -43,6 +33,17 @@ OptionMenu HexadokenLegacyContinued {
 	SafeCommand "$HEXA_RESETALLOPTIONS", "Hexa_Reset_Cvars"
 }
 
+// This adds it to options so we don't have multiple option menus in the main options menu. - [Ted]
+AddOptionMenu "OptionsMenu" {
+    Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
+}
+
+// This does the same as aboved but for the HD Addon menu. - [Ted]
+AddOptionMenu "HDAddonMenu" {
+    Submenu "$HEXA_MENU", "HexadokenLegacyContinued"
+}
+
+
 OptionMenu 9mmBoss {
     Title "$TITLE_9MMBOSSMENU"
 
@@ -53,15 +54,15 @@ OptionMenu 9mmBoss {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_9MMBOSS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_9MMBOSSSPAWNRATE", "boss9mm_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_9MMBOSSSPAWNRATE", "boss9mm_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss9mm_boss_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_9MMBOSS_PISTOL_SPAWNTEXT", "white"
-	Option "$MENU_9MMBOSSSPAWNRATE", "boss9mm_pistol_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_9MMBOSSSPAWNRATE", "boss9mm_pistol_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss9mm_pistol_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_9MMBOSS_CLIPBOX_SPAWNTEXT", "white"
-	Option "$MENU_9MMBOSSSPAWNRATE", "boss9mm_clipbox_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_9MMBOSSSPAWNRATE", "boss9mm_clipbox_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss9mm_clipbox_spawn_bias"
  	StaticText ""
 
@@ -98,11 +99,11 @@ OptionMenu 4mmBoss {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_4MMBOSS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_4MMBOSSSPAWNRATE", "boss4mm_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_4MMBOSSSPAWNRATE", "boss4mm_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss4mm_boss_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_4MMBOSS_CHAINGUN_SPAWNTEXT", "white"
-	Option "$MENU_4MMBOSSSPAWNRATE", "boss4mm_chaingun_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_4MMBOSSSPAWNRATE", "boss4mm_chaingun_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss4mm_chaingun_spawn_bias"
  	StaticText ""
 
@@ -139,15 +140,15 @@ OptionMenu BasRifle {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_BAS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_BASSPAWNRATE", "bas_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_BASSPAWNRATE", "bas_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar bas_boss_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BAS_HUNTER_SPAWNTEXT", "white"
-	Option "$MENU_BASSPAWNRATE", "bas_hunter_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_BASSPAWNRATE", "bas_hunter_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar bas_hunter_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BAS_SLAYER_SPAWNTEXT", "white"
-	Option "$MENU_BASSPAWNRATE", "bas_slayer_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_BASSPAWNRATE", "bas_slayer_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar bas_slayer_spawn_bias"
     StaticText ""
 
@@ -184,15 +185,15 @@ OptionMenu BogRifle {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_BOG_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_BOGSPAWNRATE", "bog_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_BOGSPAWNRATE", "bog_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar bog_boss_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BOG_PLASMA_SPAWNTEXT", "white"
-	Option "$MENU_BOGSPAWNRATE", "bog_plasma_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_BOGSPAWNRATE", "bog_plasma_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar bog_plasma_spawn_bias"
     StaticText ""
     StaticText  "$MENU_BOG_BFG_SPAWNTEXT", "white"
-	Option "$MENU_BOGSPAWNRATE", "bog_bfg_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_BOGSPAWNRATE", "bog_bfg_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar bog_bfg_spawn_bias"
     StaticText ""
 
@@ -231,11 +232,11 @@ OptionMenu 5mmBoss {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_5MMBOSS_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_5MMBOSSSPAWNRATE", "boss5mm_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_5MMBOSSSPAWNRATE", "boss5mm_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss5mm_boss_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_5MMBOSS_CHAINGUN_SPAWNTEXT", "white"
-	Option "$MENU_5MMBOSSSPAWNRATE", "boss5mm_chaingun_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_5MMBOSSSPAWNRATE", "boss5mm_chaingun_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar boss5mm_chaingun_spawn_bias"
  	StaticText ""
 
@@ -272,7 +273,7 @@ OptionMenu NoScopeBoss {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_NSB_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_NSBSPAWNRATE", "nsb_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_NSBSPAWNRATE", "nsb_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar nsb_boss_spawn_bias"
  	StaticText ""
 
@@ -309,7 +310,7 @@ OptionMenu WorstBoss {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_WORST_BOSS_SPAWNTEXT", "white"
-	Option "$MENU_WORSTSPAWNRATE", "worstBoss_boss_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_WORSTSPAWNRATE", "worstBoss_boss_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar worstBoss_boss_spawn_bias"
  	StaticText ""
 
@@ -346,10 +347,10 @@ OptionMenu M1Garand {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Orange"
     StaticText  "$MENU_GARAND_CHAINGUN_SPAWNTEXT", "white"
-	Option "$MENU_GARANDSPAWNRATE", "gar_chaingun_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_GARANDSPAWNRATE", "gar_chaingun_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar gar_chaingun_spawn_bias"
     StaticText  "$MENU_GARAND_LIBERATOR_SPAWNTEXT", "white"
-	Option "$MENU_GARANDSPAWNRATE", "gar_liberator_spawn_bias", "SpawnBias"
+	ScaleSlider "$MENU_GARANDSPAWNRATE", "gar_liberator_spawn_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETWEP", "resetcvar gar_liberator_spawn_bias"
  	StaticText ""
 
@@ -401,15 +402,15 @@ OptionMenu DMS {
 
 	StaticText "$MENU_SPAWNOPTIONS", "Green"
     StaticText  "$MENU_DMSSTIMPACK", "white"
-	Option "$MENU_DMSSPAWNRATE", "dms_stimpack_bias", "SpawnBias"
+	ScaleSlider "$MENU_DMSSPAWNRATE", "dms_stimpack_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETSTIMPACK", "resetcvar dms_stimpack_bias"
     StaticText ""
     StaticText  "$MENU_DMSMEDIKIT", "white"
-	Option "$MENU_DMSSPAWNRATE", "dms_medikit_bias", "SpawnBias"
+	ScaleSlider "$MENU_DMSSPAWNRATE", "dms_medikit_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETMEDIKIT", "resetcvar dms_medikit_bias"
  	StaticText ""
     StaticText  "$MENU_DMSZERK", "white"
-	Option "$MENU_DMSSPAWNRATE", "dms_zerk_bias", "SpawnBias"
+	ScaleSlider "$MENU_DMSSPAWNRATE", "dms_zerk_bias", -1, 999, 1, "$MENU_REPLACEALL", "$MENU_DISABLED"
 	SafeCommand "$MENU_RESETZERK", "resetcvar dms_zerk_bias"
  	StaticText ""
 
@@ -434,38 +435,6 @@ OptionMenu DMS {
 	StaticText "$DMS_LORE2", "white"
 	StaticText "$DMS_LORE3", "white"
 	StaticText "$DMS_LORE4", "white"
-}
-
-// Spawn Bias (for items that do replace)
-OptionValue "SpawnBias" {
-	-1,    "Disabled"
-	 0,    "Replace All"
-	 2,    "1 in 3"
-	 4,    "1 in 5"
-	 9,    "1 in 10"
-	 14,   "1 in 15"
-	 19,   "1 in 20"
-	 24,   "1 in 25"
-	 49,   "1 in 50"
-	 99,   "1 in 100"
-	 149,  "1 in 150"
-	 199,  "1 in 200"
-}
-
-// Drop Bias (for items that don't replace). 
-OptionValue "DropBias" {
-	-1,    "Disabled"
-	 0,    "With All"
-	 2,    "1 in 3"
-	 4,    "1 in 5"
-	 9,    "1 in 10"
-	 14,   "1 in 15"
-	 19,   "1 in 20"
-	 24,   "1 in 25"
-	 49,   "1 in 50"
-	 99,   "1 in 100"
-	 149,  "1 in 150"
-	 199,  "1 in 200"
 }
 
 OptionValue "HDgarandfeed" {
