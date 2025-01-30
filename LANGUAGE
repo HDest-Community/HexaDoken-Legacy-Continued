@@ -72,6 +72,7 @@ PICKUP_9MMBOSS                   = "You got the Boss Rifle! It's a bit greasy...
 PICKUP_4MMBOSS                   = "You got the Boss Rifle! Surprisingly light.";
 PICKUP_BOSSMERG                  = "You got the Bossmerg 12 gauge Shotgun!";
 PICKUP_5MMBOSS                   = "You got Hexadoken's Personal Boss Rifle!";
+PICKUP_NSB                       = "You got the Scopeless Boss Rifle!";
 PICKUP_OMGBOSS                   = "You got the Boss bolt-action anti-materiel rifle!";
 PICKUP_WORSTBOSS                 = "You found a... Boss Rifle, but it's the worst. Oh no...";
 

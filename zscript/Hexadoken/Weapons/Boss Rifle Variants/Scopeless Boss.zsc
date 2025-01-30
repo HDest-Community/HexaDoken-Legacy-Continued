@@ -1,7 +1,7 @@
 class HexaNoScopeBoss : BossRifle {
 	default {
 		tag "$TAG_NSB";
-		pickupmessage "$PICKUP_NSB";
+		inventory.pickupmessage "$PICKUP_NSB";
 		
 		hdweapon.refid "hsb";
 		hdweapon.loadoutcodes "
