@@ -16,7 +16,7 @@ OptionMenu HexadokenLegacyContinued {
 	StaticText ""
     Submenu "$TAG_5MMBOSS", "5mmBoss", 0, 1
 	StaticText ""
-    Submenu "$TAG_NSB", "NoScopeBoss", 0, 1
+    Submenu "$TAG_NSB", "HexaNoScopeBoss", 0, 1
 	StaticText ""
     Submenu "$TAG_WORSTBOSS", "WorstBoss", 0, 1
 	StaticText ""
@@ -263,8 +263,8 @@ OptionMenu 5mmBoss {
 	StaticText "$5MMBOSS_LORE4", "white"
 }
 
-OptionMenu NoScopeBoss {
-    Title "$TITLE_NSBMENU"
+OptionMenu HexaNoScopeBoss {
+    Title "$TITLE_HEXANSBMENU"
 
    	StaticText "$MENU_NOTICE", "Orange"
     StaticText  "$MENU_SPAWNRATE_TEXT1", "white"
