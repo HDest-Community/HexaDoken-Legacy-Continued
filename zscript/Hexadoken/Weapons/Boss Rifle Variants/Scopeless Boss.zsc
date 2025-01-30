@@ -1,24 +1,24 @@
-class NoScopeBoss:BossRifle{
-	default{
-		hdweapon.refid "nsb";
+class HexaNoScopeBoss : BossRifle {
+	default {
 		tag "$TAG_NSB";
+		pickupmessage "$PICKUP_NSB";
 		
+		hdweapon.refid "hsb";
 		hdweapon.loadoutcodes "
 			\cucustomchamber - 0/1, whether to reduce jam for less power
 			\cubulletdrop - 0-600, amount of compensation for bullet drop";
 	}
 
-	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+	override double weaponbulk() {
+		return 138 + weaponstatus[BOSSS_MAG] * ENC_776_LOADED;
 	}
-	override double weaponbulk(){
-		return 138+weaponstatus[BOSSS_MAG]*ENC_776_LOADED;
-	}
-		override void PostBeginPlay()
-	{
+	
+	override void PostBeginPlay() {
+		super.PostBeginPlay();
+
 		weaponspecial = 1337; // [Ted] UaS Compat.
-		Super.PostBeginPlay();
 	}
+
 	override string,double getpickupsprite(){return "BORFB0",1.;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
@@ -490,7 +490,7 @@ class NoScopeBoss:BossRifle{
 				PressingAltFire()||
 				PressingZoom()||
 				(
-					!countinv("SevenMilAmmo")	//don't strip clips automatically
+					!countinv("SevenMilAmmo")    //don't strip clips automatically
 					&&!countinv("SevenMilAmmoRecast")
 				)
 			)setweaponstate("reloaddone");
@@ -648,22 +648,22 @@ class NoScopeBoss:BossRifle{
 	}
 }
 
-class NoScopeBossCC:HDWeaponGiver{
-	default{
-		hdweapongiver.bulk 138;
-		hdweapongiver.weapontogive "NoScopeBoss";
-		hdweapongiver.config "customchamber";
-	}
-}
+// class HexaNoScopeBossCC : HDWeaponGiver {
+//     default {
+//         hdweapongiver.bulk 138;
+//         hdweapongiver.weapontogive "HexaNoScopeBoss";
+//         hdweapongiver.config "customchamber";
+//     }
+// }
 
-class NoScopeBossSpawner:IdleDummy{
+class HexaNoScopeBossSpawner : IdleDummy {
 	states{
 	spawn:
 		TNT1 A 0 nodelay{
 			A_SpawnItemEx("HD7mClip",-3,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 			A_SpawnItemEx("HD7mClip",3,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 			A_SpawnItemEx("HD7mClip",1,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			let ggg=BossRifle(spawn("NoScopeBoss",pos,ALLOW_REPLACE));
+			let ggg=BossRifle(spawn("HexaNoScopeBoss",pos,ALLOW_REPLACE));
 			HDF.TransferSpecials(self,ggg,HDF.TS_ALL);
 		}stop;
 	}
