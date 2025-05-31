@@ -74,3 +74,15 @@ addSpawnTableSingleEntry => { "tableName": "LiberatorRandom", "name": "HDGarandR
 addSpawnTableSingleEntry => { "tableName": "StimpackReplaces", "name": "HDScanner", "weight": "#dms_stimpack_bias", "persists": "#dms_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "MedikitReplaces", "name": "HDScanner", "weight": "#dms_medikit_bias", "persists": "#dms_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "BerserkReplaces", "name": "HDScanner", "weight": "#dms_zerk_bias", "persists": "#dms_persistent_spawning" }
+
+// AceCorp Weapon Crate Filters
+addWeaponCrateBlacklist => { "name": "HDShitbostDummy" }
+
+addWeaponCrateFilter => { "name": "BossRifleButIts9mm", "allowed": "#boss9mm_allowBackpacks" }
+addWeaponCrateFilter => { "name": "BossRifleButIts4mm", "allowed": "#boss4mm_allowBackpacks" }
+addWeaponCrateFilter => { "name": "Bossmerg", "allowed": "#bas_allowBackpacks" }
+addWeaponCrateFilter => { "name": "BogRifle", "allowed": "#bog_allowBackpacks" }
+addWeaponCrateFilter => { "name": "BossRifleButItsFuckingPink", "allowed": "#boss5mm_allowBackpacks" }
+addWeaponCrateFilter => { "name": "HexaNoScopeBoss", "allowed": "#nsb_allowBackpacks" }
+addWeaponCrateFilter => { "name": "BossRifleButItsTheWorst", "allowed": "#worstBoss_allowBackpacks" }
+addWeaponCrateFilter => { "name": "HDGarand", "allowed": "#gar_allowBackpacks" }
