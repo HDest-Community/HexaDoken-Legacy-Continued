@@ -51,7 +51,7 @@ addSpawnTableSingleEntry => { "tableName": "SuperShotgunReplaces", "name": "Boss
 
 // .50 OMG Boss Rifle Spawn Entries
 addSpawnTableSingleEntry => { "tableName": "BossRifleSpawner", "name": "BogRifleSpawner", "weight": "#bog_boss_spawn_bias", "persists": "#bog_persistent_spawning" }
-addSpawnTableSingleEntry => { "tableName": "PlasmaReplaces", "name": "BogRifleSpawner", "weight": "#bog_plasma_spawn_bias", "persists": "#bog_persistent_spawning" }
+addSpawnTableSingleEntry => { "tableName": "PlasmaRifleReplaces", "name": "BogRifleSpawner", "weight": "#bog_plasma_spawn_bias", "persists": "#bog_persistent_spawning" }
 addSpawnTableSingleEntry => { "tableName": "BFG9000Replaces", "name": "BogRifleSpawner", "weight": "#bog_bfg_spawn_bias", "persists": "#bog_persistent_spawning" }
 
 // 5mm Boss Rifle Spawn Entries
