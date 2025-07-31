@@ -219,3 +219,50 @@ DMS_LORE1                        = "TODO: Enter Lore.";
 DMS_LORE2                        = "";
 DMS_LORE3                        = "";
 DMS_LORE4                        = "";
+
+// Merchant Store Entries
+
+// Boss Rifle (9mm)
+MERCH_CAT_9MMBOSS                 = "Hexadoken Industries";
+MERCH_TAG_9MMBOSS                 = "Boss Rifle (9mm)";
+MERCH_FLAVOR_9MMBOSS              = "Why is it greasy?";
+
+// Boss Rifle (4mm)
+MERCH_CAT_4MMBOSS                 = "Hexadoken Industries";
+MERCH_TAG_4MMBOSS                 = "Boss Rifle (4mm)";
+MERCH_FLAVOR_4MMBOSS              = "Feels like cheap plastic.";
+
+// Boss Rifle (5mm)
+MERCH_CAT_5MMBOSS                 = "Hexadoken Industries";
+MERCH_TAG_5MMBOSS                 = "Boss Rifle (5mm)";
+MERCH_FLAVOR_5MMBOSS              = "IT'S PINK!";
+
+// Boss Rifle (.50 OMG)
+MERCH_CAT_OMGBOSS                 = "Hexadoken Industries";
+MERCH_TAG_OMGBOSS                 = "Boss Rifle (.50 OMG)";
+MERCH_FLAVOR_OMGBOSS              = "A bit of oomph to go with that.";
+
+// Bossmerg
+MERCH_CAT_12GBOSS                 = "Hexadoken Industries";
+MERCH_TAG_12GBOSS                 = "Bossmerg 12 gauge Shotgun";
+MERCH_FLAVOR_12GBOSS              = "It's the best of all three!";
+
+// M1 Garand
+MERCH_CAT_M1GARAND                = "Hexadoken Industries";
+MERCH_TAG_M1GARAND                = "M1 Garand";
+MERCH_FLAVOR_M1GARAND             = "PING! PING!";
+
+// No-Scope Boss
+MERCH_CAT_NSB                     = "Hexadoken Industries";
+MERCH_TAG_NSB                     = "Scopeless Boss Rifle";
+MERCH_FLAVOR_NSB                  = "Who needs a scope when you've got a BOLT-ACTION!";
+
+// Worst Boss
+MERCH_CAT_WORSTBOSS               = "Hexadoken Industries";
+MERCH_TAG_WORSTBOSS               = "Boss Rifle but It's the Worst";
+MERCH_FLAVOR_WORSTBOSS            = "Seriously, do not fire this thing. You've been warned.";
+
+// Medical Scanner
+MERCH_CAT_MEDICALSCANNER          = "Hexadoken Industries";
+MERCH_TAG_MEDICALSCANNER          = "Medical Scanner";
+MERCH_FLAVOR_MEDICALSCANNER       = "Medikit without the medikit parts.";

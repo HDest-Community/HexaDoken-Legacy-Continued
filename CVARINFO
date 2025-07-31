@@ -67,3 +67,14 @@ server bool  dms_persistent_spawning       = false;
 // Speed Reloader
 server int hdspeedrunloader_capacity       = 30;
 server int hdspeedrunloader_breakchance    = 32;
+
+// Merchant Store Filters
+server bool hdm_enable_12gboss             = true;
+server bool hdm_enable_4mmboss             = true;
+server bool hdm_enable_5mmboss             = true;
+server bool hdm_enable_9mmboss             = true;
+server bool hdm_enable_m1garand            = true;
+server bool hdm_enable_medicalscanner      = true;
+server bool hdm_enable_nsb                 = true;
+server bool hdm_enable_omgboss             = true;
+server bool hdm_enable_worstboss           = true;
