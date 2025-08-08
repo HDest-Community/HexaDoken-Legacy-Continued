@@ -252,6 +252,11 @@ MERCH_CAT_M1GARAND                = "Hexadoken Industries";
 MERCH_TAG_M1GARAND                = "M1 Garand";
 MERCH_FLAVOR_M1GARAND             = "PING! PING!";
 
+// M1 Garand Clip
+MERCH_CAT_GARANDCLIP              = "Hexadoken Industries";
+MERCH_TAG_GARANDCLIP              = "M1 Garand Clip";
+MERCH_FLAVOR_GARANDCLIP           = "PING! PING!";
+
 // No-Scope Boss
 MERCH_CAT_NSB                     = "Hexadoken Industries";
 MERCH_TAG_NSB                     = "Scopeless Boss Rifle";
