@@ -271,3 +271,8 @@ MERCH_FLAVOR_WORSTBOSS            = "Seriously, do not fire this thing. You've b
 MERCH_CAT_MEDICALSCANNER          = "Hexadoken Industries";
 MERCH_TAG_MEDICALSCANNER          = "Medical Scanner";
 MERCH_FLAVOR_MEDICALSCANNER       = "Medikit without the medikit parts.";
+
+// .50 OMG Clip
+MERCH_CAT_50OMGCLIP               = "Hexadoken Industries";
+MERCH_TAG_50OMGCLIP               = ".50 OMG Clip";
+MERCH_FLAVOR_50OMGCLIP            = "";
