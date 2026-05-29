@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v1.5.0] - 2026-05-29
 
+### Changed
+
+-   Updated Spawn Menu to use sliders (#24).
+-   Renamed No-Scope Boss to prevent Conflicts with PG/1337Weps' Version (#26).
+-   Implemented HDCoreLib (#27).
+
 ## [v1.4.0] - 2024-07-30
 
 ### Added
