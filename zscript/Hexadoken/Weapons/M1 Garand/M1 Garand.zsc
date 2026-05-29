@@ -76,11 +76,11 @@ class HDGarand:AutoReloadingThingy{
 		if(tas) totalbrass+=owner.countinv("SevenMilBrass")/2;
 		int onppowder=totalpowder;
 		//int onpbrass=totalbrass;
-		let bp=hdbackpack(owner.findinventory("hdbackpack"));
+		let bp=HDStorageItem(owner.findInventory("HDStorageItem"));
 		if(bp){
-			totalpowder+=bp.Storage.getamount("fourmilammo");
-			totalbrass+=bp.Storage.getamount(brasstype);
-			if(tas) totalbrass+=bp.Storage.getamount("SevenMilBrass")/2;
+			totalpowder += bp.count("FourMilAmmo");
+			totalbrass += bp.count(brasstype.getClassName());
+			if(tas) totalbrass+=bp.count("SevenMilBrass")/2;
 		}
 		if(!totalbrass||totalpowder<brasscost)return;
 		int canmake=min(totalbrass,totalpowder/brasscost);
@@ -111,7 +111,10 @@ class HDGarand:AutoReloadingThingy{
 		}
 		int deductfrombp=canmake*brasscost-onppowder;
 		owner.A_TakeInventory("fourmilammo",canmake*brasscost);
-		if(deductfrombp>0)bp.Storage.addamount("fourmilammo",-deductfrombp);
+		if(deductfrombp>0) {
+			let rnd = bp.extract(bp.indexOf("fourmilammo"), deductfrombp);
+			if (rnd) rnd.destroy();
+		}
 
 
 		//add resulting rounds
@@ -121,32 +124,37 @@ class HDGarand:AutoReloadingThingy{
 		int bpadd=didmake-onpspace;
 		int onpadd=didmake-max(0,bpadd);
 
-		if(bpadd>0)bp.Storage.addamount(round,bpadd);
-		if(onpadd>0)owner.A_GiveInventory(round,onpadd);
+		if(bpadd>0) {
+			HDF.Give(owner, round, bpadd);
+			bp.insert(owner.findInventory(round), bpadd);
+		}
+
+		if(onpadd>0) HDF.give(owner, round, onpadd);
 
 		owner.A_Log("You reloaded "
 			..didmake
 			..(tas?" .30-06 rounds":" 7.76mm rounds")
 			.." during your downtime.",true);
 	}
-	int ReloadBrass(HDBackpack bp, Class<Inventory> br, int cost, int amt) {
+	int ReloadBrass(HDStorageItem bp, Class<Inventory> br, int cost, int amt) {
 		int result = 0;
 		if (amt > owner.CountInv(br)/cost) {
 			result+=owner.CountInv(br)/cost;
 			amt-=owner.CountInv(br)/cost;
 			owner.A_TakeInventory(br,owner.CountInv(br));
 			if (bp) {
-				if (amt > bp.Storage.getamount(br)/cost) {
-					result += bp.Storage.getamount(br)/cost;
-					bp.Storage.addamount(br, -bp.Storage.getamount(br));
-				}
-				else {
+				let rCnt = bp.count(br.getClassName());
+				if (amt > rCnt / cost) {
+					result += rCnt / cost;
+					let rnd = bp.extract(bp.indexOf(br.getClassName()), -rCnt);
+					if (rnd) rnd.destroy();
+				} else {
 					result += amt;
-					bp.Storage.addamount(br, -amt*cost);
+					let rnd = bp.extract(bp.indexOf(br.getClassName()), -amt * cost);
+					if (rnd) rnd.destroy();
 				}
 			}
-		}
-		else {
+		} else {
 			result+=amt;
 			owner.A_TakeInventory(br,amt*cost);
 		}
@@ -296,11 +304,11 @@ class HDGarand:AutoReloadingThingy{
 	override void ForceBasicAmmo(){
 		owner.A_TakeInventory(round);
 		owner.A_TakeInventory(clip);
-		owner.A_GiveInventory(clip);
+		HDF.give(owner, clip);
 	}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
-			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory(clip)));
+			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findInventory(clip)));
 			if(nextmagloaded>=8)
 				sb.drawimage("GCLPA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.5,1.5));
 			else if (nextmagloaded==7)
@@ -572,7 +580,7 @@ class HDGarand:AutoReloadingThingy{
 				else {
 					A_StartSound("weapons/pocket",9);
 					pocket=true;
-					A_GiveInventory(invoker.round, 1);
+					HDF.give(self, invoker.round, 1);
 				}
 				invoker.weaponstatus[GARS_CHAMBER]=0;
 				invoker.weaponstatus[0]&=~GARF_WRONGROUND;
@@ -642,7 +650,7 @@ class HDGarand:AutoReloadingThingy{
 		#### B 1 offset(32,89){
 			if (invoker.weaponstatus[GARS_MAG]<0) {
 				if(CountInv(invoker.clip) && !(invoker.weaponstatus[0]&GARF_LOOSEROUNDS)) {
-					let mmm=hdmagammo(findinventory(invoker.clip));
+					let mmm=hdmagammo(findInventory(invoker.clip));
 					if(mmm){
 						if(mmm.mags[0] > 0)
 							invoker.weaponstatus[GARS_CHAMBER]=2;

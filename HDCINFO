@@ -18,19 +18,19 @@ addAmmoUser => { "ammoName": "HDGarandClip", "name": "HDGarand" }
 addAmmoUser => { "ammoName": "HDGarand3006Clip", "name": "HDGarand" }
 
 // Backpack Spawn Pool Filters
-addBPSpawnPoolFilter => { "name": "BossRifleButIts9mm", "allowed": "#boss9mm_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "BossRifleButIts4mm", "allowed": "#boss4mm_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "Bossmerg", "allowed": "#bas_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "BogRifle", "allowed": "#bog_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "BossRifleButItsFuckingPink", "allowed": "#boss5mm_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "HexaNoScopeBoss", "allowed": "#nsb_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "BossRifleButItsTheWorst", "allowed": "#worstBoss_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "HDGarand", "allowed": "#gar_allowBackpacks" }
+addStorageItemListFilter => { "name": "BossRifleButIts9mm", "allowed": "#boss9mm_allowBackpacks" }
+addStorageItemListFilter => { "name": "BossRifleButIts4mm", "allowed": "#boss4mm_allowBackpacks" }
+addStorageItemListFilter => { "name": "Bossmerg", "allowed": "#bas_allowBackpacks" }
+addStorageItemListFilter => { "name": "BogRifle", "allowed": "#bog_allowBackpacks" }
+addStorageItemListFilter => { "name": "BossRifleButItsFuckingPink", "allowed": "#boss5mm_allowBackpacks" }
+addStorageItemListFilter => { "name": "HexaNoScopeBoss", "allowed": "#nsb_allowBackpacks" }
+addStorageItemListFilter => { "name": "BossRifleButItsTheWorst", "allowed": "#worstBoss_allowBackpacks" }
+addStorageItemListFilter => { "name": "HDGarand", "allowed": "#gar_allowBackpacks" }
 
-addBPSpawnPoolFilter => { "name": "HDOmgClip", "allowed": "#bogmag_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "HDGarandClip", "allowed": "#garmag_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "HDGarand3006Clip", "allowed": "#garmag_allowBackpacks" }
-addBPSpawnPoolFilter => { "name": "HDGarandClipGiver", "allowed": "#garmag_allowBackpacks" }
+addStorageItemListFilter => { "name": "HDOmgClip", "allowed": "#bogmag_allowBackpacks" }
+addStorageItemListFilter => { "name": "HDGarandClip", "allowed": "#garmag_allowBackpacks" }
+addStorageItemListFilter => { "name": "HDGarand3006Clip", "allowed": "#garmag_allowBackpacks" }
+addStorageItemListFilter => { "name": "HDGarandClipGiver", "allowed": "#garmag_allowBackpacks" }
 
 // Boss Rifle Spawn Table
 newSpawnTable => { "spawnName": "BossRifleSpawner", "addOriginalThing": "true", "persists": "true" }
