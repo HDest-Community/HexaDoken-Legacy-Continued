@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.5.0] - 2026-05-29
+
 ## [v1.4.0] - 2024-07-30
 
 ### Added
@@ -79,7 +81,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Initial Release.
 
-[Unreleased]: https://github.com/HDest-Community/HexaDoken-Legacy-Continued/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/HDest-Community/HexaDoken-Legacy-Continued/compare/v1.5.0...HEAD
+
+[v1.5.0]: https://github.com/HDest-Community/HexaDoken-Legacy-Continued/compare/v1.4.0...v1.5.0
 
 [v1.4.0]: https://github.com/HDest-Community/HexaDoken-Legacy-Continued/compare/v1.3.1...v1.4.0
 
